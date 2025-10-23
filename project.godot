@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="memoria_fragmentada"
-run/main_scene="res://House/house.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="uid://cxc0m55wvemxh"
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [input]
