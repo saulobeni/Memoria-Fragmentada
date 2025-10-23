@@ -1,0 +1,148 @@
+[gd_scene load_steps=20 format=3 uid="uid://dr5y51aw3tm8o"]
+
+[ext_resource type="Script" uid="uid://kshd374tgta7" path="res://House/main.gd" id="1_itecs"]
+[ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://player.gd" id="2_0os0t"]
+[ext_resource type="Texture2D" uid="uid://03f774eu06h1" path="res://sprites_player/parado de costas.png" id="2_gaxxm"]
+[ext_resource type="Texture2D" uid="uid://bxs8d88w1ka0x" path="res://sprites_player/andando pra cima - 2.png" id="3_5ltp0"]
+[ext_resource type="Texture2D" uid="uid://be2t2courqs6t" path="res://sprites_player/andando pra cima - 1.png" id="4_ghf2h"]
+[ext_resource type="Texture2D" uid="uid://btyba0mjuh4d4" path="res://sprites_player/andando pra cima - 3.png" id="4_lq15n"]
+[ext_resource type="Texture2D" uid="uid://djp8ncjgx6vld" path="res://sprites_player/andando pra cima - 4.png" id="5_bhbqi"]
+[ext_resource type="Texture2D" uid="uid://x36whij2g1nf" path="res://sprites_player/de frente -parado.png" id="6_r65no"]
+[ext_resource type="Texture2D" uid="uid://dir332opn3oip" path="res://sprites_player/perna direita para frente.png" id="7_vouyv"]
+[ext_resource type="Texture2D" uid="uid://cj6uoydxmeus5" path="res://sprites_player/Perna esquerda para frente.png" id="8_xls67"]
+[ext_resource type="Texture2D" uid="uid://bf8axvdco52tp" path="res://sprites_player/andando lateral(esquerda) - 1.png" id="9_7sv1n"]
+[ext_resource type="Texture2D" uid="uid://cskq4ve282wr0" path="res://sprites_player/idoso andando (esquerda) - 2.png" id="10_7r7x1"]
+[ext_resource type="Texture2D" uid="uid://bitmqrs3ddi5x" path="res://sprites_player/parado lateralmente - esquerda.png" id="11_n6w55"]
+[ext_resource type="Texture2D" uid="uid://cesb5yx2ptivc" path="res://sprites_player/andando lateral(direita) - 1.png" id="12_ptw0n"]
+[ext_resource type="Texture2D" uid="uid://vxnvno7xhi33" path="res://sprites_player/idoso andando (direita)- 2.png" id="13_kctw4"]
+[ext_resource type="Texture2D" uid="uid://dlegmfbl3pnji" path="res://sprites_player/parado lateralmente - direita.png" id="14_4d2jk"]
+[ext_resource type="PackedScene" uid="uid://r8x7tmlx6p4t" path="res://House/house.tscn" id="17_g01su"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g01su"]
+radius = 15.0
+height = 66.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfq4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gaxxm")
+}],
+"loop": true,
+"name": &"back_stop",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ghf2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5ltp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lq15n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bhbqi")
+}],
+"loop": true,
+"name": &"back_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_r65no")
+}],
+"loop": true,
+"name": &"front_stop",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vouyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xls67")
+}],
+"loop": true,
+"name": &"front_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_7r7x1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n6w55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7sv1n")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_n6w55")
+}],
+"loop": true,
+"name": &"walk_left_stop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_kctw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4d2jk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ptw0n")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_4d2jk")
+}],
+"loop": true,
+"name": &"walk_right_stop",
+"speed": 8.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_itecs")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_0os0t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(66, 112)
+shape = SubResource("CapsuleShape2D_g01su")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(65, 110)
+scale = Vector2(0.263158, 0.254128)
+sprite_frames = SubResource("SpriteFrames_pfq4s")
+animation = &"back_walk"
+frame_progress = 0.553257
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+position_smoothing_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MemorySystem" type="Node" parent="."]
+
+[node name="TaskManager" type="Node" parent="."]
+
+[node name="SaveManager" type="Node" parent="."]
+
+[node name="House" parent="." instance=ExtResource("17_g01su")]
