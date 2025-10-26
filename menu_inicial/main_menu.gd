@@ -21,7 +21,7 @@ func _ready() -> void:
 func _on_new_game_pressed() -> void:
 	# Trocar para a cena principal do jogo (a sua "casa")
 	# Dica: no FileSystem, clique direito em house.tscn → "Copiar Caminho" e cole abaixo se for diferente.
-	get_tree().change_scene_to_file("res://House/house.tscn")
+	get_tree().change_scene_to_file("res://House/main.tscn")
 
 func _on_sound_pressed() -> void:
 	sound_on = not sound_on

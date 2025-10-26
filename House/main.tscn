@@ -18,9 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://dlegmfbl3pnji" path="res://sprites_player/parado lateralmente - direita.png" id="14_4d2jk"]
 [ext_resource type="PackedScene" uid="uid://r8x7tmlx6p4t" path="res://House/house.tscn" id="17_g01su"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g01su"]
-radius = 15.0
-height = 66.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g01su"]
+size = Vector2(9, 9)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g01su"]
 animations = [{
@@ -123,8 +122,8 @@ z_index = 1
 script = ExtResource("2_0os0t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(66, 112)
-shape = SubResource("CapsuleShape2D_g01su")
+position = Vector2(103.5, 41.5)
+shape = SubResource("RectangleShape2D_g01su")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
@@ -132,8 +131,8 @@ limit_top = 0
 position_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(65, 109)
-scale = Vector2(0.251234, 0.251234)
+position = Vector2(103, 27)
+scale = Vector2(0.145045, 0.148503)
 sprite_frames = SubResource("SpriteFrames_g01su")
 animation = &"back_walk"
 
@@ -146,3 +145,4 @@ animation = &"back_walk"
 [node name="SaveManager" type="Node" parent="."]
 
 [node name="House" parent="." instance=ExtResource("17_g01su")]
+position = Vector2(63, 47)

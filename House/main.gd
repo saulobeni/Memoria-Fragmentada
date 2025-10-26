@@ -9,8 +9,7 @@ var house_instance: Node = null
 
 func _ready() -> void:
 	# Instancia e adiciona a casa no mundo
-	house_instance = house_scene.instantiate()
-	world.add_child(house_instance)
+	house_instance = $House
 
 	# Espera um frame para garantir que os nodes internos existam
 	await get_tree().process_frame
