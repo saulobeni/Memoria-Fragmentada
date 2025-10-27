@@ -6,21 +6,32 @@ extends Control
 @onready var btn_exit  : Button = $Center/Menu/BtnExit
 @onready var music     : AudioStreamPlayer = $Music   # se não tiver Music, remova esta linha e o uso dela
 
+# Som de clique dos botões
+@onready var btn_click_sound : AudioStreamPlayer = $BtnClickSound
+
 var sound_on := true
 
 func _ready() -> void:
 	# foco inicial para teclado/controle
 	btn_new.grab_focus()
 	_update_sound_label()
-
+	
 	# conecta os sinais dos botões
 	btn_new.pressed.connect(_on_new_game_pressed)
 	btn_sound.pressed.connect(_on_sound_pressed)
 	btn_exit.pressed.connect(_on_exit_pressed)
+	
+	# conecta sons de CLICK em todos os botões
+	btn_new.pressed.connect(_play_click_sound)
+	btn_sound.pressed.connect(_play_click_sound)
+	btn_exit.pressed.connect(_play_click_sound)
+
+func _play_click_sound() -> void:
+	if sound_on and is_instance_valid(btn_click_sound):
+		btn_click_sound.play()
 
 func _on_new_game_pressed() -> void:
 	# Trocar para a cena principal do jogo (a sua "casa")
-	# Dica: no FileSystem, clique direito em house.tscn → "Copiar Caminho" e cole abaixo se for diferente.
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_sound_pressed() -> void:
