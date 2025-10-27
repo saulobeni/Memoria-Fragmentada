@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dr5y51aw3tm8o"]
 
 [ext_resource type="Script" uid="uid://kshd374tgta7" path="res://scripts/main.gd" id="1_itecs"]
-[ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://player.gd" id="2_0os0t"]
+[ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://scripts/player.gd" id="2_0os0t"]
 [ext_resource type="Texture2D" uid="uid://03f774eu06h1" path="res://assets/sprites/parado de costas.png" id="2_gaxxm"]
 [ext_resource type="Texture2D" uid="uid://bxs8d88w1ka0x" path="res://assets/sprites/andando pra cima - 2.png" id="3_5ltp0"]
 [ext_resource type="Texture2D" uid="uid://be2t2courqs6t" path="res://assets/sprites/andando pra cima - 1.png" id="4_ghf2h"]
