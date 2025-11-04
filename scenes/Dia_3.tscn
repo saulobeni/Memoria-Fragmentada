@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkndh1emna8de"]
+
+[ext_resource type="Script" uid="uid://14nc70csjn61" path="res://scripts/main_menu.gd" id="1_ihgbu"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="2_e6lia"]
+[ext_resource type="Texture2D" uid="uid://cngh3nuoy6607" path="res://assets/textures/bg_preto.jpg" id="2_tde7i"]
+
+[sub_resource type="Theme" id="Theme_3o7y8"]
+default_font = ExtResource("2_e6lia")
+default_font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjn3f"]
+line_spacing = 0.0
+font = ExtResource("2_e6lia")
+font_size = 50
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ihgbu")
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_tde7i")
+expand_mode = 3
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 1154.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme = SubResource("Theme_3o7y8")
+theme_override_constants/separation = 16
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 293.0
+offset_right = 1098.0
+offset_bottom = 343.0
+text = "DIA 3"
+label_settings = SubResource("LabelSettings_hjn3f")
+horizontal_alignment = 1
