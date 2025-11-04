@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=33 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
 [ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://scripts/player.gd" id="2_2ouud"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dlegmfbl3pnji" path="res://assets/sprites/parado lateralmente - direita.png" id="15_7k372"]
 [ext_resource type="Texture2D" uid="uid://cesb5yx2ptivc" path="res://assets/sprites/andando lateral(direita) - 1.png" id="16_ak7rx"]
 [ext_resource type="AudioStream" uid="uid://18u6aef3fhw0" path="res://assets/sounds/footsteps-walking-boots-parquet-2-420134.mp3" id="17_vgt1y"]
+[ext_resource type="Texture2D" uid="uid://dnmt3563uq55q" path="res://assets/atlas/relogio.tres" id="18_2ouud"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrm5b"]
 texture = ExtResource("1_r7dij")
@@ -870,6 +871,12 @@ texture = ExtResource("1_r7dij")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_i2gr7")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2gr7"]
+atlas = ExtResource("18_2ouud")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t46sy"]
+size = Vector2(18, 46)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
 size = Vector2(8, 8)
 
@@ -995,6 +1002,17 @@ tile_set = SubResource("TileSet_2ouud")
 z_index = 1
 tile_map_data = PackedByteArray("AAACAA8AAAAAAAUAAGABAA8AAAAAAAUAAGABAA4AAAAAAAUAAFACAA4AAAAAAAUAAFAAAA8AAAAAAAEAAGADAA8AAAAAAAEAAGATAA8AAAAAAAUAAGAUAA8AAAAAAAUAAGATAA4AAAAAAAUAAFAUAA4AAAAAAAUAAFAcAA4AAAAAAAUAAFAdAA4AAAAAAAUAAFAcAA8AAAAAAAUAAGAdAA8AAAAAAAUAAGAkAA4AAAAAAAUAAFAlAA4AAAAAAAUAAFAkAA8AAAAAAAUAAGAlAA8AAAAAAAUAAGA=")
 tile_set = SubResource("TileSet_t46sy")
+
+[node name="Relogio" type="StaticBody2D" parent="."]
+position = Vector2(57, 48)
+
+[node name="Sprite2D" type="Sprite2D" parent="Relogio"]
+texture_filter = 1
+texture = SubResource("AtlasTexture_i2gr7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Relogio"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_t46sy")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(33, 300)
