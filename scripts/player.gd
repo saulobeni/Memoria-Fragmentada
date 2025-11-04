@@ -1,18 +1,16 @@
 extends CharacterBody2D
 
 @export var speed: float = 100.0
-
 var direction: Vector2 = Vector2.ZERO
 var last_direction: String = "front"  # "front", "back", "left", "right"
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-
-# Som de passos
-@onready var footstep_sound : AudioStreamPlayer2D = $FootstepSound
+@onready var footstep_sound: AudioStreamPlayer2D = $FootstepSound
 
 # Controle do intervalo entre passos
 var footstep_timer := 0.0
 const FOOTSTEP_INTERVAL = 0.4  # Intervalo em segundos entre cada passo
+var was_moving := false  # Controla se estava andando no frame anterior
 
 func _physics_process(delta: float) -> void:
 	# --- Ler input (permite diagonais) ---
@@ -60,16 +58,33 @@ func _update_animation(dir: Vector2, last_dir: String) -> void:
 	anim.play()
 
 func _handle_footsteps(delta: float, dir: Vector2) -> void:
-	# Só toca som se estiver se movendo
-	if dir != Vector2.ZERO:
-		footstep_timer -= delta
-		
-		if footstep_timer <= 0:
-			if is_instance_valid(footstep_sound):
+	if not is_instance_valid(footstep_sound):
+		return
+	
+	var is_moving := dir != Vector2.ZERO
+	
+	# Personagem está se movendo
+	if is_moving:
+		# Detecta quando começa a andar (transição de parado para andando)
+		if not was_moving:
+			# Toca o som imediatamente no primeiro passo
+			footstep_sound.play()
+			footstep_timer = 0.0
+		else:
+			# Continua o ciclo normal de passos
+			footstep_timer += delta
+			
+			# Só toca se não estiver tocando E o intervalo passou
+			if footstep_timer >= FOOTSTEP_INTERVAL and not footstep_sound.playing:
 				footstep_sound.play()
-			footstep_timer = FOOTSTEP_INTERVAL  # Reseta o timer
+				footstep_timer = 0.0
 	else:
-		# Para o som se não estiver andando
-		if is_instance_valid(footstep_sound) and footstep_sound.playing:
+		# Personagem parou de se mover
+		footstep_timer = 0.0
+		
+		# Para o som imediatamente se estiver tocando
+		if footstep_sound.playing:
 			footstep_sound.stop()
-		footstep_timer = 0  # Reseta quando parar
+	
+	# Atualiza o estado para o próximo frame
+	was_moving = is_moving
