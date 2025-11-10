@@ -66,3 +66,8 @@ func _on_ambient_sound_finished() -> void:
 	# Reinicia o som quando terminar
 	if is_instance_valid(ambient_sound):
 		ambient_sound.play()
+
+func _on_interact_with_portrait():
+	var puzzle_scene = preload("res://scenes/Portrait_Puzzle.tscn").instantiate()
+	get_tree().root.add_child(puzzle_scene)
+	puzzle_scene.show()
