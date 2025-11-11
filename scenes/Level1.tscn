@@ -872,6 +872,100 @@ texture = ExtResource("1_r7dij")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_i2gr7")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
+size = Vector2(8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t86jx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i2gr7")
+}],
+"loop": true,
+"name": &"back_stop",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_t46sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_thv4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u4kti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0ybwg")
+}],
+"loop": true,
+"name": &"back_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_xgw5r")
+}],
+"loop": true,
+"name": &"front_stop",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_ntbnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gumju")
+}],
+"loop": true,
+"name": &"front_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_vbuca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_um3md")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wnofu")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_um3md")
+}],
+"loop": true,
+"name": &"walk_left_stop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_qwon6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7k372")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ak7rx")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_7k372")
+}],
+"loop": true,
+"name": &"walk_right_stop",
+"speed": 8.0
+}]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_thv4y"]
 texture = ExtResource("18_i2gr7")
 0:0/0 = 0
@@ -1538,100 +1632,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_thv4y")
 sources/1 = SubResource("TileSetAtlasSource_u4kti")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
-size = Vector2(8, 8)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_t86jx"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_i2gr7")
-}],
-"loop": true,
-"name": &"back_stop",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_t46sy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_thv4y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_u4kti")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_0ybwg")
-}],
-"loop": true,
-"name": &"back_walk",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_xgw5r")
-}],
-"loop": true,
-"name": &"front_stop",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_ntbnh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_gumju")
-}],
-"loop": true,
-"name": &"front_walk",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_vbuca")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_um3md")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_wnofu")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_um3md")
-}],
-"loop": true,
-"name": &"walk_left_stop",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("14_qwon6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_7k372")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_ak7rx")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15_7k372")
-}],
-"loop": true,
-"name": &"walk_right_stop",
-"speed": 8.0
-}]
-
 [node name="Level1" type="Node2D"]
 
 [node name="Cenario" type="Node2D" parent="."]
@@ -1664,10 +1664,6 @@ z_index = 1
 tile_map_data = PackedByteArray("AAACAA8AAAAAAAUAAGABAA8AAAAAAAUAAGABAA4AAAAAAAUAAFACAA4AAAAAAAUAAFAAAA8AAAAAAAEAAGADAA8AAAAAAAEAAGATAA8AAAAAAAUAAGAUAA8AAAAAAAUAAGATAA4AAAAAAAUAAFAUAA4AAAAAAAUAAFAcAA4AAAAAAAUAAFAdAA4AAAAAAAUAAFAcAA8AAAAAAAUAAGAdAA8AAAAAAAUAAGAkAA4AAAAAAAUAAFAlAA4AAAAAAAUAAFAkAA8AAAAAAAUAAGAlAA8AAAAAAAUAAGA=")
 tile_set = SubResource("TileSet_t46sy")
 
-[node name="Objetos" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAbAAUAAQAEAAcAAAAbAAYAAQAEAAgAAAAbAAcAAQAEAAkAAAAcAAUAAQAFAAcAAAAcAAYAAQAFAAgAAAAcAAcAAQAFAAkAAAA=")
-tile_set = SubResource("TileSet_0ybwg")
-
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(33, 300)
 collision_mask = 31
@@ -1692,3 +1688,8 @@ animation = &"walk_left"
 [node name="FootstepSound" type="AudioStreamPlayer2D" parent="Player"]
 stream = ExtResource("17_vgt1y")
 volume_db = 15.0
+
+[node name="Objetos" type="TileMapLayer" parent="."]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAAiAAIAAQAEAAcAAAAiAAMAAQAEAAgAAAAiAAQAAQAEAAkAAAAjAAIAAQAFAAcAAAAjAAMAAQAFAAgAAAAjAAQAAQAFAAkAAAAaAAcAAAAFAAoAAAAaAAgAAAAFAAsAAAAbAAcAAAAGAAoAAAAbAAgAAAAGAAsAAAAcAAcAAAAHAAoAAAAcAAgAAAAHAAsAAAAdAAcAAAAIAAoAAAAdAAgAAAAIAAsAAAAYAAgAAAALAAcAAAAYAAkAAAALAAgAAAAYAAoAAAALAAkAAAAZAAgAAAAMAAcAAAAZAAkAAAAMAAgAAAAZAAoAAAAMAAkAAAAfAAgAAAALAAcAABAeAAgAAAAMAAcAABAfAAkAAAALAAgAABAeAAkAAAAMAAgAABAfAAoAAAALAAkAABAeAAoAAAAMAAkAABA=")
+tile_set = SubResource("TileSet_0ybwg")
