@@ -32,7 +32,7 @@ func _play_click_sound() -> void:
 
 func _on_new_game_pressed() -> void:
 	# Trocar para a cena principal do jogo (a sua "casa")
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
 
 func _on_sound_pressed() -> void:
 	sound_on = not sound_on
