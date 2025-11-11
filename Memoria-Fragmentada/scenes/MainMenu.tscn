@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxc0m55wvemxh"]
+
+[ext_resource type="Script" uid="uid://14nc70csjn61" path="res://scripts/main_menu.gd" id="1_3o7y8"]
+[ext_resource type="Texture2D" uid="uid://csq8erceih5q2" path="res://assets/textures/menu_bg.png" id="1_w6737"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="2_hjn3f"]
+[ext_resource type="AudioStream" uid="uid://5mtaat23mo82" path="res://assets/sounds/dramatic-flute-for-documentaries-165986.mp3" id="4_ow34m"]
+[ext_resource type="AudioStream" uid="uid://c337yxjdk87uj" path="res://assets/sounds/casual-click-pop-ui-2-262119.mp3" id="5_l72w3"]
+
+[sub_resource type="Theme" id="Theme_3o7y8"]
+default_font = ExtResource("2_hjn3f")
+default_font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjn3f"]
+line_spacing = 0.0
+font = ExtResource("2_hjn3f")
+font_size = 50
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3o7y8")
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_w6737")
+expand_mode = 3
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 1154.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme = SubResource("Theme_3o7y8")
+theme_override_constants/separation = 16
+
+[node name="BtnNewGame" type="Button" parent="Center/Menu"]
+layout_mode = 2
+text = "NEW GAME"
+
+[node name="BtnSound" type="Button" parent="Center/Menu"]
+layout_mode = 2
+text = "SOUND"
+
+[node name="BtnExit" type="Button" parent="Center/Menu"]
+layout_mode = 2
+text = "EXIT"
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 58.0
+offset_right = 1107.0
+offset_bottom = 108.0
+text = "MEMORIAS FRAGMENTADAS"
+label_settings = SubResource("LabelSettings_hjn3f")
+horizontal_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ow34m")
+volume_db = 14.0
+autoplay = true
+
+[node name="BtnClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_l72w3")
+volume_db = -5.0
