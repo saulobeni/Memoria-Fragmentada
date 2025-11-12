@@ -88,3 +88,7 @@ func _handle_footsteps(delta: float, dir: Vector2) -> void:
 	
 	# Atualiza o estado para o próximo frame
 	was_moving = is_moving
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
