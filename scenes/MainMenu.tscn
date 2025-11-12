@@ -1,14 +1,88 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxc0m55wvemxh"]
+[gd_scene load_steps=25 format=3 uid="uid://cxc0m55wvemxh"]
 
 [ext_resource type="Script" uid="uid://14nc70csjn61" path="res://scripts/main_menu.gd" id="1_3o7y8"]
-[ext_resource type="Texture2D" uid="uid://csq8erceih5q2" path="res://assets/textures/menu_bg.png" id="1_w6737"]
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="2_hjn3f"]
+[ext_resource type="Texture2D" uid="uid://btjty8qlgvedi" path="res://assets/textures/casa.png" id="2_l72w3"]
 [ext_resource type="AudioStream" uid="uid://5mtaat23mo82" path="res://assets/sounds/dramatic-flute-for-documentaries-165986.mp3" id="4_ow34m"]
 [ext_resource type="AudioStream" uid="uid://c337yxjdk87uj" path="res://assets/sounds/casual-click-pop-ui-2-262119.mp3" id="5_l72w3"]
 
 [sub_resource type="Theme" id="Theme_3o7y8"]
 default_font = ExtResource("2_hjn3f")
 default_font_size = 36
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_826wr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucygd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mipys"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l72w3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8a8k8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_l72w3"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.9490196, 0.9490196, 0, 1)
+Button/colors/font_hover_color = Color(0.9490196, 0.9490196, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0.34901962, 0.02745098, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_826wr")
+Button/styles/focus = SubResource("StyleBoxFlat_ucygd")
+Button/styles/hover = SubResource("StyleBoxFlat_mipys")
+Button/styles/normal = SubResource("StyleBoxFlat_l72w3")
+Button/styles/pressed = SubResource("StyleBoxFlat_8a8k8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7la6k"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2nypq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bky6r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4mxc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_826wr"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.9490196, 0.9490196, 0, 1)
+Button/colors/font_hover_color = Color(0.9490196, 0.9490196, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0.34901962, 0.02745098, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_7la6k")
+Button/styles/hover = SubResource("StyleBoxFlat_2nypq")
+Button/styles/normal = SubResource("StyleBoxFlat_bky6r")
+Button/styles/pressed = SubResource("StyleBoxFlat_l4mxc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5faoh"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptake"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hubol"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vx4p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tdapf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_v41fp"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.9490196, 0.9490196, 0, 1)
+Button/colors/font_hover_color = Color(0.9490196, 0.9490196, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0.34901962, 0.02745098, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_5faoh")
+Button/styles/focus = SubResource("StyleBoxFlat_ptake")
+Button/styles/hover = SubResource("StyleBoxFlat_hubol")
+Button/styles/normal = SubResource("StyleBoxFlat_8vx4p")
+Button/styles/pressed = SubResource("StyleBoxFlat_tdapf")
 
 [sub_resource type="LabelSettings" id="LabelSettings_hjn3f"]
 line_spacing = 0.0
@@ -24,7 +98,7 @@ script = ExtResource("1_3o7y8")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("1_w6737")
+texture = ExtResource("2_l72w3")
 expand_mode = 3
 
 [node name="Center" type="CenterContainer" parent="."]
@@ -46,14 +120,17 @@ theme_override_constants/separation = 16
 
 [node name="BtnNewGame" type="Button" parent="Center/Menu"]
 layout_mode = 2
+theme = SubResource("Theme_l72w3")
 text = "NEW GAME"
 
 [node name="BtnSound" type="Button" parent="Center/Menu"]
 layout_mode = 2
+theme = SubResource("Theme_826wr")
 text = "SOUND"
 
 [node name="BtnExit" type="Button" parent="Center/Menu"]
 layout_mode = 2
+theme = SubResource("Theme_v41fp")
 text = "EXIT"
 
 [node name="Titulo" type="Label" parent="."]
