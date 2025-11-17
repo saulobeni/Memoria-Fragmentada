@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cahcy4dwkj61u"]
+
+[ext_resource type="Script" uid="uid://boriki2nqnvff" path="res://scenes/minigamesScenes/Knife.gd" id="1_ftixv"]
+[ext_resource type="Texture2D" uid="uid://bba17bo34q26g" path="res://assets/atlas/knife.png" id="2_n7v1r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8cbkt"]
+radius = 56.52
+
+[node name="Knife" type="Area2D"]
+script = ExtResource("1_ftixv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_n7v1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(26, -30)
+shape = SubResource("CircleShape2D_8cbkt")
