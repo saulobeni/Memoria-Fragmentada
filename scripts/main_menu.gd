@@ -9,6 +9,8 @@ extends Control
 # Som de clique dos botões
 @onready var btn_click_sound : AudioStreamPlayer = $BtnClickSound
 
+@onready var animation_transition : AnimationPlayer = $Transicao/ColorRect/AnimationPlayer
+
 var sound_on := true
 
 func _ready() -> void:
@@ -31,6 +33,8 @@ func _play_click_sound() -> void:
 		btn_click_sound.play()
 
 func _on_new_game_pressed() -> void:
+	animation_transition.play("transicao_vai")
+	await animation_transition.animation_finished
 	# Trocar para a cena principal do jogo (a sua "casa")
 	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
 

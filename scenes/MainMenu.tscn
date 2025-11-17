@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://cxc0m55wvemxh"]
+[gd_scene load_steps=29 format=3 uid="uid://cxc0m55wvemxh"]
 
 [ext_resource type="Script" uid="uid://14nc70csjn61" path="res://scripts/main_menu.gd" id="1_3o7y8"]
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="2_hjn3f"]
 [ext_resource type="Texture2D" uid="uid://btjty8qlgvedi" path="res://assets/textures/casa.png" id="2_l72w3"]
 [ext_resource type="AudioStream" uid="uid://5mtaat23mo82" path="res://assets/sounds/dramatic-flute-for-documentaries-165986.mp3" id="4_ow34m"]
 [ext_resource type="AudioStream" uid="uid://c337yxjdk87uj" path="res://assets/sounds/casual-click-pop-ui-2-262119.mp3" id="5_l72w3"]
+[ext_resource type="PackedScene" uid="uid://c64702h888nu" path="res://scenes/transicao.tscn" id="6_826wr"]
 
 [sub_resource type="Theme" id="Theme_3o7y8"]
 default_font = ExtResource("2_hjn3f")
@@ -89,52 +90,12 @@ line_spacing = 0.0
 font = ExtResource("2_hjn3f")
 font_size = 50
 
-[sub_resource type="Animation" id="Animation_l72w3"]
-resource_name = "reveal"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bg:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Center/Menu:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(2, 2.6333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Titulo:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.2333333, 1.8333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_826wr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bg:modulate")
+tracks/0/path = NodePath("Center/Menu:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +107,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Center/Menu:modulate")
+tracks/1/path = NodePath("Titulo:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -155,17 +116,33 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Titulo:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+
+[sub_resource type="Animation" id="Animation_l72w3"]
+resource_name = "reveal"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Center/Menu:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.8666666, 3.8333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Titulo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.6, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ucygd"]
@@ -178,6 +155,8 @@ _data = {
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3o7y8")
+
+[node name="Transicao" parent="." instance=ExtResource("6_826wr")]
 
 [node name="Bg" type="TextureRect" parent="."]
 layout_mode = 0

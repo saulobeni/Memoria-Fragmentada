@@ -7,9 +7,12 @@ extends Node2D
 @onready var areaBedGame = $AreaBedGame
 @onready var areaCookingGame = $AreaCookingGame
 
+@onready var transition_animation = $Transicao/ColorRect/AnimationPlayer
+
 var cena_carregada: Node = null
 
 func _ready():
+	transition_animation.play("transicao_vem")
 	subviewport_container.visible = false
 
 func _process(_delta):
