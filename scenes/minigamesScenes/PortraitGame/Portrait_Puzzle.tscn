@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://njowrkx6nyom"]
 
-[ext_resource type="Script" uid="uid://d3u8atkmxl7ll" path="res://scripts/minigamesScripts/portrait_puzzle.gd" id="1_knvpb"]
+[ext_resource type="Script" uid="uid://d3u8atkmxl7ll" path="res://scripts/minigamesScripts/PortraitGame/portrait_puzzle.gd" id="1_knvpb"]
 
 [node name="PortraitPuzzle" type="Control"]
 layout_mode = 3

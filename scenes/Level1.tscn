@@ -2052,7 +2052,6 @@ stream = ExtResource("17_vgt1y")
 volume_db = 15.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
 anchors_preset = 8
@@ -2071,7 +2070,7 @@ grow_vertical = 2
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(650, 550)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="AreaPortraitGame" type="Area2D" parent="."]
 position = Vector2(-71, 242)

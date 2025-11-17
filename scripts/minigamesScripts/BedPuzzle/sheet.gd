@@ -163,3 +163,7 @@ func show_completion() -> void:
 	$Label.text = "🛏 Lençol arrumado!"
 	$Label.modulate = Color(0.999, 0.988, 0.994, 1.0)
 	print("🏁 Minigame completo!")
+	
+	await get_tree().create_timer(3.0).timeout
+	# Trocar de cena depois da mensagem
+	get_tree().change_scene_to_file("res://scenes/Level1.tscn")

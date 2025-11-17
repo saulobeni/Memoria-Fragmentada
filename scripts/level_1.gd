@@ -15,13 +15,13 @@ func _ready():
 func _process(_delta):
 	# Abre com Q apenas se o player estiver na área
 	if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport("res://scenes/minigamesScenes/Portrait_Puzzle.tscn") ## Caminho Portrait Game
+		abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn") ## Caminho Portrait Game
 		
 	if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport("res://scenes/minigamesScenes/Bed_Puzzle.tscn") ## Caminho Bed Game
+		abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn") ## Caminho Bed Game
 		
 	if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport("res://scenes/minigamesScenes/Bed_Puzzle.tscn") ## Caminho Cooking Game
+		abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn") ## Caminho Cooking Game
 
 # Captura todos os inputs de teclado, mesmo com SubViewport ativo
 func _input(event):

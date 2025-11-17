@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://crvxg1hqoal3g"]
 
-[ext_resource type="Script" uid="uid://1m41t58aqnma" path="res://scenes/minigamesScenes/MiniGame.gd" id="1_7tmmp"]
-[ext_resource type="PackedScene" uid="uid://cr1pl18sqrch1" path="res://scenes/minigamesScenes/Fruit.tscn" id="2_2248b"]
-[ext_resource type="PackedScene" uid="uid://cahcy4dwkj61u" path="res://scenes/minigamesScenes/Knife.tscn" id="2_llhu8"]
+[ext_resource type="Script" uid="uid://1m41t58aqnma" path="res://scripts/minigamesScripts/CookingGame/MiniGame.gd" id="1_7tmmp"]
+[ext_resource type="PackedScene" uid="uid://cr1pl18sqrch1" path="res://scenes/minigamesScenes/CookingGame/Fruit.tscn" id="2_2248b"]
+[ext_resource type="PackedScene" uid="uid://cahcy4dwkj61u" path="res://scenes/minigamesScenes/CookingGame/Knife.tscn" id="2_llhu8"]
 [ext_resource type="AudioStream" uid="uid://bbedontbys4ui" path="res://assets/sounds/taking-out-knife-217793.mp3" id="4_2248b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llhu8"]

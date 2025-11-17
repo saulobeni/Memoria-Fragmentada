@@ -103,3 +103,7 @@ func show_victory_message():
 	# Desativar cliques nas peças
 	for piece in pieces:
 		piece.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+	await get_tree().create_timer(3.0).timeout
+	# Trocar de cena depois da mensagem
+	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
