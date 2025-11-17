@@ -2,7 +2,10 @@ extends Node2D
 
 @onready var subviewport_container = $CanvasLayer/SubViewportContainer
 @onready var subviewport = $CanvasLayer/SubViewportContainer/SubViewport
-@onready var area_interacao = $Area2D
+
+@onready var areaPortraitGame = $AreaPortraitGame
+@onready var areaBedGame = $AreaBedGame
+@onready var areaCookingGame = $AreaCookingGame
 
 var cena_carregada: Node = null
 
@@ -11,19 +14,29 @@ func _ready():
 
 func _process(_delta):
 	# Abre com Q apenas se o player estiver na área
-	if area_interacao.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport()
+	if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
+		abrir_subviewport("res://scenes/minigamesScenes/Portrait_Puzzle.tscn") ## Caminho Portrait Game
+		
+	if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
+		abrir_subviewport("res://scenes/minigamesScenes/Bed_Puzzle.tscn") ## Caminho Bed Game
+		
+	if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
+		abrir_subviewport("res://scenes/minigamesScenes/Bed_Puzzle.tscn") ## Caminho Cooking Game
 
-## NECESSIDADE DE AJEITAR ---> FUNÇÃO: APERTAR "ESC" E SAIR DO MINIGAME
 # Captura todos os inputs de teclado, mesmo com SubViewport ativo
 func _input(event):
 	if event.is_action_pressed("fechar_viewport") and subviewport_container.visible:
 		fechar_subviewport()
 
-func abrir_subviewport():
+func abrir_subviewport(caminho_cena):
 	if subviewport_container.visible:
 		return
-	var cena = load("res://scenes/minigamesScenes/Portrait_Puzzle.tscn").instantiate()
+		
+	if cena_carregada:
+		cena_carregada.queue_free()
+		cena_carregada = null
+	
+	var cena = load(caminho_cena).instantiate()
 	subviewport.add_child(cena)
 	cena_carregada = cena
 	subviewport_container.visible = true

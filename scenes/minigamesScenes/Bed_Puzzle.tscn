@@ -1,30 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp3l7nhwsvy0q"]
+[gd_scene load_steps=5 format=3 uid="uid://dp3l7nhwsvy0q"]
 
 [ext_resource type="Script" uid="uid://fa33alqm4pgt" path="res://scripts/minigamesScripts/BedPuzzle/sheet.gd" id="2_ia1y7"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="2_o1p44"]
+[ext_resource type="Texture2D" uid="uid://n14adnsj6gae" path="res://assets/atlas/cama.png" id="3_o1p44"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia1y7"]
-size = Vector2(225, 14)
+[sub_resource type="LabelSettings" id="LabelSettings_vuut8"]
+font = ExtResource("2_o1p44")
 
 [node name="BedPuzzle" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(327, 299)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_o1p44")
+
 [node name="Sheet" type="Polygon2D" parent="."]
-position = Vector2(539, 261)
-rotation = -1.5707964
+position = Vector2(328, 298)
 color = Color(0.16078432, 0.26666668, 1, 1)
+polygon = PackedVector2Array(140, 83, 129, 83, 129, 72, -129, 72, -129, 83, -129, 83, -139, 83, -139.75131, -11.148754, -139, -31, -119.82645, -32.066113, -19.50176, -31.84073, 118.17355, -32.066113, 140, -32, 140, -17.586773)
 script = ExtResource("2_ia1y7")
 
 [node name="Label" type="Label" parent="Sheet"]
 z_index = 2
-offset_left = 52.0
-offset_top = -96.0
-offset_right = 92.0
-offset_bottom = -73.0
-rotation = 1.5707964
+offset_left = -141.0
+offset_top = -50.0
+offset_right = -101.0
+offset_bottom = -27.0
 text = "\"\""
+label_settings = SubResource("LabelSettings_vuut8")
 
-[node name="Area2D" type="Area2D" parent="Sheet"]
+[node name="AreaFinish" type="Area2D" parent="Sheet"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sheet/Area2D"]
-position = Vector2(168, -0.5)
-rotation = 1.5707964
-shape = SubResource("RectangleShape2D_ia1y7")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sheet/AreaFinish"]
+position = Vector2(5, -78)
+scale = Vector2(1.3200024, 1.5200002)
+polygon = PackedVector2Array(-109.84827, 5.9210587, -94.69678, 5.9210587, -94.69678, -1.9736786, 86.363495, -1.3157883, 86.363495, 5.9210587, 102.27255, 5.9210587, 102.27255, -7.2368393, -109.84827, -7.2368393)

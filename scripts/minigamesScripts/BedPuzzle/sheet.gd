@@ -1,95 +1,122 @@
 extends Polygon2D
 
-## ctrl + / ~~> Comenta multiplas linhas!!
+const HANDLE_RADIUS_DRAW: float = 5
+const HANDLE_RADIUS_HIT: float = 10
 
-const VERTEX_COUNT := 15
-const WIDTH := 300
-const HEIGHT := 200
+const HANDLE_COLOR: Color = Color.RED
+const LINE_COLOR: Color = Color(0.151, 0.62, 1.0, 1.0)
 
-const HANDLE_RADIUS_DRAW := 2   # raio do círculo visível
-const HANDLE_RADIUS_HIT  := 20  # raio da área de clique
+var dragged_index: int = -1
+var top_indices: Array[int] = []
+var game_completed: bool = false
 
-# const TARGET_RADIUS := 20         # área onde o vértice deve ser arrastado
-const HANDLE_COLOR := Color.RED
-# const TARGET_COLOR := Color(0,1,0,0.3)
-
-var dragged_index := -1
-# var targets := []
-var game_completed := false
-
-func _ready():
+func _ready() -> void:
 	set_process_input(true)
-	polygon = generate_rectangle_vertices(WIDTH, HEIGHT, VERTEX_COUNT)
+
+	# cor do lençol
+	color = Color(0.151, 0.62, 1.0, 1.0)
+
+	# gera o lençol (retângulo com muitos vértices)
+	#polygon = generate_cloth_vertices(280, 180.0, 5)
+
+	# encontra os vértices do topo
+	top_indices = get_top_vertices()
+
 	$Label.visible = false
-	color = Color(0.9, 0.9, 1.0)
-	# generate_targets()
 	queue_redraw()
 
-func generate_rectangle_vertices(w, h, count):
-	var verts: PackedVector2Array = []
 
-	# perímetro total
-	var perimeter = 2.0 * (w + h)
+# ============================================================
+# GERAR LENÇOL
+# ============================================================
 
-	# distância entre pontos
-	var step = perimeter / count
+func generate_cloth_vertices(w: float, h: float, count: int) -> PackedVector2Array:
+	var verts: PackedVector2Array = PackedVector2Array()
+	var half_w: float = w * 0.5
+	var half_h: float = h * 0.5
 
-	# gera vértices caminhando pelas bordas
+	# gerar topo (count vértices)
 	for i in range(count):
-		var d = step * i
+		var t: float = float(i) / float(count - 1)
+		var x: float = lerp(-half_w, half_w, t)
+		verts.append(Vector2(x, -half_h))  # topo
 
-		if d <= w:  # borda superior
-			verts.append(Vector2(-w/2 + d, -h/2))
-		elif d <= w + h:  # borda direita
-			verts.append(Vector2(w/2, -h/2 + (d - w)))
-		elif d <= w*2 + h:  # borda inferior
-			verts.append(Vector2(w/2 - (d - (w + h)), h/2))
-		else:  # borda esquerda
-			verts.append(Vector2(-w/2, h/2 - (d - (w*2 + h))))
+	# gerar base (count vértices)
+	for i in range(count):
+		var t2: float = float(i) / float(count - 1)
+		var x2: float = lerp(half_w, -half_w, t2)
+		verts.append(Vector2(x2, half_h))  # baixo
 
 	return verts
 
-#func generate_targets():
-	#targets.clear()
-	#var top_count = 0
-	#for v in polygon:
-		#if v.y == -HEIGHT/2:
-			#top_count += 1
-#
-	#for i in range(polygon.size()):
-		#if i < top_count:
-			#targets.append(polygon[i] + Vector2(randf() * 40 - 60, 0))
-		#else:
-			#targets.append(Vector2(10000, 10000))  # target “invisível” fora da tela
-#
-## checa se um vértice está dentro do target
-#func is_vertex_in_target(index):
-	#return polygon[index].distance_to(targets[index]) <= TARGET_RADIUS
 
-func point_inside(point: Vector2, rect: RectangleShape2D) -> bool:
-	return point.x >= -rect.extents.x and point.x <= rect.extents.x \
-	   and point.y >= -rect.extents.y and point.y <= rect.extents.y
+# ============================================================
+# ACHAR OS VÉRTICES DO TOPO
+# ============================================================
 
+func get_top_vertices() -> Array[int]:
+	var top: Array[int] = []
+	var min_y: float = INF
 
-# checa se todos os vértices estão corretos
-func check_completion() -> bool:
-	# verifica os vértices do lado direito (x > 0)
-	var target_area = $Area2D
-	var shape = target_area.get_node("CollisionShape2D").shape as RectangleShape2D
+	for v in polygon:
+		if v.y < min_y:
+			min_y = v.y
 
 	for i in range(polygon.size()):
-		if polygon[i].x > 0:  # lado direito
-			var global_pos = self.to_global(polygon[i])
-			var local_pos = target_area.to_local(polygon[i])
-			if not point_inside(local_pos, shape):
-				return false
+		if abs(polygon[i].y - min_y) < 2.0:
+			top.append(i)
+
+	return top
+
+
+# ============================================================
+# CHECAR COMPLEÇÃO (vértices do topo dentro da faixa verde)
+# ============================================================
+
+func check_completion() -> bool:
+	var finish_area: Area2D = $AreaFinish
+	var space := get_world_2d().direct_space_state
+
+	for i in top_indices:
+		var global_pos: Vector2 = self.to_global(polygon[i])
+
+		var query := PhysicsPointQueryParameters2D.new()
+		query.position = global_pos
+		query.collide_with_areas = true
+		query.collide_with_bodies = false
+		query.exclude = []
+
+		var result = space.intersect_point(query)
+
+		var inside := false
+		for hit in result:
+			if hit.collider == finish_area:
+				inside = true
+				break
+
+		if not inside:
+			return false
+
 	return true
-	
-func _input(event):
-	var mouse = get_local_mouse_position()
+
+
+func point_inside(p: Vector2, rect: RectangleShape2D) -> bool:
+	return (
+		p.x >= -rect.extents.x and p.x <= rect.extents.x
+		and p.y >= -rect.extents.y and p.y <= rect.extents.y
+	)
+
+
+# ============================================================
+# INPUT / ARRASTAR DOS VÉRTICES
+# ============================================================
+
+func _input(event: InputEvent) -> void:
+	var mouse: Vector2 = get_local_mouse_position()
+
 	# pegar vértice
 	if event is InputEventMouseButton and event.pressed:
-		for i in range(polygon.size()):
+		for i in top_indices:
 			if polygon[i].distance_to(mouse) < HANDLE_RADIUS_HIT:
 				dragged_index = i
 				break
@@ -97,32 +124,42 @@ func _input(event):
 	# soltar vértice
 	if event is InputEventMouseButton and not event.pressed:
 		dragged_index = -1
-		if check_completion() and not game_completed:
+
+		# completar jogo
+		if not game_completed and check_completion():
 			game_completed = true
-			print("MiniGame completo!!")
+			show_completion()
 
 	# arrastar
 	if event is InputEventMouseMotion and dragged_index != -1:
-		var verts = polygon
+		var verts: PackedVector2Array = polygon
 		verts[dragged_index] = mouse
 		polygon = verts
 		queue_redraw()
 
-func _draw():
-	# desenha o lençol
+
+# ============================================================
+# VISUAL
+# ============================================================
+
+func _draw() -> void:
+	# desenha lençol
 	draw_polygon(polygon, [color])
 
-	# desenha os vértices
-	for p in polygon:
-		if p.x > 0:
-			draw_circle(p, HANDLE_RADIUS_DRAW, HANDLE_COLOR)
-	
-	#for t in targets:
-		#draw_circle(t, TARGET_RADIUS, TARGET_COLOR)
-	
-	if not game_completed and check_completion():
-		game_completed = true
-		print("MiniGame completo!!")
-		$Label.visible = true
-		$Label.text = "🛏️ MiniGame completo!!"
-		$Label.modulate = Color(0, 1, 0)
+	# contorno
+	draw_polyline(polygon, LINE_COLOR, 1.5)
+
+	# vértices arrastáveis (somente topo)
+	for i in top_indices:
+		draw_circle(polygon[i], HANDLE_RADIUS_DRAW, HANDLE_COLOR)
+
+
+# ============================================================
+# COMPLEÇÃO
+# ============================================================
+
+func show_completion() -> void:
+	$Label.visible = true
+	$Label.text = "🛏 Lençol arrumado!"
+	$Label.modulate = Color(0.999, 0.988, 0.994, 1.0)
+	print("🏁 Minigame completo!")

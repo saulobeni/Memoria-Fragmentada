@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=46 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://4ewt8ueb6fis" path="res://assets/tiles/TopDownHouse_FurnitureState1.png" id="18_i2gr7"]
 [ext_resource type="Texture2D" uid="uid://cfrtqbciublbt" path="res://assets/tiles/TopDownHouse_FurnitureState2.png" id="19_t46sy"]
 [ext_resource type="Script" uid="uid://baw8arqlwno4i" path="res://scripts/area_2d.gd" id="22_u4kti"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="25_ntbnh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrm5b"]
 texture = ExtResource("1_r7dij")
@@ -1666,9 +1667,11 @@ texture = ExtResource("5_u4kti")
 8:7/0 = 0
 9:7/0 = 0
 10:7/0 = 0
+1:8/next_alternative_id = 2
 1:8/0 = 0
 1:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.2222223, 2.666667, 8, 2.666667, 8, 8, -8, 6.2222223)
 1:8/0/physics_layer_0/polygon_1/points = PackedVector2Array(-8, 8, 8, 8, -8, 6.2222223)
+2:8/next_alternative_id = 2
 2:8/0 = 0
 2:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 2.666667, -0.88888884, 4.4444447, -0.88888884, 8, -8, 8)
 3:8/0 = 0
@@ -1678,8 +1681,10 @@ texture = ExtResource("5_u4kti")
 7:8/0 = 0
 9:8/0 = 0
 10:8/0 = 0
+1:9/next_alternative_id = 2
 1:9/0 = 0
 1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 2.666667, -8, 2.666667)
+2:9/next_alternative_id = 2
 2:9/0 = 0
 2:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -0.88888884, -8, -0.88888884, 2.666667, -8, 2.666667)
 3:9/0 = 0
@@ -1975,6 +1980,7 @@ radius = 8.0
 height = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_u4kti"]
+font = ExtResource("25_ntbnh")
 outline_size = 1
 stacked_outline_count = 1
 stacked_shadow_count = 1
@@ -2066,23 +2072,63 @@ handle_input_locally = false
 size = Vector2i(650, 550)
 render_target_update_mode = 4
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AreaPortraitGame" type="Area2D" parent="."]
 position = Vector2(-71, 242)
 script = ExtResource("22_u4kti")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPortraitGame"]
 position = Vector2(206, 81)
 shape = SubResource("CapsuleShape2D_0ybwg")
 
-[node name="Label" type="Label" parent="Area2D"]
-offset_left = 136.0
-offset_top = 115.0
-offset_right = 353.0
-offset_bottom = 138.0
+[node name="Label" type="Label" parent="AreaPortraitGame"]
+offset_left = 163.0
+offset_top = 111.0
+offset_right = 380.0
+offset_bottom = 134.0
 scale = Vector2(0.5, 0.5)
 size_flags_vertical = 8
-text = "Pressione \"Q\" para interagir"
+text = "Pressione \"Q\""
 label_settings = SubResource("LabelSettings_u4kti")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[node name="AreaBedGame" type="Area2D" parent="."]
+position = Vector2(-161, 4)
+script = ExtResource("22_u4kti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaBedGame"]
+position = Vector2(206, 81)
+shape = SubResource("CapsuleShape2D_0ybwg")
+
+[node name="Label" type="Label" parent="AreaBedGame"]
+offset_left = 172.0
+offset_top = 100.0
+offset_right = 396.0
+offset_bottom = 123.0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 8
+text = "Pressione \"Q\" "
+label_settings = SubResource("LabelSettings_u4kti")
+
+[node name="AreaCookingGame" type="Area2D" parent="."]
+position = Vector2(611, 13)
+script = ExtResource("22_u4kti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCookingGame"]
+position = Vector2(206, 81)
+shape = SubResource("CapsuleShape2D_0ybwg")
+
+[node name="Label" type="Label" parent="AreaCookingGame"]
+offset_left = 172.0
+offset_top = 100.0
+offset_right = 396.0
+offset_bottom = 123.0
+scale = Vector2(0.5, 0.5)
+size_flags_vertical = 8
+text = "Pressione \"Q\" "
+label_settings = SubResource("LabelSettings_u4kti")
+
+[connection signal="body_entered" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_exited"]
+[connection signal="body_entered" from="AreaBedGame" to="AreaBedGame" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaBedGame" to="AreaBedGame" method="_on_body_exited"]
+[connection signal="body_entered" from="AreaCookingGame" to="AreaCookingGame" method="_on_body_entered"]
+[connection signal="body_exited" from="AreaCookingGame" to="AreaCookingGame" method="_on_body_exited"]
