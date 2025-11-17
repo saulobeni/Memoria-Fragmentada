@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://crvxg1hqoal3g"]
+
+[ext_resource type="Script" uid="uid://1m41t58aqnma" path="res://scenes/minigamesScenes/MiniGame.gd" id="1_7tmmp"]
+[ext_resource type="PackedScene" uid="uid://cr1pl18sqrch1" path="res://scenes/minigamesScenes/Fruit.tscn" id="2_2248b"]
+[ext_resource type="PackedScene" uid="uid://cahcy4dwkj61u" path="res://scenes/minigamesScenes/Knife.tscn" id="2_llhu8"]
+[ext_resource type="AudioStream" uid="uid://bbedontbys4ui" path="res://assets/sounds/taking-out-knife-217793.mp3" id="4_2248b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llhu8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 1)
+
+[node name="MiniGame" type="Node2D"]
+script = ExtResource("1_7tmmp")
+fruit_scene = ExtResource("2_2248b")
+
+[node name="Knife" parent="." instance=ExtResource("2_llhu8")]
+
+[node name="FruitSpawner" type="Node2D" parent="."]
+
+[node name="FruitContainer" type="Node2D" parent="."]
+
+[node name="MessageLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_llhu8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CutSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2248b")

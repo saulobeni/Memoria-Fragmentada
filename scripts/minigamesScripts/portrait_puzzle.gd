@@ -4,6 +4,8 @@ extends Control
 @export var columns: int = 3
 @export var piece_size: Vector2 = Vector2(128, 128)
 @export var portrait_path: String = "res://assets/textures/minigame_quadro/portrait.png"
+@onready var cut_sound = $CutSound
+
 
 var pieces: Array = []
 var selected_piece: TextureRect = null

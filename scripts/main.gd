@@ -68,6 +68,6 @@ func _on_ambient_sound_finished() -> void:
 		ambient_sound.play()
 
 func _on_interact_with_portrait():
-	var puzzle_scene = preload("res://scenes/Portrait_Puzzle.tscn").instantiate()
+	var puzzle_scene = preload("res://scenes/minigamesScenes/Portrait_Puzzle.tscn").instantiate()
 	get_tree().root.add_child(puzzle_scene)
 	puzzle_scene.show()
