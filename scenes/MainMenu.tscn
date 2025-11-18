@@ -190,7 +190,7 @@ text = "NEW GAME"
 [node name="BtnSound" type="Button" parent="Center/Menu"]
 layout_mode = 2
 theme = SubResource("Theme_826wr")
-text = "SOUND"
+text = "SOUND: ON"
 
 [node name="BtnExit" type="Button" parent="Center/Menu"]
 layout_mode = 2

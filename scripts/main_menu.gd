@@ -13,11 +13,9 @@ extends Control
 
 var sound_on := true
 
+
 func _ready() -> void:
 	# foco inicial para teclado/controle
-	btn_new.grab_focus()
-	_update_sound_label()
-	
 	# conecta os sinais dos botões
 	btn_new.pressed.connect(_on_new_game_pressed)
 	btn_sound.pressed.connect(_on_sound_pressed)
@@ -28,6 +26,25 @@ func _ready() -> void:
 	btn_sound.pressed.connect(_play_click_sound)
 	btn_exit.pressed.connect(_play_click_sound)
 
+func _setup_button_styles() -> void:
+	# Cores para diferenciar estado normal e focado
+	var focus_color = Color.YELLOW  # Cor quando botão está focado
+	var normal_color = Color.WHITE  # Cor normal
+	
+	# Aplica a configuração para cada botão
+	_configure_button_style(btn_new, normal_color, focus_color)
+	_configure_button_style(btn_sound, normal_color, focus_color)
+	_configure_button_style(btn_exit, normal_color, focus_color)
+
+func _configure_button_style(button: Button, normal_color: Color, focus_color: Color) -> void:
+	# Configura as cores do texto para cada estado
+	btn_new.grab_focus()
+	btn_new.grab_focus()
+	button.add_theme_color_override("font_focus_color", focus_color)
+	button.add_theme_color_override("font_hover_color", focus_color)
+	button.add_theme_color_override("font_pressed_color", focus_color)
+	_update_sound_label()
+	
 func _play_click_sound() -> void:
 	if sound_on and is_instance_valid(btn_click_sound):
 		btn_click_sound.play()
