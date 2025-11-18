@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://du4hv7iu73juy"]
+
+[ext_resource type="Texture2D" uid="uid://can5f3gmwv2s5" path="res://assets/sprites/ChatGPT Image 17 de nov. de 2025, 20_26_17.png" id="1_inaec"]
+[ext_resource type="Script" uid="uid://drnextuffm51w" path="res://scripts/dialog_box.gd" id="1_nsids"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_ebvwe"]
+
+[node name="IntroductionGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DialogBox" type="MarginContainer" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.057000004
+anchor_top = 0.52000004
+anchor_right = 0.95000005
+anchor_bottom = 0.94900006
+offset_left = 0.33599854
+offset_top = 0.039978027
+offset_right = -0.4000244
+offset_bottom = 0.047973633
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nsids")
+
+[node name="BgDialogBox" type="NinePatchRect" parent="DialogBox"]
+layout_mode = 2
+texture = ExtResource("1_inaec")
+region_rect = Rect2(173.08875, 170.06464, 1195.3827, 694.0707)
+
+[node name="TextContainer" type="MarginContainer" parent="DialogBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 21
+
+[node name="TextLabel" type="Label" parent="DialogBox/TextContainer"]
+custom_minimum_size = Vector2(1000, 250)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ebvwe")
+vertical_alignment = 1
+autowrap_mode = 2
