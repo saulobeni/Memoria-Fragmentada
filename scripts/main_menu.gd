@@ -35,6 +35,7 @@ func _play_click_sound() -> void:
 func _on_new_game_pressed() -> void:
 	animation_transition.play("transicao_vai")
 	await animation_transition.animation_finished
+	
 	# Trocar para a cena principal do jogo (a sua "casa")
 	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
 
