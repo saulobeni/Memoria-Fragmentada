@@ -25,14 +25,14 @@ color = Color(0, 0, 0, 1)
 process_mode = 3
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.057000004
-anchor_top = 0.52000004
-anchor_right = 0.95000005
-anchor_bottom = 0.94900006
-offset_left = 0.33599854
-offset_top = 0.039978027
-offset_right = -0.4000244
-offset_bottom = 0.047973633
+anchor_left = 0.057
+anchor_top = 0.52
+anchor_right = 0.95
+anchor_bottom = 0.949
+offset_left = 0.335999
+offset_top = 0.039978
+offset_right = -0.400024
+offset_bottom = 0.0479736
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nsids")
@@ -40,7 +40,7 @@ script = ExtResource("1_nsids")
 [node name="BgDialogBox" type="NinePatchRect" parent="DialogBox"]
 layout_mode = 2
 texture = ExtResource("1_inaec")
-region_rect = Rect2(173.08875, 170.06464, 1195.3827, 694.0707)
+region_rect = Rect2(173.089, 170.065, 1195.38, 694.071)
 
 [node name="TextContainer" type="MarginContainer" parent="DialogBox"]
 layout_mode = 2

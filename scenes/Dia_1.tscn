@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://uwfvjvg3fews"]
+[gd_scene load_steps=7 format=3 uid="uid://uwfvjvg3fews"]
 
+[ext_resource type="Script" uid="uid://ci3qmnupaq8wc" path="res://scripts/dias/dia_1.gd" id="1_8rcgc"]
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_jc5n2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hjn3f"]
@@ -46,6 +47,7 @@ _data = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_8rcgc")
 
 [node name="Control" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)

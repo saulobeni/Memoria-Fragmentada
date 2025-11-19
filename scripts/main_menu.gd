@@ -67,7 +67,7 @@ func _on_sound_pressed() -> void:
 	_update_sound_label()
 
 func _update_sound_label() -> void:
-	btn_sound.text = "SOUND: ON" if sound_on else "SOUND: OFF"
+	btn_sound.text = "SOM: LIGADO" if sound_on else "SOM: DESLIGADO"
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

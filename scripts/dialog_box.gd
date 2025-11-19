@@ -17,7 +17,7 @@ var texts_to_display := [
 ]
 
 # cena que será carregada ao final
-var next_scene_path := "res://scenes/Level1.tscn"
+var next_scene_path := "res://scenes/Dia_1.tscn"
 
 var current_index : int = 0
 var typing_speed : float = 0.05

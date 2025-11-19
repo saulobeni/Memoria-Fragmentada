@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dso5lqj5dyam7"
-path="res://.godot/imported/TopDownHouse_DoorsAndWindows.png-4ba663031e37616cac6160670ad0ea05.ctex"
+uid="uid://crainsi6dv0rd"
+path="res://.godot/imported/portrait_sem_borda.png-5da136553389dd10bb49c8554a72a11e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/TopDownHouse_DoorsAndWindows.png"
-dest_files=["res://.godot/imported/TopDownHouse_DoorsAndWindows.png-4ba663031e37616cac6160670ad0ea05.ctex"]
+source_file="res://assets/textures/minigame_quadro/portrait_sem_borda.png"
+dest_files=["res://.godot/imported/portrait_sem_borda.png-5da136553389dd10bb49c8554a72a11e.ctex"]
 
 [params]
 
