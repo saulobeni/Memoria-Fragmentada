@@ -7,15 +7,20 @@
 [node name="PortraitPuzzle" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 167.0
-offset_top = 126.0
-offset_right = 167.0
-offset_bottom = 126.0
+offset_left = 92.0
+offset_top = 51.0
+offset_right = 92.0
+offset_bottom = 51.0
 scale = Vector2(1.2, 1.2)
 size_flags_horizontal = 4
 script = ExtResource("1_knvpb")
 
-[node name="Bg" type="TextureRect" parent="."]
+[node name="Scaler" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="TextureRect" parent="Scaler"]
 layout_mode = 0
 offset_left = -254.0
 offset_top = -267.333
@@ -23,18 +28,18 @@ offset_right = 1283.0
 offset_bottom = 1293.67
 texture = ExtResource("2_kadeg")
 
-[node name="PuzzleArea" type="Control" parent="."]
+[node name="PuzzleArea" type="Control" parent="Scaler"]
 anchors_preset = 0
 offset_right = 306.0
 offset_bottom = 181.0
 
-[node name="GuidePreview" type="TextureRect" parent="PuzzleArea"]
+[node name="GuidePreview" type="TextureRect" parent="Scaler/PuzzleArea"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_sbc25")
 
-[node name="Pieces" type="Node2D" parent="PuzzleArea"]
+[node name="Pieces" type="Node2D" parent="Scaler/PuzzleArea"]
 position = Vector2(105, 65)
 
 [node name="CompleteLabel" type="Label" parent="."]

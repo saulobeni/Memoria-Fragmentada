@@ -14,6 +14,7 @@ var cena_carregada: Node = null
 func _ready():
 	transition_animation.play("transicao_vem")
 	subviewport_container.visible = false
+	print("SubView size:", $CanvasLayer/SubViewportContainer.size)
 
 func _process(_delta):
 	# Abre com Q apenas se o player estiver na área
@@ -38,6 +39,11 @@ func abrir_subviewport(caminho_cena):
 	if cena_carregada:
 		cena_carregada.queue_free()
 		cena_carregada = null
+		
+	if caminho_cena.contains("Portrait_Puzzle"):
+		subviewport.transparent_bg = true
+	else:
+		subviewport.transparent_bg = false
 	
 	var cena = load(caminho_cena).instantiate()
 	subviewport.add_child(cena)

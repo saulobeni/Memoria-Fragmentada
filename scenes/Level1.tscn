@@ -2030,17 +2030,18 @@ collision_mask = 31
 script = ExtResource("2_2ouud")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(104, 41)
+position = Vector2(25, -212.705)
 shape = SubResource("RectangleShape2D_ncr2o")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-79, -253.705)
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(103, 27)
+position = Vector2(24, -226.705)
 scale = Vector2(0.145045, 0.148503)
 sprite_frames = SubResource("SpriteFrames_t86jx")
 animation = &"walk_left"
@@ -2075,14 +2076,14 @@ position = Vector2(-71, 242)
 script = ExtResource("22_u4kti")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPortraitGame"]
-position = Vector2(206, 81)
+position = Vector2(221, -179)
 shape = SubResource("CapsuleShape2D_0ybwg")
 
 [node name="Label" type="Label" parent="AreaPortraitGame"]
-offset_left = 163.0
-offset_top = 111.0
-offset_right = 380.0
-offset_bottom = 134.0
+offset_left = 171.0
+offset_top = -167.0
+offset_right = 388.0
+offset_bottom = -144.0
 scale = Vector2(0.5, 0.5)
 size_flags_vertical = 8
 text = "Pressione \"Q\""
