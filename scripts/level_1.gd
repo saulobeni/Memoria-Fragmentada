@@ -6,6 +6,7 @@ extends Node2D
 @onready var areaPortraitGame = $AreaPortraitGame
 @onready var areaBedGame = $AreaBedGame
 @onready var areaCookingGame = $AreaCookingGame
+@onready var areaPillGame = $AreaPillGame
 
 @onready var transition_animation = $Transicao/ColorRect/AnimationPlayer
 
@@ -26,6 +27,9 @@ func _process(_delta):
 		
 	if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 		abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn") ## Caminho Cooking Game
+		
+	if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
+		abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
 
 # Captura todos os inputs de teclado, mesmo com SubViewport ativo
 func _input(event):
