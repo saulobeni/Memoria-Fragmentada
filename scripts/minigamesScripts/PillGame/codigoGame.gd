@@ -35,9 +35,16 @@ func next_step():
 		neto_text.text = "Neto: Agora tome o remédio " + required_color + "!"
 	else:
 		# Fim do jogo
-		neto_text.text = "Neto: Perfeito, Vovô! Todas no horário certo!"
+		neto_text.text = "Neto: Perfeito, Vovô!\n Todas no horário certo!"
 		game_active = false
 		print("Minigame Concluído com Sucesso!")
+		
+		await get_tree().create_timer(3.0).timeout
+		# Despausar o jogo após a compleção
+		var cena_subviewport = get_parent().get_parent()
+		var cena_principal = cena_subviewport.get_parent().get_parent()
+		cena_subviewport.get_tree().paused = false
+		cena_principal.fechar_subviewport()
 
 # Esta função recebe a Pílula inteira que foi clicada
 func _on_pill_clicked(clicked_pill):

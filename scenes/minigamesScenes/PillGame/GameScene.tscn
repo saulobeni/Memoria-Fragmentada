@@ -10,17 +10,17 @@ font_size = 32
 script = ExtResource("1_eqhe0")
 
 [node name="NetoText" type="Label" parent="."]
-offset_left = -2.0
-offset_top = 122.0
-offset_right = 1150.0
-offset_bottom = 262.0
+offset_left = 40.0
+offset_top = 124.0
+offset_right = 457.0
+offset_bottom = 256.0
 text = "Remédio "
 label_settings = SubResource("LabelSettings_4bvgx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PillsContainer" type="Node2D" parent="."]
-position = Vector2(280, 280)
+position = Vector2(48, 252)
 
 [node name="Pill_Azul" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(0, 0, 1, 1)

@@ -39,10 +39,7 @@ func find_socket_points() -> void:
 	
 	print("Encontrados ", socket_points.size(), " sockets")
 
-# ============================================================
 # SISTEMA DE SOCKETS - ATUALIZAÇÃO NO _PROCESS
-# ============================================================
-
 func _process(delta: float) -> void:
 	if not game_completed:
 		update_socket_attraction(delta)
@@ -90,10 +87,7 @@ func update_socket_attraction(delta: float) -> void:
 		game_completed = true
 		show_completion()
 
-# ============================================================
 # ACHAR OS VÉRTICES DO TOPO
-# ============================================================
-
 func get_top_vertices() -> Array[int]:
 	var top: Array[int] = []
 	var min_y: float = INF
@@ -108,10 +102,7 @@ func get_top_vertices() -> Array[int]:
 
 	return top
 
-# ============================================================
 # CHECAR COMPLEÇÃO
-# ============================================================
-
 func check_completion() -> bool:
 	# Verifica se todos os sockets estão ocupados
 	for socket in socket_points:
@@ -125,10 +116,7 @@ func check_completion() -> bool:
 func color_with_alpha(base_color: Color, alpha: float) -> Color:
 	return Color(base_color.r, base_color.g, base_color.b, alpha)
 
-# ============================================================
 # INPUT / ARRASTAR DOS VÉRTICES
-# ============================================================
-
 func _input(event: InputEvent) -> void:
 	var mouse: Vector2 = get_local_mouse_position()
 
@@ -184,10 +172,7 @@ func check_socket_snap(vertex_index: int) -> void:
 			print("Vértice ", vertex_index, " encaixado no socket")
 			break
 
-# ============================================================
 # VISUAL
-# ============================================================
-
 func _draw() -> void:
 	# Desenha lençol
 	draw_polygon(polygon, [color])
@@ -229,10 +214,7 @@ func draw_socket_connections() -> void:
 				draw_line(socket.position, polygon[closest_vertex], 
 						 color_with_alpha(Color.YELLOW, 0.5), 1.0)
 
-# ============================================================
 # COMPLEÇÃO
-# ============================================================
-
 func show_completion() -> void:
 	$Label.visible = true
 	$Label.text = "🛏 Lençol arrumado!"
@@ -240,13 +222,14 @@ func show_completion() -> void:
 	print("🏁 Minigame completo!")
 	
 	await get_tree().create_timer(3.0).timeout
-	# Trocar de cena depois da mensagem
-	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
+	
+	# Despausar o jogo após a compleção
+	var cena_subviewport = get_parent().get_parent()
+	var cena_principal = cena_subviewport.get_parent().get_parent().get_parent()
+	cena_subviewport.get_tree().paused = false
+	cena_principal.fechar_subviewport()
 
-# ============================================================
 # RESET DO JOGO
-# ============================================================
-
 func reset_minigame() -> void:
 	top_indices = get_top_vertices()
 	game_completed = false

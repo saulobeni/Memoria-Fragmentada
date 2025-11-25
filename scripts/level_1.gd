@@ -11,30 +11,42 @@ extends Node2D
 @onready var transition_animation = $Transicao/ColorRect/AnimationPlayer
 
 var cena_carregada: Node = null
+var paused = false
+var pause_menu
 
 func _ready():
 	transition_animation.play("transicao_vem")
 	subviewport_container.visible = false
+	
+	# Configura a SubViewport para funcionar independentemente
+	subviewport_container.set_process_input(true)
+	subviewport_container.set_process_unhandled_input(true)
+	
 	print("SubView size:", $CanvasLayer/SubViewportContainer.size)
+	
+	# Carrega o menu de pause
+	load_pause_menu()
 
 func _process(_delta):
-	# Abre com Q apenas se o player estiver na área
-	if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn") ## Caminho Portrait Game
-		
-	if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn") ## Caminho Bed Game
-		
-	if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn") ## Caminho Cooking Game
-		
-	if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
-		abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
+	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
+	if not paused and not subviewport_container.visible:
+		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
+			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
+			
+		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
+			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn")
+			
+		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
+			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
+			
+		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
+			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
 
-# Captura todos os inputs de teclado, mesmo com SubViewport ativo
 func _input(event):
 	if event.is_action_pressed("fechar_viewport") and subviewport_container.visible:
 		fechar_subviewport()
+	elif event.is_action_pressed("ui_cancel") and not subviewport_container.visible:
+		toggle_pause()
 
 func abrir_subviewport(caminho_cena):
 	if subviewport_container.visible:
@@ -44,7 +56,7 @@ func abrir_subviewport(caminho_cena):
 		cena_carregada.queue_free()
 		cena_carregada = null
 		
-	if caminho_cena.contains("Portrait_Puzzle"):
+	if caminho_cena.contains("Portrait_Puzzle") or caminho_cena.contains("PillGame"):
 		subviewport.transparent_bg = true
 	else:
 		subviewport.transparent_bg = false
@@ -53,9 +65,207 @@ func abrir_subviewport(caminho_cena):
 	subviewport.add_child(cena)
 	cena_carregada = cena
 	subviewport_container.visible = true
+	
+	# Configura TODOS os nós da cena carregada para processar mesmo com o jogo pausado
+	configurar_processamento_recursivo(cena_carregada, Node.PROCESS_MODE_ALWAYS)
+	
+	# Configura a SubViewportContainer para capturar inputs
+	subviewport_container.process_mode = Node.PROCESS_MODE_ALWAYS
+	subviewport_container.set_process_input(true)
+	subviewport_container.set_process_unhandled_input(true)
+	subviewport_container.mouse_filter = Control.MOUSE_FILTER_PASS
+	
+	# Configura a SubViewport para não ser afetada pela pausa
+	subviewport.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Pausa apenas o mundo principal, não a SubViewport
+	get_tree().paused = true
+	paused = true
+	
+	# Foca na SubViewport para receber inputs
+	subviewport_container.grab_focus()
+	
+	print("SubViewport aberta - Inputs devem funcionar")
+
+# Função recursiva para configurar o process_mode de todos os nós
+func configurar_processamento_recursivo(node: Node, process_mode: Node.ProcessMode):
+	node.process_mode = process_mode
+	for child in node.get_children():
+		configurar_processamento_recursivo(child, process_mode)
 
 func fechar_subviewport():
 	if cena_carregada:
 		cena_carregada.queue_free()
 		cena_carregada = null
+	
 	subviewport_container.visible = false
+	
+	# Retoma o mundo principal
+	get_tree().paused = false
+	paused = false
+	
+	# Restaura o foco para a viewport principal
+	get_viewport().gui_release_focus()
+
+func load_pause_menu():
+	# Cria o menu de pause programaticamente
+	pause_menu = CanvasLayer.new()
+	pause_menu.name = "PauseMenu"
+	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Fundo semi-transparente
+	var background = ColorRect.new()
+	background.color = Color(0, 0, 0, 0.7)
+	background.set_anchors_preset(Control.PRESET_FULL_RECT)
+	background.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Painel centralizado manualmente (mais confiável)
+	var panel = Panel.new()
+	panel.custom_minimum_size = Vector2(350, 300)
+	panel.add_theme_stylebox_override("panel", create_panel_stylebox())
+	panel.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Centraliza manualmente
+	var screen_size = get_viewport().get_visible_rect().size
+	panel.position = Vector2(
+		(screen_size.x - panel.custom_minimum_size.x) / 2,
+		(screen_size.y - panel.custom_minimum_size.y) / 2
+	)
+	
+	# Container com margens
+	var margin_container = MarginContainer.new()
+	margin_container.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin_container.add_theme_constant_override("margin_left", 20)
+	margin_container.add_theme_constant_override("margin_right", 20)
+	margin_container.add_theme_constant_override("margin_top", 20)
+	margin_container.add_theme_constant_override("margin_bottom", 20)
+	margin_container.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# VBoxContainer para os botões
+	var vbox = VBoxContainer.new()
+	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	# Título
+	var title = Label.new()
+	title.text = "JOGO PAUSADO"
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_font_size_override("font_size", 24)
+	title.add_theme_color_override("font_color", Color.WHITE)
+	
+	# Botão Continuar
+	var resume_btn = Button.new()
+	resume_btn.text = "Continuar"
+	resume_btn.custom_minimum_size = Vector2(250, 50)
+	resume_btn.pressed.connect(_on_resume_pressed)
+	resume_btn.process_mode = Node.PROCESS_MODE_ALWAYS
+	setup_button_style(resume_btn)
+	
+	# Botão Reiniciar
+	var restart_btn = Button.new()
+	restart_btn.text = "Reiniciar"
+	restart_btn.custom_minimum_size = Vector2(250, 50)
+	restart_btn.pressed.connect(_on_restart_pressed)
+	restart_btn.process_mode = Node.PROCESS_MODE_ALWAYS
+	setup_button_style(restart_btn)
+	
+	# Botão Sair
+	var quit_btn = Button.new()
+	quit_btn.text = "Sair"
+	quit_btn.custom_minimum_size = Vector2(250, 50)
+	quit_btn.pressed.connect(_on_quit_pressed)
+	quit_btn.process_mode = Node.PROCESS_MODE_ALWAYS
+	setup_button_style(quit_btn)
+	
+	# Adiciona elementos
+	vbox.add_child(title)
+	vbox.add_child(create_spacer(30))
+	vbox.add_child(resume_btn)
+	vbox.add_child(create_spacer(15))
+	vbox.add_child(restart_btn)
+	vbox.add_child(create_spacer(15))
+	vbox.add_child(quit_btn)
+	
+	# Centraliza o VBoxContainer
+	var vbox_center = CenterContainer.new()
+	vbox_center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	vbox_center.process_mode = Node.PROCESS_MODE_ALWAYS
+	vbox_center.add_child(vbox)
+	
+	# Monta hierarquia
+	margin_container.add_child(vbox_center)
+	panel.add_child(margin_container)
+	background.add_child(panel)
+	pause_menu.add_child(background)
+	add_child(pause_menu)
+	
+	pause_menu.hide()
+
+func create_panel_stylebox() -> StyleBoxFlat:
+	var stylebox = StyleBoxFlat.new()
+	stylebox.bg_color = Color(0.1, 0.1, 0.1, 0.95)
+	stylebox.border_color = Color.BLACK
+	stylebox.border_width_left = 4
+	stylebox.border_width_top = 4
+	stylebox.border_width_right = 4
+	stylebox.border_width_bottom = 4
+	stylebox.corner_radius_top_left = 15
+	stylebox.corner_radius_top_right = 15
+	stylebox.corner_radius_bottom_right = 15
+	stylebox.corner_radius_bottom_left = 15
+	stylebox.shadow_color = Color(0, 0, 0, 0.5)
+	stylebox.shadow_size = 15
+	return stylebox
+
+func setup_button_style(button: Button):
+	button.add_theme_font_size_override("font_size", 18)
+	
+	var normal_style = StyleBoxFlat.new()
+	normal_style.bg_color = Color(0.2, 0.2, 0.2, 1.0)
+	normal_style.border_color = Color.BLACK
+	normal_style.border_width_left = 2
+	normal_style.border_width_top = 2
+	normal_style.border_width_right = 2
+	normal_style.border_width_bottom = 2
+	normal_style.corner_radius_top_left = 8
+	normal_style.corner_radius_top_right = 8
+	normal_style.corner_radius_bottom_right = 8
+	normal_style.corner_radius_bottom_left = 8
+	button.add_theme_stylebox_override("normal", normal_style)
+	
+	var hover_style = normal_style.duplicate()
+	hover_style.bg_color = Color(0.3, 0.3, 0.3, 1.0)
+	button.add_theme_stylebox_override("hover", hover_style)
+	button.add_theme_stylebox_override("pressed", hover_style)
+	
+	button.add_theme_color_override("font_color", Color.WHITE)
+	button.add_theme_color_override("font_hover_color", Color.WHITE)
+	button.add_theme_color_override("font_pressed_color", Color.WHITE)
+
+func create_spacer(height: int) -> Control:
+	var spacer = Control.new()
+	spacer.custom_minimum_size = Vector2(0, height)
+	return spacer
+
+func toggle_pause():
+	# Não permite pausar se a subviewport estiver aberta
+	if subviewport_container.visible:
+		return
+		
+	paused = !paused
+	get_tree().paused = paused
+	
+	if paused:
+		pause_menu.show()
+	else:
+		pause_menu.hide()
+
+func _on_resume_pressed():
+	toggle_pause()
+
+func _on_restart_pressed():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_quit_pressed():
+	get_tree().quit()

@@ -125,8 +125,13 @@ func check_victory():
 		piece.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	await get_tree().create_timer(3.0).timeout
-	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
 	
+	# Despausar o jogo após a compleção
+	var cena_subviewport = get_parent().get_parent()
+	var cena_principal = cena_subviewport.get_parent().get_parent()
+	cena_subviewport.get_tree().paused = false
+	cena_principal.fechar_subviewport()
+
 func get_total_bounds(node):
 	var rect := Rect2()
 	var first := true
