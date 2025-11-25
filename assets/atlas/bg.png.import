@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oeayh6h52ebm"
-path="res://.godot/imported/batata.png-8e4a18d41006714e164b42e3a066cbc7.ctex"
+uid="uid://dmt1s7fkt80g"
+path="res://.godot/imported/bg.png-42c7061d2367e91312cdc92b6c77b44b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/atlas/batata.png"
-dest_files=["res://.godot/imported/batata.png-8e4a18d41006714e164b42e3a066cbc7.ctex"]
+source_file="res://assets/atlas/bg.png"
+dest_files=["res://.godot/imported/bg.png-42c7061d2367e91312cdc92b6c77b44b.ctex"]
 
 [params]
 
