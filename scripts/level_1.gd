@@ -2,12 +2,12 @@ extends Node2D
 
 var missions = [
 	"Arrume a cama",
+	"Observe o quadro 
+	no quarto",
 	"Faça algo para 
 	comer",
 	"Fale com o seu 
-	neto",
-	"Observe o quadro 
-	no quarto"
+	neto"
 ]
 
 var missao_atual = 0
@@ -28,6 +28,10 @@ var cena_carregada: Node = null
 var paused = false
 var pause_menu
 
+var missoesVisitadas = [false,false,false,false]
+var sequenciaDiaUm = [1,0,2,3]
+var contadorIdMissao = 0
+
 func _ready():
 	transition_animation.play("transicao_vem")
 	subviewport_container.visible = false
@@ -38,7 +42,10 @@ func _ready():
 	
 	print("SubView size:", $CanvasLayer/SubViewportContainer.size)
 	atualizar_missao()
-
+	
+	# Corrigido: chama a função correta
+	desativar_colisoes()
+	mostrar_proxima_missao()
 	
 	# Carrega o menu de pause
 	load_pause_menu()
@@ -48,20 +55,83 @@ func _process(_delta):
 	if not paused and not subviewport_container.visible:
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
+			if not missoesVisitadas[0]:  # Corrigido: removido == false
+				# Só avança se esta for a missão atual na sequência
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 0:
+					mostrar_proxima_missao()
+				missoesVisitadas[0] = true
+				areaPortraitGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
-			
 		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn")
+			if not missoesVisitadas[1]:  # Corrigido: removido == false
+				# Só avança se esta for a missão atual na sequência
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 1:
+					mostrar_proxima_missao()
+				missoesVisitadas[1] = true
+				areaBedGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
-			
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
+			if not missoesVisitadas[2]:  # Corrigido: removido == false
+				# Só avança se esta for a missão atual na sequência
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 2:
+					mostrar_proxima_missao()
+				missoesVisitadas[2] = true
+				areaCookingGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
-			
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
+			if not missoesVisitadas[3]:  # Corrigido: removido == false
+				# Só avança se esta for a missão atual na sequência
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 3:
+					mostrar_proxima_missao()
+				missoesVisitadas[3] = true
+				areaPillGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
-			
+
+func abrir_minigame(area_info: Dictionary):
+	abrir_subviewport(area_info.cena)
+	
+	# CORREÇÃO: Use = em vez de == para atribuição
+	if not missoesVisitadas[area_info.index]:
+		missoesVisitadas[area_info.index] = true  # CORREÇÃO AQUI
+		area_info.area.get_node("CollisionShape2D").disabled = true
+		
+		# Avança para próxima missão apenas se esta for a atual
+		if sequenciaDiaUm[contadorIdMissao] == area_info.index:
+			mostrar_proxima_missao()
+
+func mostrar_proxima_missao():
+	if contadorIdMissao < sequenciaDiaUm.size():
+		var proxima_missao_id = sequenciaDiaUm[contadorIdMissao]
+		var area = representar_missao(proxima_missao_id)
+		
+		if area:
+			area.get_node("CollisionShape2D").disabled = false
+			print("Missão ativada: ID ", proxima_missao_id, " - ", area.name)
+		
+		contadorIdMissao += 1
+	else:
+		print("Todas as missões foram completadas!")
+
+func desativar_colisoes():
+	for child in get_children():
+		if child.get_class() == "Area2D":
+			child.get_node("CollisionShape2D").disabled = true
+
+func representar_missao(id):
+	if id == 0:
+		return areaPortraitGame
+	elif id == 1:
+		return areaBedGame
+	elif id == 2:
+		return areaCookingGame
+	elif id == 3:
+		return areaPillGame
+	else:
+		return null
+
 func atualizar_missao():
 	if missao_atual < missions.size():
 		hud.set_mission(missions[missao_atual])
