@@ -1,5 +1,17 @@
 extends Node2D
 
+var missions = [
+	"Arrume a cama",
+	"Faça algo para 
+	comer",
+	"Fale com o seu 
+	neto",
+	"Observe o quadro 
+	no quarto"
+]
+
+var missao_atual = 0
+
 @onready var subviewport_container = $CanvasLayer/SubViewportContainer
 @onready var subviewport = $CanvasLayer/SubViewportContainer/SubViewport
 
@@ -7,6 +19,8 @@ extends Node2D
 @onready var areaBedGame = $AreaBedGame
 @onready var areaCookingGame = $AreaCookingGame
 @onready var areaPillGame = $AreaPillGame
+
+@onready var hud = $Hud
 
 @onready var transition_animation = $Transicao/ColorRect/AnimationPlayer
 
@@ -23,6 +37,8 @@ func _ready():
 	subviewport_container.set_process_unhandled_input(true)
 	
 	print("SubView size:", $CanvasLayer/SubViewportContainer.size)
+	atualizar_missao()
+
 	
 	# Carrega o menu de pause
 	load_pause_menu()
@@ -32,15 +48,31 @@ func _process(_delta):
 	if not paused and not subviewport_container.visible:
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
+			proxima_missao()
 			
 		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn")
+			proxima_missao()
 			
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
+			proxima_missao()
 			
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
+			proxima_missao()
+			
+func atualizar_missao():
+	if missao_atual < missions.size():
+		hud.set_mission(missions[missao_atual])
+	else:
+		hud.set_mission("Todas as tarefas 
+		do dia foram 
+		concluídas")
+
+func proxima_missao():
+	missao_atual += 1
+	atualizar_missao()
 
 func _input(event):
 	if event.is_action_pressed("fechar_viewport") and subviewport_container.visible:

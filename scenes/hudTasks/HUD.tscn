@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://csutya3tu3oqi"]
+
+[ext_resource type="Script" uid="uid://dl4ddgqn5potp" path="res://scripts/hud.gd" id="1_7ed3d"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="2_rthi4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sr8r1"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7ed3d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(320, 0)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -321.0
+offset_top = 15.0
+offset_right = -1.0
+offset_bottom = 55.0
+grow_horizontal = 0
+pivot_offset = Vector2(-10, 10)
+theme_override_styles/panel = SubResource("StyleBoxFlat_sr8r1")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_rthi4")

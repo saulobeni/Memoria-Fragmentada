@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=48 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://cfrtqbciublbt" path="res://assets/tiles/TopDownHouse_FurnitureState2.png" id="19_t46sy"]
 [ext_resource type="Script" uid="uid://baw8arqlwno4i" path="res://scripts/area_2d.gd" id="22_u4kti"]
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="25_ntbnh"]
+[ext_resource type="PackedScene" uid="uid://csutya3tu3oqi" path="res://scenes/hudTasks/HUD.tscn" id="27_vbuca"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrm5b"]
 texture = ExtResource("1_r7dij")
@@ -2171,6 +2172,8 @@ scale = Vector2(0.5, 0.5)
 size_flags_vertical = 8
 text = "Pressione \"Q\" "
 label_settings = SubResource("LabelSettings_u4kti")
+
+[node name="Hud" parent="." instance=ExtResource("27_vbuca")]
 
 [connection signal="body_entered" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_exited"]
