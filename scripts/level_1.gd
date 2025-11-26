@@ -12,6 +12,17 @@ var missions = [
 
 var missao_atual = 0
 
+@onready var dialog_label = $DialogLabel
+
+@onready var exclamacoes_container = $ObjetosNodes/ExclamacoesContainer
+
+@onready var neto = $ObjetosNodes/Neto
+@onready var exclamacoes = $ObjetosNodes/ExclamacoesContainer.get_children()
+@onready var ponto_final_neto = $ObjetosNodes/PontoFinalNeto
+
+var fase_neto := false
+var id_exclamacao_correta := 2
+
 @onready var subviewport_container = $CanvasLayer/SubViewportContainer
 @onready var subviewport = $CanvasLayer/SubViewportContainer/SubViewport
 
@@ -51,6 +62,30 @@ func _ready():
 	load_pause_menu()
 
 func _process(_delta):
+	
+	# -----------------------
+	# Interação com o Neto (missão 4)
+	# -----------------------
+	if fase_neto == false and missao_atual == 3:
+		if neto.is_visible_in_tree() and neto.get_node("InteractionArea/CollisionShape2D").disabled == false:
+			if Input.is_action_just_pressed("interact"):
+				await mostrar_dialogo("Vovô, vamos brincar de esconde-esconde!", 2.0)
+				iniciar_esconde_esconde()
+
+	# -----------------------
+	# Interação com exclamações
+	# -----------------------
+	if fase_neto:
+		for e in exclamacoes:
+			if e.is_visible_in_tree() and e.get_node("CollisionShape2D").disabled == false:
+				if e.get_overlapping_bodies().has($Player):
+					if Input.is_action_just_pressed("interact"):
+						if e.name == "E%d" % id_exclamacao_correta:
+							await mostrar_dialogo("Ahh, você me encontrou vovô!", 2.0)
+							finalizar_esconde_esconde()
+						else:
+							await mostrar_dialogo("Hmm... ele não está aqui.", 1.5)
+							
 	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
 	if not paused and not subviewport_container.visible:
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
@@ -371,3 +406,48 @@ func _on_restart_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+	
+# -----------------------
+# TRANSIÇÃO NETO
+# -----------------------
+func iniciar_esconde_esconde() -> void:
+	fase_neto = true
+	transition_animation.play("transicao_vai")
+	await get_tree().create_timer(1.0).timeout
+	neto.hide()
+	exclamacoes_container.mostrar_exclamacoes()
+	transition_animation.play("transicao_vem")
+	await get_tree().create_timer(0.5).timeout
+	for e in exclamacoes:
+		e.show()
+
+func finalizar_esconde_esconde() -> void:
+	transition_animation.play("transicao_vai")
+	await get_tree().create_timer(1.0).timeout
+	for e in exclamacoes:
+		e.hide()
+	neto.position = $Player.position + Vector2(32,0)
+	neto.show()
+	transition_animation.play("transicao_vem")
+	await get_tree().create_timer(0.5).timeout
+	await mostrar_dialogo("Parabéns! Você me encontrou!", 2.0)
+	neto.move_to(ponto_final_neto.position)
+	fase_neto = false
+
+
+
+func _on_InteractionArea_body_entered(body):
+	if body.name != "Player":
+		return
+
+	var level_node = get_parent()  # Level1 é o pai
+	if not level_node.fase_neto:
+		await level_node.mostrar_dialogo("Vovô, vamos brincar de esconde-esconde!", 2.0)
+		level_node.iniciar_esconde_esconde()
+
+func mostrar_dialogo(texto: String, duracao: float = 2.0) -> void:
+	dialog_label.text = texto
+	dialog_label.show()
+	# Esconde após X segundos
+	await get_tree().create_timer(duracao).timeout
+	dialog_label.hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=55 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
@@ -27,6 +27,10 @@
 [ext_resource type="Script" uid="uid://baw8arqlwno4i" path="res://scripts/area_2d.gd" id="22_u4kti"]
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="25_ntbnh"]
 [ext_resource type="PackedScene" uid="uid://csutya3tu3oqi" path="res://scenes/hudTasks/HUD.tscn" id="27_vbuca"]
+[ext_resource type="Texture2D" uid="uid://df4ynvr7q1qbc" path="res://assets/sprites/neto/neto frente.png" id="28_um3md"]
+[ext_resource type="Script" uid="uid://cnmd7qor4tymh" path="res://scripts/neto.gd" id="28_wnofu"]
+[ext_resource type="Script" uid="uid://dknixvk88iurc" path="res://scripts/exclamacoes_container.gd" id="30_7k372"]
+[ext_resource type="Texture2D" uid="uid://ewqvj858o6g2" path="res://assets/sprites/exlamation (1).png" id="30_qwon6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrm5b"]
 texture = ExtResource("1_r7dij")
@@ -1906,6 +1910,15 @@ sources/2 = SubResource("TileSetAtlasSource_0ybwg")
 sources/3 = SubResource("TileSetAtlasSource_xgw5r")
 sources/4 = SubResource("TileSetAtlasSource_ntbnh")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_um3md"]
+size = Vector2(14, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wnofu"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k372"]
+size = Vector2(3, 14)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
 size = Vector2(8, 8)
 
@@ -2048,6 +2061,92 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAiAAIAAQAEAAcAAAAiAAMAAQAEAAgAAAAiAAQAAQAEAAkAAAAjAAIAAQAFAAcAAAAjAAMAAQAFAAgAAAAjAAQAAQAFAAkAAAAaAAcAAAAFAAoAAAAaAAgAAAAFAAsAAAAbAAcAAAAGAAoAAAAbAAgAAAAGAAsAAAAcAAcAAAAHAAoAAAAcAAgAAAAHAAsAAAAdAAcAAAAIAAoAAAAdAAgAAAAIAAsAAAAYAAgAAAALAAcAAAAYAAkAAAALAAgAAAAYAAoAAAALAAkAAAAZAAgAAAAMAAcAAAAZAAkAAAAMAAgAAAAZAAoAAAAMAAkAAAAfAAgAAAALAAcAABAeAAgAAAAMAAcAABAfAAkAAAALAAgAABAeAAkAAAAMAAgAABAfAAoAAAALAAkAABAeAAoAAAAMAAkAABAbAAkAAAAFAAIAAAAbAAoAAAAFAAMAAAAcAAkAAAAGAAIAAAAcAAoAAAAGAAMAAAASAAIAAAAGAAQAAAASAAMAAAAGAAUAAAASAAQAAAAGAAYAAAAWAAIAAAAIAAQAAAAWAAMAAAAIAAUAAAAWAAQAAAAIAAYAAAATAAIAAAAHAAQAAAATAAMAAAAHAAUAAAATAAQAAAAHAAYAAAAUAAIAAAAHAAQAAAAUAAMAAAAHAAUAAAAUAAQAAAAHAAYAAAAVAAIAAAAHAAQAAAAVAAMAAAAHAAUAAAAVAAQAAAAHAAYAAAA2AAMAAAAGAAwAAAA2AAQAAAAGAA0AAAA2AAUAAAAGAA4AAAA3AAMAAAAHAAwAAAA3AAQAAAAHAA0AAAA3AAUAAAAHAA4AAAA4AAMAAAAIAAwAAAA4AAQAAAAIAA0AAAA4AAUAAAAIAA4AAAA5AAMAAAAJAAwAAAA5AAQAAAAJAA0AAAA5AAUAAAAJAA4AAAA6AAMAAAAKAAwAAAA6AAQAAAAKAA0AAAA6AAUAAAAKAA4AAAA7AAMAAAALAAwAAAA7AAQAAAALAA0AAAA7AAUAAAALAA4AAAA8AAMAAAAMAAwAAAA8AAQAAAAMAA0AAAA8AAUAAAAMAA4AAAA7AAYAAAALAA8AAAA8AAYAAAAMAA8AAAA0AAIAAAACAAwAAAA0AAMAAAACAA0AAAA0AAQAAAACAA4AAAA0AAUAAAACAA8AAAA1AAIAAAADAAwAAAA1AAMAAAADAA0AAAA1AAQAAAADAA4AAAA1AAUAAAADAA8AAAAyAAMAAAAEAAwAAAAyAAQAAAAEAA0AAAAyAAUAAAAEAA4AAAAzAAMAAAAFAAwAAAAzAAQAAAAFAA0AAAAzAAUAAAAFAA4AAAA4AAIAAAAEAA8AAAA5AAIAAAAFAA8AAAA8AAcAAAAAAAoAAAA8AAgAAAAAAAsAAAAxAAkAAAAAAAQAAAAxAAoAAAAAAAUAAAAxAAsAAAAAAAYAAAAyAAkAAAABAAQAAAAyAAoAAAABAAUAAAAyAAsAAAABAAYAAAAwAAkAAAAJAAAAAAAwAAoAAAAJAAEAAAAzAAkAAAAJAAAAABAzAAoAAAAJAAEAABA2AAYAAAAIAAIAAAA3AAYAAAAJAAIAAAA7AAEAAgAFAAEAAAAJAAIAAgABAAEAAAAMAAIAAAADAAcAAAAMAAMAAAADAAgAAAAMAAQAAAADAAkAAAANABIAAAAIABAAAAANABMAAAAIABEAAAAOABcAAAAFABAAABANABcAAAAGABAAABAMABcAAAAHABAAABAOABgAAAAFABEAABANABgAAAAGABEAABAMABgAAAAHABEAABABAAQAAwABAAgAAAABAAUAAwABAAkAAAACAAQAAwACAAgAAAACAAUAAwACAAkAAAADAAIAAAAGAAcAAAADAAMAAAAGAAgAAAADAAQAAAAGAAkAAAAEAAMAAAAAAAcAAAAEAAQAAAAAAAgAAAAEAAUAAAAAAAkAAAAFAAMAAAABAAcAAAAFAAQAAAABAAgAAAAFAAUAAAABAAkAAAAHAAIAAgAAAAEAAAA2AAIABAAKAAkAAAA3AAIABAALAAkAAAAOABIAAgABAAAAABAHABEAAgAGAAAAAAAGABIAAAABABAAAAAGABMAAAABABEAAAAHABIAAAACABAAAAAHABMAAAACABEAAAAgABIAAgABAAAAABAbABEAAgAGAAAAAAAaABIAAAABABAAAAAaABMAAAABABEAAAAbABIAAAACABAAAAAbABMAAAACABEAAAAfABIAAAAIABAAAAAfABMAAAAIABEAAAAeABgAAAAHABAAABAeABkAAAAHABEAABAfABgAAAAGABAAABAfABkAAAAGABEAABAgABgAAAAFABAAABAgABkAAAAFABEAABAuABMAAwABAAYAAAAuABQAAwABAAcAAAAvABMAAwACAAYAAAAvABQAAwACAAcAAAAtABEAAAAGAAcAAAAtABIAAAAGAAgAAAAtABMAAAAGAAkAAAApABEAAAACAAQAAAApABIAAAACAAUAAAApABMAAAACAAYAAAAqABEAAAADAAQAAAAqABIAAAADAAUAAAAqABMAAAADAAYAAAArABEAAAAEAAQAAAArABIAAAAEAAUAAAArABMAAAAEAAYAAAAnABIAAAAAAAAAAAAnABMAAAAAAAEAAAAoABIAAAABAAAAAAAoABMAAAABAAEAAAARABMAAwACAAgAAAARABQAAwACAAkAAAAQABMAAwABAAgAAAAQABQAAwABAAkAAAAYABIAAAADAAAAAAAYABMAAAADAAEAAAASABEAAAAGAAcAAAASABIAAAAGAAgAAAASABMAAAAGAAkAAAAVABIAAAAAAAoAAAAVABMAAAAAAAsAAAA=")
 tile_set = SubResource("TileSet_0ybwg")
 
+[node name="ObjetosNodes" type="Node2D" parent="."]
+
+[node name="Neto" type="CharacterBody2D" parent="ObjetosNodes"]
+script = ExtResource("28_wnofu")
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/Neto"]
+position = Vector2(224.125, 65.489296)
+scale = Vector2(0.0508929, 0.0508929)
+texture = ExtResource("28_um3md")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto"]
+position = Vector2(224.125, 73.48929)
+shape = SubResource("RectangleShape2D_um3md")
+
+[node name="InteractionArea" type="Area2D" parent="ObjetosNodes/Neto"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto/InteractionArea"]
+position = Vector2(224.125, 74.48929)
+shape = SubResource("CircleShape2D_wnofu")
+
+[node name="ExclamacoesContainer" type="Node2D" parent="ObjetosNodes"]
+script = ExtResource("30_7k372")
+
+[node name="E1" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E1"]
+z_index = 100
+position = Vector2(-62.624996, -10.624996)
+scale = Vector2(0.3158333, 0.3158333)
+texture = ExtResource("30_qwon6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E1"]
+position = Vector2(-61, -24)
+shape = SubResource("RectangleShape2D_7k372")
+
+[node name="E2" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E2"]
+z_index = 100
+position = Vector2(-62.624996, -10.624996)
+scale = Vector2(0.3158333, 0.3158333)
+texture = ExtResource("30_qwon6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E2"]
+position = Vector2(-61, -24)
+shape = SubResource("RectangleShape2D_7k372")
+
+[node name="E3" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E3"]
+z_index = 100
+position = Vector2(-62.624996, -10.624996)
+scale = Vector2(0.3158333, 0.3158333)
+texture = ExtResource("30_qwon6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E3"]
+position = Vector2(-61, -24)
+shape = SubResource("RectangleShape2D_7k372")
+
+[node name="E4" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E4"]
+z_index = 100
+position = Vector2(-62.624996, -10.624996)
+scale = Vector2(0.3158333, 0.3158333)
+texture = ExtResource("30_qwon6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E4"]
+position = Vector2(-61, -24)
+shape = SubResource("RectangleShape2D_7k372")
+
+[node name="Ecorreta" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
+z_index = 100
+position = Vector2(-62.624996, -10.624996)
+scale = Vector2(0.3158333, 0.3158333)
+texture = ExtResource("30_qwon6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
+position = Vector2(-61, -24)
+shape = SubResource("RectangleShape2D_7k372")
+
+[node name="PontoFinalNeto" type="Marker2D" parent="ObjetosNodes"]
+position = Vector2(268, 330)
+
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(33, 300)
 collision_mask = 31
@@ -2118,6 +2217,7 @@ scale = Vector2(0.5, 0.5)
 size_flags_vertical = 8
 text = "Pressione \"Q\""
 label_settings = SubResource("LabelSettings_u4kti")
+metadata/_edit_use_anchors_ = true
 
 [node name="AreaBedGame" type="Area2D" parent="."]
 position = Vector2(-161, 4)
@@ -2136,6 +2236,7 @@ scale = Vector2(0.5, 0.5)
 size_flags_vertical = 8
 text = "Pressione \"Q\" "
 label_settings = SubResource("LabelSettings_u4kti")
+metadata/_edit_use_anchors_ = true
 
 [node name="AreaCookingGame" type="Area2D" parent="."]
 position = Vector2(611, 13)
@@ -2154,6 +2255,7 @@ scale = Vector2(0.5, 0.5)
 size_flags_vertical = 8
 text = "Pressione \"Q\" "
 label_settings = SubResource("LabelSettings_u4kti")
+metadata/_edit_use_anchors_ = true
 
 [node name="AreaPillGame" type="Area2D" parent="."]
 position = Vector2(611, 13)
@@ -2172,9 +2274,27 @@ scale = Vector2(0.5, 0.5)
 size_flags_vertical = 8
 text = "Pressione \"Q\" "
 label_settings = SubResource("LabelSettings_u4kti")
+metadata/_edit_use_anchors_ = true
 
 [node name="Hud" parent="." instance=ExtResource("27_vbuca")]
+metadata/_edit_use_anchors_ = true
 
+[node name="DialogLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[connection signal="body_entered" from="ObjetosNodes/Neto/InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E1" to="ObjetosNodes/ExclamacoesContainer" method="_on_exclamacao_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E2" to="ObjetosNodes/ExclamacoesContainer" method="_on_e_2_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E3" to="ObjetosNodes/ExclamacoesContainer" method="_on_e_3_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E4" to="ObjetosNodes/ExclamacoesContainer" method="_on_e_4_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/Ecorreta" to="ObjetosNodes/ExclamacoesContainer" method="_on_ecorreta_body_entered"]
 [connection signal="body_entered" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_exited"]
 [connection signal="body_entered" from="AreaBedGame" to="AreaBedGame" method="_on_body_entered"]
