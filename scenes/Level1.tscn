@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=59 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
@@ -1916,8 +1916,20 @@ size = Vector2(14, 8)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnofu"]
 radius = 5.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrm5b"]
+size = Vector2(47, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak7rx"]
+size = Vector2(30, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfxdd"]
+size = Vector2(60, 35)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k372"]
-size = Vector2(3, 14)
+size = Vector2(89, 33.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgt1y"]
+size = Vector2(20.25, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
 size = Vector2(8, 8)
@@ -2067,82 +2079,87 @@ tile_set = SubResource("TileSet_0ybwg")
 script = ExtResource("28_wnofu")
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/Neto"]
-position = Vector2(224.125, 65.489296)
+position = Vector2(224.125, 65.4893)
 scale = Vector2(0.0508929, 0.0508929)
 texture = ExtResource("28_um3md")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto"]
-position = Vector2(224.125, 73.48929)
+position = Vector2(224.125, 73.4893)
 shape = SubResource("RectangleShape2D_um3md")
 
 [node name="InteractionArea" type="Area2D" parent="ObjetosNodes/Neto"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto/InteractionArea"]
-position = Vector2(224.125, 74.48929)
+position = Vector2(224.125, 74.4893)
 shape = SubResource("CircleShape2D_wnofu")
 
 [node name="ExclamacoesContainer" type="Node2D" parent="ObjetosNodes"]
 script = ExtResource("30_7k372")
 
 [node name="E1" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+position = Vector2(279, 385)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E1"]
 z_index = 100
-position = Vector2(-62.624996, -10.624996)
-scale = Vector2(0.3158333, 0.3158333)
+position = Vector2(-62.625, -10.625)
+scale = Vector2(0.315833, 0.315833)
 texture = ExtResource("30_qwon6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E1"]
-position = Vector2(-61, -24)
-shape = SubResource("RectangleShape2D_7k372")
+position = Vector2(-64.5, -1.5)
+shape = SubResource("RectangleShape2D_jrm5b")
 
 [node name="E2" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+position = Vector2(809, 313)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E2"]
 z_index = 100
-position = Vector2(-62.624996, -10.624996)
-scale = Vector2(0.3158333, 0.3158333)
+position = Vector2(-62.625, -10.625)
+scale = Vector2(0.315833, 0.315833)
 texture = ExtResource("30_qwon6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E2"]
-position = Vector2(-61, -24)
-shape = SubResource("RectangleShape2D_7k372")
+position = Vector2(-61, 9.5)
+shape = SubResource("RectangleShape2D_ak7rx")
 
 [node name="E3" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+position = Vector2(510, 119)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E3"]
 z_index = 100
-position = Vector2(-62.624996, -10.624996)
-scale = Vector2(0.3158333, 0.3158333)
+position = Vector2(-62.625, -10.625)
+scale = Vector2(0.315833, 0.315833)
 texture = ExtResource("30_qwon6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E3"]
-position = Vector2(-61, -24)
-shape = SubResource("RectangleShape2D_7k372")
+position = Vector2(-62, 12.5)
+shape = SubResource("RectangleShape2D_rfxdd")
 
 [node name="E4" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+position = Vector2(388, 42)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E4"]
 z_index = 100
-position = Vector2(-62.624996, -10.624996)
-scale = Vector2(0.3158333, 0.3158333)
+position = Vector2(-62.625, -10.625)
+scale = Vector2(0.315833, 0.315833)
 texture = ExtResource("30_qwon6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E4"]
-position = Vector2(-61, -24)
+position = Vector2(-61.5, 22.25)
 shape = SubResource("RectangleShape2D_7k372")
 
 [node name="Ecorreta" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+position = Vector2(453, 306)
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
 z_index = 100
-position = Vector2(-62.624996, -10.624996)
-scale = Vector2(0.3158333, 0.3158333)
+position = Vector2(-62.625, -10.625)
+scale = Vector2(0.315833, 0.315833)
 texture = ExtResource("30_qwon6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
-position = Vector2(-61, -24)
-shape = SubResource("RectangleShape2D_7k372")
+position = Vector2(-62.875, 2.5)
+shape = SubResource("RectangleShape2D_vgt1y")
 
 [node name="PontoFinalNeto" type="Marker2D" parent="ObjetosNodes"]
 position = Vector2(268, 330)
@@ -2290,11 +2307,6 @@ offset_bottom = 23.0
 grow_horizontal = 2
 
 [connection signal="body_entered" from="ObjetosNodes/Neto/InteractionArea" to="." method="_on_interaction_area_body_entered"]
-[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E1" to="ObjetosNodes/ExclamacoesContainer" method="_on_exclamacao_body_entered"]
-[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E2" to="ObjetosNodes/ExclamacoesContainer" method="_on_e_2_body_entered"]
-[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E3" to="ObjetosNodes/ExclamacoesContainer" method="_on_e_3_body_entered"]
-[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E4" to="ObjetosNodes/ExclamacoesContainer" method="_on_e_4_body_entered"]
-[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/Ecorreta" to="ObjetosNodes/ExclamacoesContainer" method="_on_ecorreta_body_entered"]
 [connection signal="body_entered" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_exited"]
 [connection signal="body_entered" from="AreaBedGame" to="AreaBedGame" method="_on_body_entered"]

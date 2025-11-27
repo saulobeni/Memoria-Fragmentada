@@ -73,18 +73,19 @@ func _process(_delta):
 				iniciar_esconde_esconde()
 
 	# -----------------------
-	# Interação com exclamações
+	# Interação com exclamações (PRESSIONANDO BOTÃO)
 	# -----------------------
-	if fase_neto:
+	if fase_neto and Input.is_action_just_pressed("interact"):
 		for e in exclamacoes:
-			if e.is_visible_in_tree() and e.get_node("CollisionShape2D").disabled == false:
+			if e.is_visible_in_tree() and not e.get_node("CollisionShape2D").disabled:
 				if e.get_overlapping_bodies().has($Player):
-					if Input.is_action_just_pressed("interact"):
-						if e.name == "E%d" % id_exclamacao_correta:
-							await mostrar_dialogo("Ahh, você me encontrou vovô!", 2.0)
-							finalizar_esconde_esconde()
-						else:
-							await mostrar_dialogo("Hmm... ele não está aqui.", 1.5)
+					if e.name == "E%d" % id_exclamacao_correta:
+						await mostrar_dialogo("Ahh, você me encontrou vovô!", 2.0)
+						finalizar_esconde_esconde()
+					else:
+						await mostrar_dialogo("Hmm... ele não está aqui.", 1.5)
+					return
+
 							
 	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
 	if not paused and not subviewport_container.visible:
@@ -415,17 +416,16 @@ func iniciar_esconde_esconde() -> void:
 	transition_animation.play("transicao_vai")
 	await get_tree().create_timer(1.0).timeout
 	neto.hide()
-	exclamacoes_container.mostrar_exclamacoes()
 	transition_animation.play("transicao_vem")
 	await get_tree().create_timer(0.5).timeout
+	exclamacoes_container.mostrar_exclamacoes()
 	for e in exclamacoes:
 		e.show()
 
 func finalizar_esconde_esconde() -> void:
 	transition_animation.play("transicao_vai")
 	await get_tree().create_timer(1.0).timeout
-	for e in exclamacoes:
-		e.hide()
+	exclamacoes_container.esconder_exclamacoes()
 	neto.position = $Player.position + Vector2(32,0)
 	neto.show()
 	transition_animation.play("transicao_vem")
