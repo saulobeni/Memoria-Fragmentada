@@ -7,13 +7,15 @@
 radius = 14.866069
 
 [node name="Knife" type="Area2D"]
+disable_mode = 2
 script = ExtResource("1_ftixv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.99999994, -0.99999994)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_n7v1r")
-offset = Vector2(307, -285)
+offset = Vector2(-317, 339)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(55, -53)
+position = Vector2(-8, 7)
 shape = SubResource("CircleShape2D_a1b0i")
