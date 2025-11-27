@@ -31,14 +31,14 @@ offset_bottom = 6430.9995
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_06rti")
 
+[node name="CutSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2248b")
+
 [node name="Knife" parent="." instance=ExtResource("2_llhu8")]
 
 [node name="FruitSpawner" type="Node2D" parent="."]
 
 [node name="FruitContainer" type="Node2D" parent="."]
-
-[node name="CutSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_2248b")
 
 [node name="MessageLabel" type="Label" parent="."]
 offset_right = 40.0
@@ -46,6 +46,7 @@ offset_bottom = 43.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_llhu8")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 4.0
