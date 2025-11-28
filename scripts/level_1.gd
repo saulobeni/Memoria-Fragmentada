@@ -7,10 +7,11 @@ var missions = [
 	"Faça algo para 
 	comer",
 	"Fale com o seu 
-	neto"
+	neto",
+	"Tome seus remédios"
 ]
 
-var missao_atual = 3
+var missao_atual = 0
 
 @onready var dialog_label = $Player/Camera2D/DialogLabel
 
@@ -39,8 +40,8 @@ var cena_carregada: Node = null
 var paused = false
 var pause_menu
 
-var missoesVisitadas = [false,false,false,false]
-var sequenciaDiaUm = [3]
+var missoesVisitadas = [false,false,false,false, false]
+var sequenciaDiaUm = [0,1,2,3,4]
 var contadorIdMissao = 0
 
 func _ready():
@@ -89,23 +90,23 @@ func _process(_delta):
 							
 	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
 	if not paused and not subviewport_container.visible:
-		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
-			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
+		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
+			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn")
 			if not missoesVisitadas[0]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
 				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 0:
 					mostrar_proxima_missao()
 				missoesVisitadas[0] = true
-				areaPortraitGame.get_node("CollisionShape2D").disabled = true
+				areaBedGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
-		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
-			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn")
+		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
+			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
 			if not missoesVisitadas[1]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
 				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 1:
 					mostrar_proxima_missao()
 				missoesVisitadas[1] = true
-				areaBedGame.get_node("CollisionShape2D").disabled = true
+				areaPortraitGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
@@ -118,11 +119,11 @@ func _process(_delta):
 			proxima_missao()
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
-			if not missoesVisitadas[3]:  # Corrigido: removido == false
+			if not missoesVisitadas[4]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
-				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 3:
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 4:
 					mostrar_proxima_missao()
-				missoesVisitadas[3] = true
+				missoesVisitadas[4] = true
 				areaPillGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 
@@ -158,12 +159,12 @@ func desativar_colisoes():
 
 func representar_missao(id):
 	if id == 0:
-		return areaPortraitGame
-	elif id == 1:
 		return areaBedGame
+	elif id == 1:
+		return areaPortraitGame
 	elif id == 2:
 		return areaCookingGame
-	elif id == 3:
+	elif id == 4:
 		return areaPillGame
 	else:
 		return null
@@ -433,6 +434,8 @@ func finalizar_esconde_esconde() -> void:
 	await mostrar_dialogo("Parabéns! Você me encontrou!", 2.0)
 	neto.move_to(ponto_final_neto.position)
 	fase_neto = false
+	proxima_missao()
+	areaPillGame.get_node("CollisionShape2D").disabled = false
 
 func _on_InteractionArea_body_entered(body):
 	if body.name != "Player":
