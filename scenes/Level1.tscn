@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=61 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
@@ -28,7 +28,7 @@
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="25_ntbnh"]
 [ext_resource type="PackedScene" uid="uid://csutya3tu3oqi" path="res://scenes/hudTasks/HUD.tscn" id="27_vbuca"]
 [ext_resource type="Texture2D" uid="uid://df4ynvr7q1qbc" path="res://assets/sprites/neto/neto frente.png" id="28_um3md"]
-[ext_resource type="Script" uid="uid://cnmd7qor4tymh" path="res://scripts/neto.gd" id="28_wnofu"]
+[ext_resource type="Script" path="res://scripts/neto.gd" id="28_wnofu"]
 [ext_resource type="Script" uid="uid://dknixvk88iurc" path="res://scripts/exclamacoes_container.gd" id="30_7k372"]
 [ext_resource type="Texture2D" uid="uid://ewqvj858o6g2" path="res://assets/sprites/exlamation (1).png" id="30_qwon6"]
 
@@ -1928,11 +1928,18 @@ size = Vector2(60, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k372"]
 size = Vector2(89, 33.5)
 
+[sub_resource type="GDScript" id="GDScript_7k372"]
+script/source = "extends Area2D
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgt1y"]
 size = Vector2(20.25, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
 size = Vector2(8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7k372"]
+font = ExtResource("25_ntbnh")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t86jx"]
 animations = [{
@@ -2149,7 +2156,8 @@ position = Vector2(-61.5, 22.25)
 shape = SubResource("RectangleShape2D_7k372")
 
 [node name="Ecorreta" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
-position = Vector2(453, 306)
+position = Vector2(453, 304)
+script = SubResource("GDScript_7k372")
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
 z_index = 100
@@ -2179,6 +2187,22 @@ zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
+
+[node name="DialogLabel" type="Label" parent="Player/Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 62.0
+offset_top = 50.705
+offset_right = 435.33334
+offset_bottom = 100.705
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+label_settings = SubResource("LabelSettings_7k372")
+autowrap_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(24, -226.705)
@@ -2296,17 +2320,12 @@ metadata/_edit_use_anchors_ = true
 [node name="Hud" parent="." instance=ExtResource("27_vbuca")]
 metadata/_edit_use_anchors_ = true
 
-[node name="DialogLabel" type="Label" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-
 [connection signal="body_entered" from="ObjetosNodes/Neto/InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E1" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E2" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E3" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E4" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/Ecorreta" to="." method="_on_ecorreta_body_entered"]
 [connection signal="body_entered" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_exited"]
 [connection signal="body_entered" from="AreaBedGame" to="AreaBedGame" method="_on_body_entered"]

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var exclamacoes: Array = get_children()
-@onready var level_node = get_parent()
+@onready var level_node = get_parent().get_parent()
 
 func _ready():
 	for e in exclamacoes:
@@ -18,3 +18,9 @@ func esconder_exclamacoes():
 	for e in exclamacoes:
 		e.hide()
 		e.get_node("CollisionShape2D").disabled = true
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name != "Player":
+		return
+	
+	await level_node.mostrar_dialogo("       Hmm...\nele não está aqui.", 1.5)

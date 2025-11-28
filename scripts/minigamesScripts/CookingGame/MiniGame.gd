@@ -37,8 +37,12 @@ func _on_fruit_removed():
 func end_minigame():
 	show_message("🎉 MISSÃO CONCLUÍDA! 🎉")
 	await get_tree().create_timer(3.0).timeout
-	# Trocar de cena depois da mensagem
-	get_tree().change_scene_to_file("res://scenes/Level1.tscn")
+	
+	# Despausar o jogo após a compleção
+	var cena_subviewport = get_parent().get_parent()
+	var cena_principal = cena_subviewport.get_parent().get_parent()
+	cena_subviewport.get_tree().paused = false
+	cena_principal.fechar_subviewport()
 
 func show_message(text):
 	message_label.text = text

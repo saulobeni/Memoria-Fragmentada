@@ -10,9 +10,9 @@ var missions = [
 	neto"
 ]
 
-var missao_atual = 0
+var missao_atual = 3
 
-@onready var dialog_label = $DialogLabel
+@onready var dialog_label = $Player/Camera2D/DialogLabel
 
 @onready var exclamacoes_container = $ObjetosNodes/ExclamacoesContainer
 
@@ -40,7 +40,7 @@ var paused = false
 var pause_menu
 
 var missoesVisitadas = [false,false,false,false]
-var sequenciaDiaUm = [1,0,2,3]
+var sequenciaDiaUm = [3]
 var contadorIdMissao = 0
 
 func _ready():
@@ -434,8 +434,6 @@ func finalizar_esconde_esconde() -> void:
 	neto.move_to(ponto_final_neto.position)
 	fase_neto = false
 
-
-
 func _on_InteractionArea_body_entered(body):
 	if body.name != "Player":
 		return
@@ -451,3 +449,13 @@ func mostrar_dialogo(texto: String, duracao: float = 2.0) -> void:
 	# Esconde após X segundos
 	await get_tree().create_timer(duracao).timeout
 	dialog_label.hide()
+
+
+func _on_ecorreta_body_entered(body: Node2D) -> void:
+	if body.name != "Player":
+		return
+		
+	await mostrar_dialogo("Finalmente achei você,\n       netinho!", 2.0)
+
+
+	
