@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://btas8my2r44su"]
+
+[ext_resource type="Texture2D" uid="uid://bot58hweugm4e" path="res://assets/atlas/Captura_de_tela_2025-11-29_094752-removebg-preview (1).png" id="1_c60l0"]
+
+[resource]
+atlas = ExtResource("1_c60l0")

@@ -13,6 +13,17 @@ var missions = [
 
 var missao_atual = 0
 
+@export var offset_position : Vector2 = Vector2(292,245)
+@export var offset_position2 : Vector2 = Vector2(710, 245)
+
+@export var dialog_images1: Array[AtlasTexture] = []
+@export var dialog_images2: Array[AtlasTexture] = []
+
+@export var dialog_texts1 : Array[String] = []
+@export var dialog_texts2 : Array[String] = []
+@export var dialog_texts3 : Array[String] = []
+@export var dialog_texts5 : Array[String] = []
+
 @onready var dialog_label = $Player/Camera2D/DialogLabel
 
 @onready var exclamacoes_container = $ObjetosNodes/ExclamacoesContainer
@@ -91,6 +102,8 @@ func _process(_delta):
 	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
 	if not paused and not subviewport_container.visible:
 		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
+			DialogManager.start_dialog(dialog_texts1, global_position + offset_position, dialog_images1)
+			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn")
 			if not missoesVisitadas[0]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
@@ -100,6 +113,8 @@ func _process(_delta):
 				areaBedGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
+			DialogManager.start_dialog(dialog_texts2, global_position + offset_position, dialog_images2)
+			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
 			if not missoesVisitadas[1]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
@@ -109,6 +124,8 @@ func _process(_delta):
 				areaPortraitGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
+			DialogManager.start_dialog(dialog_texts3, global_position+offset_position2, dialog_images2)
+			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
 			if not missoesVisitadas[2]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
@@ -118,6 +135,7 @@ func _process(_delta):
 				areaCookingGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
+			DialogManager.start_dialog(dialog_texts5, global_position + offset_position2, dialog_images2)
 			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
 			if not missoesVisitadas[4]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência

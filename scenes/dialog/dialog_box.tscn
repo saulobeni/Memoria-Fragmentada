@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8qdf2bjsi6py"]
+
+[ext_resource type="Script" uid="uid://filamogmp5cv" path="res://scripts/dialog/dialog_box_2.gd" id="1_cjsg4"]
+[ext_resource type="Texture2D" uid="uid://can5f3gmwv2s5" path="res://assets/sprites/ChatGPT Image 17 de nov. de 2025, 20_26_17.png" id="1_hwgul"]
+[ext_resource type="Texture2D" uid="uid://bot58hweugm4e" path="res://assets/atlas/Captura_de_tela_2025-11-29_094752-removebg-preview (1).png" id="3_cjsg4"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_ooujr"]
+
+[node name="dialog_box" type="MarginContainer"]
+process_mode = 3
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.13000001
+anchor_top = 0.25500003
+anchor_right = 0.61600006
+anchor_bottom = 0.48600003
+offset_left = 0.23999023
+offset_top = -0.24002075
+offset_right = 0.36791992
+offset_bottom = 0.07199097
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cjsg4")
+
+[node name="bg_dialog_box" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_hwgul")
+region_rect = Rect2(178, 162.77042, 1184, 694.2296)
+
+[node name="text_container" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 135
+theme_override_constants/margin_bottom = 25
+
+[node name="text_label" type="Label" parent="text_container"]
+texture_filter = 1
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ooujr")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="character" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(490, 75)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_cjsg4")

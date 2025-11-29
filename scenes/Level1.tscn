@@ -1,8 +1,9 @@
-[gd_scene load_steps=61 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=62 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
 [ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://scripts/player.gd" id="2_2ouud"]
+[ext_resource type="Texture2D" uid="uid://btas8my2r44su" path="res://assets/atlas/Idoso.tres" id="2_ak7rx"]
 [ext_resource type="PackedScene" uid="uid://c64702h888nu" path="res://scenes/transicao.tscn" id="2_gumju"]
 [ext_resource type="Texture2D" uid="uid://03f774eu06h1" path="res://assets/sprites/parado de costas.png" id="3_i2gr7"]
 [ext_resource type="Texture2D" uid="uid://be2t2courqs6t" path="res://assets/sprites/andando pra cima - 1.png" id="4_t46sy"]
@@ -2042,6 +2043,12 @@ outline_size = 1
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_0ybwg")
+dialog_images1 = Array[AtlasTexture]([ExtResource("2_ak7rx")])
+dialog_images2 = Array[AtlasTexture]([ExtResource("2_ak7rx")])
+dialog_texts1 = Array[String](["A cama... sempre a cama primeiro. Um lugar em ordem é uma mente em ordem... ou era o que ela sempre dizia."])
+dialog_texts2 = Array[String](["Olhem só para eles... meus bebês. A vida... passa num piscar de olhos. Parece que foi ontem que eu os carregava no colo."])
+dialog_texts3 = Array[String](["Hmm... meu estomâgo está roncando. O que eu costumo fazer quando... ? Ah, sim! Um lanche. Preciso fazer um lanche."])
+dialog_texts5 = Array[String]([""])
 
 [node name="Transicao" parent="." instance=ExtResource("2_gumju")]
 
