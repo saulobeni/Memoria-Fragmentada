@@ -38,6 +38,8 @@ func show_text():
 		
 func _type_text(text: String):
 	for i in range(text.length()):
+		if not is_typing:  # Se is_typing foi desativado, para a digitação
+			break
 		text_label.text += text[i]
 		await get_tree().create_timer(typing_speed).timeout
 		
@@ -53,11 +55,13 @@ func _close_dialog():
 	queue_free()
 	
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept") and not is_typing:
+	if event.is_action_pressed("ui_accept"):
 		if is_typing:
-			text_label.text = texts_to_display[current_index]
+			# Pular digitação: mostrar texto completo imediatamente
 			is_typing = false
+			text_label.text = texts_to_display[current_index]
 		else:
+			# Avançar para o próximo texto ou fechar diálogo
 			if current_index + 1 < texts_to_display.size():
 				current_index += 1
 				show_text()

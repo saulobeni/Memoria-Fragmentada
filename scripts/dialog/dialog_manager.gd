@@ -3,12 +3,16 @@ extends Node
 @export var dialog_scene : PackedScene
 var dialog_box = null
 var is_showing_dialog : bool = false
+var player_node : CharacterBody2D = null
 
 signal dialog_completed()
 
-func start_dialog(texts: Array[String], dialog_position: Vector2, images: Array[AtlasTexture]):
+func start_dialog(texts: Array[String], dialog_position: Vector2, images: Array[AtlasTexture], player: CharacterBody2D = null):
 	if is_showing_dialog:
 		return
+	
+	player_node = player
+		
 	if dialog_scene:
 		dialog_box = dialog_scene.instantiate()
 		get_tree().current_scene.add_child(dialog_box)
@@ -23,8 +27,15 @@ func start_dialog(texts: Array[String], dialog_position: Vector2, images: Array[
 		
 		dialog_box.dialog_finished.connect(_on_dialog_finished)
 		
+		if player_node:
+			player_node.disable_movement()
+		
 func _on_dialog_finished():
 	is_showing_dialog = false
+	
+	if player_node:
+		player_node.enable_movement()
+	
 	dialog_completed.emit()
 	if dialog_box:
 		dialog_box.queue_free()

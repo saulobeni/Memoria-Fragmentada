@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 var direction: Vector2 = Vector2.ZERO
 var last_direction: String = "front"  # "front", "back", "left", "right"
+var can_move: bool = true
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var footstep_sound: AudioStreamPlayer2D = $FootstepSound
@@ -13,6 +14,12 @@ const FOOTSTEP_INTERVAL = 0.4  # Intervalo em segundos entre cada passo
 var was_moving := false  # Controla se estava andando no frame anterior
 
 func _physics_process(delta: float) -> void:
+	if not can_move:
+		velocity = Vector2.ZERO
+		_update_animation(Vector2.ZERO, last_direction)
+		_handle_footsteps(delta, Vector2.ZERO)
+		return
+		
 	# --- Ler input (permite diagonais) ---
 	direction = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
@@ -92,3 +99,11 @@ func _handle_footsteps(delta: float, dir: Vector2) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
+
+func enable_movement():
+	can_move = true
+
+func disable_movement():
+	can_move = false
+	velocity = Vector2.ZERO
+	_update_animation(Vector2.ZERO, last_direction)
