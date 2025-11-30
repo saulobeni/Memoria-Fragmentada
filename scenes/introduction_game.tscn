@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://du4hv7iu73juy"]
+[gd_scene load_steps=5 format=3 uid="uid://du4hv7iu73juy"]
 
 [ext_resource type="Texture2D" uid="uid://can5f3gmwv2s5" path="res://assets/sprites/ChatGPT Image 17 de nov. de 2025, 20_26_17.png" id="1_inaec"]
 [ext_resource type="Script" uid="uid://drnextuffm51w" path="res://scripts/dialog_box.gd" id="1_nsids"]
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_ebvwe"]
+[ext_resource type="AudioStream" uid="uid://di80lw7s5mydl" path="res://assets/sounds/medium-text-blip-14855.mp3" id="4_3tru3"]
 
 [node name="IntroductionGame" type="Control"]
 layout_mode = 3
@@ -55,3 +56,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ebvwe")
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="TypingSound" type="AudioStreamPlayer" parent="DialogBox"]
+stream = ExtResource("4_3tru3")

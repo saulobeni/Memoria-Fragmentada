@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8qdf2bjsi6py"]
+[gd_scene load_steps=6 format=3 uid="uid://b8qdf2bjsi6py"]
 
 [ext_resource type="Script" uid="uid://filamogmp5cv" path="res://scripts/dialog/dialog_box_2.gd" id="1_cjsg4"]
 [ext_resource type="Texture2D" uid="uid://can5f3gmwv2s5" path="res://assets/sprites/ChatGPT Image 17 de nov. de 2025, 20_26_17.png" id="1_hwgul"]
 [ext_resource type="Texture2D" uid="uid://bot58hweugm4e" path="res://assets/atlas/Captura_de_tela_2025-11-29_094752-removebg-preview (1).png" id="3_cjsg4"]
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_ooujr"]
+[ext_resource type="AudioStream" uid="uid://di80lw7s5mydl" path="res://assets/sounds/medium-text-blip-14855.mp3" id="5_qvd45"]
 
 [node name="dialog_box" type="MarginContainer"]
 process_mode = 3
@@ -20,6 +21,9 @@ offset_bottom = 0.07199097
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cjsg4")
+
+[node name="TypingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qvd45")
 
 [node name="bg_dialog_box" type="NinePatchRect" parent="."]
 texture_filter = 1

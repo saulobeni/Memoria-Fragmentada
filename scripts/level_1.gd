@@ -11,7 +11,7 @@ var missions = [
 	"Tome seus remédios"
 ]
 
-var missao_atual = 3
+var missao_atual = 0
 
 @export var offset_position : Vector2 = Vector2(292,245)
 @export var offset_position2 : Vector2 = Vector2(710, 245)
