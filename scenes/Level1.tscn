@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=78 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://cnmd7qor4tymh" path="res://scripts/neto.gd" id="28_wnofu"]
 [ext_resource type="Script" uid="uid://dknixvk88iurc" path="res://scripts/exclamacoes_container.gd" id="30_7k372"]
 [ext_resource type="Texture2D" uid="uid://ewqvj858o6g2" path="res://assets/sprites/exlamation (1).png" id="30_qwon6"]
+[ext_resource type="AudioStream" uid="uid://5mtaat23mo82" path="res://assets/sounds/dramatic-flute-for-documentaries-165986.mp3" id="33_vgt1y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jrm5b"]
 texture = ExtResource("1_r7dij")
@@ -2430,7 +2431,7 @@ animation = &"walk_left"
 
 [node name="FootstepSound" type="AudioStreamPlayer2D" parent="Player"]
 stream = ExtResource("17_vgt1y")
-volume_db = 15.0
+volume_db = 0.05
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -2540,6 +2541,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SpawnNeto" type="Marker2D" parent="."]
 position = Vector2(723, 71)
+
+[node name="MusicaFundo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_vgt1y")
+autoplay = true
 
 [connection signal="body_entered" from="ObjetosNodes/Neto/InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E1" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
