@@ -50,11 +50,16 @@ func _play_click_sound() -> void:
 		btn_click_sound.play()
 
 func _on_new_game_pressed() -> void:
+	if btn_new.disabled:
+		return  # ignora qualquer clique depois do primeiro
+
+	btn_new.disabled = true   # trava definitivamente
+
 	animation_transition.play("transicao_vai")
 	await animation_transition.animation_finished
-	
-	# Trocar para a cena principal do jogo (a sua "casa")
+
 	get_tree().change_scene_to_file("res://scenes/introduction_game.tscn")
+
 
 func _on_sound_pressed() -> void:
 	sound_on = not sound_on

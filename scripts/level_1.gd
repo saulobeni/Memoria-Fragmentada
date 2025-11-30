@@ -11,7 +11,7 @@ var missions = [
 	"Tome seus remédios"
 ]
 
-var missao_atual = 0
+var missao_atual = 3
 
 @export var offset_position : Vector2 = Vector2(292,245)
 @export var offset_position2 : Vector2 = Vector2(710, 245)
@@ -434,28 +434,42 @@ func _on_quit_pressed():
 # -----------------------
 func iniciar_esconde_esconde() -> void:
 	fase_neto = true
+	
 	transition_animation.play("transicao_vai")
 	await get_tree().create_timer(1.0).timeout
+	
 	neto.hide()
+	
 	transition_animation.play("transicao_vem")
 	await get_tree().create_timer(0.5).timeout
+	
 	exclamacoes_container.mostrar_exclamacoes()
+
 	for e in exclamacoes:
 		e.show()
+		e.get_node("AnimationPlayer").play("pular")
+
 
 func finalizar_esconde_esconde() -> void:
 	transition_animation.play("transicao_vai")
 	await get_tree().create_timer(1.0).timeout
+	
 	exclamacoes_container.esconder_exclamacoes()
-	neto.position = $Player.position + Vector2(32,0)
+	
+	# Coloca o neto diretamente no ponto desejado
+	neto.position = $SpawnNeto.position
 	neto.show()
+	
 	transition_animation.play("transicao_vem")
 	await get_tree().create_timer(0.5).timeout
+	
 	await mostrar_dialogo("Parabéns! Você me encontrou!", 2.0)
-	neto.move_to(ponto_final_neto.position)
+	
 	fase_neto = false
 	proxima_missao()
+	
 	areaPillGame.get_node("CollisionShape2D").disabled = false
+
 
 func _on_InteractionArea_body_entered(body):
 	if body.name != "Player":

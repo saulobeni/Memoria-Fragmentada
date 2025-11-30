@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://8ims0egvohle"]
+[gd_scene load_steps=77 format=4 uid="uid://8ims0egvohle"]
 
 [ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
@@ -1920,14 +1920,162 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrm5b"]
 size = Vector2(47, 27)
 
+[sub_resource type="Animation" id="Animation_ak7rx"]
+resource_name = "pular"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="Animation" id="Animation_vgt1y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrm5b"]
+_data = {
+&"RESET": SubResource("Animation_vgt1y"),
+&"pular": SubResource("Animation_ak7rx")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ak7rx"]
 size = Vector2(30, 35)
+
+[sub_resource type="Animation" id="Animation_jrm5b"]
+resource_name = "pular"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="Animation" id="Animation_rfxdd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn0xh"]
+_data = {
+&"RESET": SubResource("Animation_rfxdd"),
+&"pular": SubResource("Animation_jrm5b")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfxdd"]
 size = Vector2(60, 35)
 
+[sub_resource type="Animation" id="Animation_tjrcc"]
+resource_name = "pular"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="Animation" id="Animation_ncr2o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t86jx"]
+_data = {
+&"RESET": SubResource("Animation_ncr2o"),
+&"pular": SubResource("Animation_tjrcc")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k372"]
 size = Vector2(89, 33.5)
+
+[sub_resource type="Animation" id="Animation_uffv2"]
+resource_name = "pular"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="Animation" id="Animation_lcs61"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2rjx"]
+_data = {
+&"RESET": SubResource("Animation_lcs61"),
+&"pular": SubResource("Animation_uffv2")
+}
 
 [sub_resource type="GDScript" id="GDScript_7k372"]
 script/source = "extends Area2D
@@ -1935,6 +2083,43 @@ script/source = "extends Area2D
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgt1y"]
 size = Vector2(20.25, 23)
+
+[sub_resource type="Animation" id="Animation_s2ivy"]
+resource_name = "pular"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="Animation" id="Animation_ex37g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p72f1"]
+_data = {
+&"RESET": SubResource("Animation_ex37g"),
+&"pular": SubResource("Animation_s2ivy")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
 size = Vector2(8, 8)
@@ -2090,6 +2275,7 @@ tile_set = SubResource("TileSet_0ybwg")
 [node name="ObjetosNodes" type="Node2D" parent="."]
 
 [node name="Neto" type="CharacterBody2D" parent="ObjetosNodes"]
+position = Vector2(256, -6)
 script = ExtResource("28_wnofu")
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/Neto"]
@@ -2123,6 +2309,11 @@ texture = ExtResource("30_qwon6")
 position = Vector2(-64.5, -1.5)
 shape = SubResource("RectangleShape2D_jrm5b")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjetosNodes/ExclamacoesContainer/E1"]
+libraries = {
+&"": SubResource("AnimationLibrary_jrm5b")
+}
+
 [node name="E2" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
 position = Vector2(809, 313)
 
@@ -2135,6 +2326,11 @@ texture = ExtResource("30_qwon6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E2"]
 position = Vector2(-61, 9.5)
 shape = SubResource("RectangleShape2D_ak7rx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjetosNodes/ExclamacoesContainer/E2"]
+libraries = {
+&"": SubResource("AnimationLibrary_kn0xh")
+}
 
 [node name="E3" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
 position = Vector2(510, 119)
@@ -2149,6 +2345,11 @@ texture = ExtResource("30_qwon6")
 position = Vector2(-62, 12.5)
 shape = SubResource("RectangleShape2D_rfxdd")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjetosNodes/ExclamacoesContainer/E3"]
+libraries = {
+&"": SubResource("AnimationLibrary_t86jx")
+}
+
 [node name="E4" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
 position = Vector2(388, 42)
 
@@ -2161,6 +2362,11 @@ texture = ExtResource("30_qwon6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E4"]
 position = Vector2(-61.5, 22.25)
 shape = SubResource("RectangleShape2D_7k372")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjetosNodes/ExclamacoesContainer/E4"]
+libraries = {
+&"": SubResource("AnimationLibrary_v2rjx")
+}
 
 [node name="Ecorreta" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
 position = Vector2(453, 304)
@@ -2175,6 +2381,11 @@ texture = ExtResource("30_qwon6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
 position = Vector2(-62.875, 2.5)
 shape = SubResource("RectangleShape2D_vgt1y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
+libraries = {
+&"": SubResource("AnimationLibrary_p72f1")
+}
 
 [node name="PontoFinalNeto" type="Marker2D" parent="ObjetosNodes"]
 position = Vector2(268, 330)
@@ -2326,6 +2537,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Hud" parent="." instance=ExtResource("27_vbuca")]
 metadata/_edit_use_anchors_ = true
+
+[node name="SpawnNeto" type="Marker2D" parent="."]
+position = Vector2(723, 71)
 
 [connection signal="body_entered" from="ObjetosNodes/Neto/InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E1" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]

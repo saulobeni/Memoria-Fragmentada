@@ -19,8 +19,9 @@ func esconder_exclamacoes():
 		e.hide()
 		e.get_node("CollisionShape2D").disabled = true
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.name != "Player":
-		return
+# FUNCAO CASO SEJA MELHOR APARECER O DIALOGO QUANDO SE APROXIMAR DO LOCAL ESCONDIDO
+#func _on_body_entered(body: Node2D) -> void:
+#	if body.name != "Player":
+#		return
 	
 	await level_node.mostrar_dialogo("       Hmm...\nele não está aqui.", 1.5)
