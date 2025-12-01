@@ -9,6 +9,12 @@ var game_active: bool = false
 @onready var pill_container: Node2D = $PillsContainer
 
 func _ready():
+	# Adiciona fundo branco
+	adicionar_fundo_branco()
+	
+	# Configura a cor do texto do Neto para preto
+	configurar_texto_preto()
+	
 	# Conecta o sinal de todas as pílulas que estão dentro da pasta PillsContainer
 	for pill in pill_container.get_children():
 		# Verifica se o objeto tem o sinal que criamos para evitar erros
@@ -16,6 +22,41 @@ func _ready():
 			pill.pill_clicked.connect(_on_pill_clicked)
 			
 	start_minigame()
+
+func adicionar_fundo_branco():
+	"""Adiciona um fundo branco ao minigame"""
+	var background = ColorRect.new()
+	background.name = "WhiteBackground"
+	background.color = Color.WHITE
+	
+	# IMPORTANTE: Desabilita a detecção de input/mouse para o fundo
+	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
+	# Configura o tamanho
+	background.size = get_viewport_rect().size
+	
+	# Usa ancoras para cobrir toda a tela
+	background.anchor_left = 0
+	background.anchor_top = 0
+	background.anchor_right = 1
+	background.anchor_bottom = 1
+	background.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	background.grow_vertical = Control.GROW_DIRECTION_BOTH
+	
+	# Z-index negativo para ficar atrás
+	background.z_index = -1
+	
+	add_child(background)
+	move_child(background, 0)  # Move para ser o primeiro nó (fundo)
+
+func configurar_texto_preto():
+	"""Configura a cor do texto do Neto para preto"""
+	if neto_text:
+		# Método mais simples e direto
+		neto_text.add_theme_color_override("font_color", Color.BLACK)
+		
+		# Ou use self_modulate se o método acima não funcionar
+		# neto_text.self_modulate = Color.BLACK
 
 func start_minigame():
 	current_step = 0

@@ -10,10 +10,13 @@ font_size = 32
 script = ExtResource("1_eqhe0")
 
 [node name="NetoText" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
 offset_left = 40.0
 offset_top = 124.0
 offset_right = 457.0
 offset_bottom = 256.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "Remédio "
 label_settings = SubResource("LabelSettings_4bvgx")
 horizontal_alignment = 1
