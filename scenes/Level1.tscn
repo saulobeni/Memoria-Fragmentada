@@ -1921,6 +1921,21 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrm5b"]
 size = Vector2(47, 27)
 
+[sub_resource type="Animation" id="Animation_vgt1y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-62.625, -10.625)]
+}
+
 [sub_resource type="Animation" id="Animation_ak7rx"]
 resource_name = "pular"
 loop_mode = 1
@@ -1937,7 +1952,16 @@ tracks/0/keys = {
 "values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
 }
 
-[sub_resource type="Animation" id="Animation_vgt1y"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrm5b"]
+_data = {
+&"RESET": SubResource("Animation_vgt1y"),
+&"pular": SubResource("Animation_ak7rx")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak7rx"]
+size = Vector2(30, 35)
+
+[sub_resource type="Animation" id="Animation_rfxdd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1951,15 +1975,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-62.625, -10.625)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrm5b"]
-_data = {
-&"RESET": SubResource("Animation_vgt1y"),
-&"pular": SubResource("Animation_ak7rx")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak7rx"]
-size = Vector2(30, 35)
 
 [sub_resource type="Animation" id="Animation_jrm5b"]
 resource_name = "pular"
@@ -1977,7 +1992,16 @@ tracks/0/keys = {
 "values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
 }
 
-[sub_resource type="Animation" id="Animation_rfxdd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn0xh"]
+_data = {
+&"RESET": SubResource("Animation_rfxdd"),
+&"pular": SubResource("Animation_jrm5b")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfxdd"]
+size = Vector2(60, 35)
+
+[sub_resource type="Animation" id="Animation_ncr2o"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1991,15 +2015,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-62.625, -10.625)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn0xh"]
-_data = {
-&"RESET": SubResource("Animation_rfxdd"),
-&"pular": SubResource("Animation_jrm5b")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfxdd"]
-size = Vector2(60, 35)
 
 [sub_resource type="Animation" id="Animation_tjrcc"]
 resource_name = "pular"
@@ -2017,7 +2032,16 @@ tracks/0/keys = {
 "values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
 }
 
-[sub_resource type="Animation" id="Animation_ncr2o"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t86jx"]
+_data = {
+&"RESET": SubResource("Animation_ncr2o"),
+&"pular": SubResource("Animation_tjrcc")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k372"]
+size = Vector2(89, 33.5)
+
+[sub_resource type="Animation" id="Animation_lcs61"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2031,15 +2055,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-62.625, -10.625)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t86jx"]
-_data = {
-&"RESET": SubResource("Animation_ncr2o"),
-&"pular": SubResource("Animation_tjrcc")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k372"]
-size = Vector2(89, 33.5)
 
 [sub_resource type="Animation" id="Animation_uffv2"]
 resource_name = "pular"
@@ -2057,7 +2072,20 @@ tracks/0/keys = {
 "values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
 }
 
-[sub_resource type="Animation" id="Animation_lcs61"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2rjx"]
+_data = {
+&"RESET": SubResource("Animation_lcs61"),
+&"pular": SubResource("Animation_uffv2")
+}
+
+[sub_resource type="GDScript" id="GDScript_7k372"]
+script/source = "extends Area2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgt1y"]
+size = Vector2(20.25, 23)
+
+[sub_resource type="Animation" id="Animation_ex37g"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2071,19 +2099,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-62.625, -10.625)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2rjx"]
-_data = {
-&"RESET": SubResource("Animation_lcs61"),
-&"pular": SubResource("Animation_uffv2")
-}
-
-[sub_resource type="GDScript" id="GDScript_7k372"]
-script/source = "extends Area2D
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgt1y"]
-size = Vector2(20.25, 23)
 
 [sub_resource type="Animation" id="Animation_s2ivy"]
 resource_name = "pular"
@@ -2099,21 +2114,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
-}
-
-[sub_resource type="Animation" id="Animation_ex37g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-62.625, -10.625)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p72f1"]

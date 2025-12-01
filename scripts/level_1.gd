@@ -8,7 +8,8 @@ var missions = [
 	comer",
 	"Fale com o seu 
 	neto",
-	"Tome seus remédios"
+	"Tome seus remédios",
+	"Vá dormir"
 ]
 
 var missao_atual = 0
@@ -54,6 +55,16 @@ var pause_menu
 var missoesVisitadas = [false,false,false,false, false]
 var sequenciaDiaUm = [0,1,2,3,4]
 var contadorIdMissao = 0
+var cama_pronta_para_dormir = false
+
+
+func verificar_todas_missoes_completadas():
+	for i in range(5):  # Verifica apenas as 5 primeiras missões
+		if not missoesVisitadas[i]:
+			return false
+	return true
+	
+
 
 func _ready():
 	transition_animation.play("transicao_vem")
@@ -79,10 +90,10 @@ func _process(_delta):
 	# Interação com o Neto (missão 4)
 	# -----------------------
 	if fase_neto == false and missao_atual == 3:
-		if neto.is_visible_in_tree() and neto.get_node("InteractionArea/CollisionShape2D").disabled == false:
-			if Input.is_action_just_pressed("interact"):
-				await mostrar_dialogo("Vovô, vamos brincar de esconde-esconde!", 2.0)
-				iniciar_esconde_esconde()
+			if neto.is_visible_in_tree() and neto.get_node("InteractionArea/CollisionShape2D").disabled == false:
+				if Input.is_action_just_pressed("interact"):
+					await mostrar_dialogo("Vovô, vamos brincar de esconde-esconde!", 2.0)
+					iniciar_esconde_esconde()
 
 	# -----------------------
 	# Interação com exclamações (PRESSIONANDO BOTÃO)
@@ -97,11 +108,17 @@ func _process(_delta):
 					else:
 						await mostrar_dialogo("Hmm... ele não está aqui.", 1.5)
 					return
-
+	
+	# -----------------------
+	# VERIFICAÇÃO PARA MISSÃO DE DORMIR
+	# -----------------------
+	if cama_pronta_para_dormir and areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
+		await iniciar_sequencia_sono()
+		return
 							
 	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
 	if not paused and not subviewport_container.visible:
-		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
+		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact") and not cama_pronta_para_dormir:
 			$AreaBedGame/CollisionShape2D.disabled = true
 			DialogManager.start_dialog(dialog_texts1, global_position + offset_position, dialog_images1, $Player)
 			await DialogManager.dialog_completed
@@ -111,8 +128,14 @@ func _process(_delta):
 				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 0:
 					mostrar_proxima_missao()
 				missoesVisitadas[0] = true
-				areaBedGame.get_node("CollisionShape2D").disabled = true
+				# NÃO desativa permanentemente a colisão da cama
+				# areaBedGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
+			
+			# Verifica se todas as missões foram completadas após cada minigame
+			if verificar_todas_missoes_completadas():
+				ativar_missao_dormir()
+				
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaPortraitGame/CollisionShape2D.disabled = true
 			DialogManager.start_dialog(dialog_texts2, global_position + offset_position, dialog_images2, $Player)
@@ -125,6 +148,11 @@ func _process(_delta):
 				missoesVisitadas[1] = true
 				areaPortraitGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
+			
+			# Verifica se todas as missões foram completadas após cada minigame
+			if verificar_todas_missoes_completadas():
+				ativar_missao_dormir()
+				
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaCookingGame/CollisionShape2D.disabled = true
 			DialogManager.start_dialog(dialog_texts3, global_position+offset_position2, dialog_images2, $Player)
@@ -137,6 +165,11 @@ func _process(_delta):
 				missoesVisitadas[2] = true
 				areaCookingGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
+			
+			# Verifica se todas as missões foram completadas após cada minigame
+			if verificar_todas_missoes_completadas():
+				ativar_missao_dormir()
+				
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
 			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
 			if not missoesVisitadas[4]:  # Corrigido: removido == false
@@ -146,6 +179,10 @@ func _process(_delta):
 				missoesVisitadas[4] = true
 				areaPillGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
+			
+			# Verifica se todas as missões foram completadas após cada minigame
+			if verificar_todas_missoes_completadas():
+				ativar_missao_dormir()
 
 func abrir_minigame(area_info: Dictionary):
 	abrir_subviewport(area_info.cena)
@@ -468,7 +505,49 @@ func finalizar_esconde_esconde() -> void:
 	fase_neto = false
 	proxima_missao()
 	
+	# MARCA A MISSÃO 3 (NETO) COMO CONCLUÍDA
+	if not missoesVisitadas[3]:
+		missoesVisitadas[3] = true
+		print("Missão do neto concluída!")
+	
 	areaPillGame.get_node("CollisionShape2D").disabled = false
+	
+	# VERIFICA SE TODAS AS MISSÕES FORAM COMPLETADAS
+	if verificar_todas_missoes_completadas():
+		ativar_missao_dormir()
+		
+func ativar_missao_dormir():
+	print("Todas as missões completadas! Ativando missão 'Vá dormir'...")
+	
+	# Ativa a colisão da cama novamente
+	areaBedGame.get_node("CollisionShape2D").disabled = false
+	cama_pronta_para_dormir = true
+	
+	# Atualiza a missão atual para a 6ª
+	missao_atual = 5  # Índice 5 = "Vá dormir"
+	atualizar_missao()
+	
+	# Chama uma função no AreaBedGame para atualizar o texto
+	if has_node("AreaBedGame"):
+		# Marca que a cama está pronta para dormir
+		areaBedGame.get_node("Label").text = "Pressione Q"
+		
+func iniciar_sequencia_sono():
+	print("Iniciando sequência de sono...")
+	
+	# Desativa o jogador
+	$Player/CollisionShape2D.disabled = true
+	$Player/AnimatedSprite2D.play("idle")  # Ou animação de dormir
+	
+	# Mostra diálogo
+	await mostrar_dialogo("Estou cansado...", 2.0)
+	
+	# Fade out
+	transition_animation.play("transicao_vai")
+	await get_tree().create_timer(1.0).timeout
+	
+	# Carrega o dia 2
+	get_tree().change_scene_to_file("res://scenes/dia2.tscn")
 
 
 func _on_InteractionArea_body_entered(body):
