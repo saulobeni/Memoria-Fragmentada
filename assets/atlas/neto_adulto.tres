@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://doq21jxsvnh6o"]
+
+[ext_resource type="Texture2D" uid="uid://b6a6dd5lxqegw" path="res://assets/atlas/Neto_Adulto.png" id="1_7cg81"]
+
+[resource]
+atlas = ExtResource("1_7cg81")

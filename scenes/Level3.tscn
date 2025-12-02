@@ -2241,7 +2241,11 @@ script = ExtResource("10_6qd4g")
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/Neto"]
 position = Vector2(226.2009, 63.606262)
+<<<<<<< HEAD
 scale = Vector2(0.065, 0.063)
+=======
+scale = Vector2(0.068, 0.066)
+>>>>>>> f993d7019e748a46dc7529736e6407955f903085
 texture = ExtResource("11_kcca8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto"]
@@ -2481,7 +2485,7 @@ position = Vector2(414, 264)
 script = ExtResource("24_exl7b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPillGame"]
-position = Vector2(334, 84)
+position = Vector2(330, 87)
 shape = SubResource("CapsuleShape2D_0ybwg")
 
 [node name="Label" type="Label" parent="AreaPillGame"]
