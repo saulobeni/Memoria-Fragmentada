@@ -2192,11 +2192,17 @@ height = 16.0
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_0ybwg")
 dialog_images1 = Array[AtlasTexture]([ExtResource("2_ak7rx")])
-dialog_images2 = Array[AtlasTexture]([ExtResource("3_kn0xh"), ExtResource("2_ak7rx")])
+dialog_images2 = Array[AtlasTexture]([ExtResource("2_ak7rx")])
+dialog_images3 = Array[AtlasTexture]([ExtResource("2_ak7rx")])
+dialog_images4 = Array[AtlasTexture]([ExtResource("3_kn0xh"), ExtResource("2_ak7rx")])
+dialog_images5 = Array[AtlasTexture]([ExtResource("3_kn0xh")])
+dialog_imagesf = Array[AtlasTexture]([ExtResource("2_ak7rx")])
 dialog_texts1 = Array[String](["A cama... sempre a cama primeiro. Um lugar em ordem é uma mente em ordem... ou era o que ela sempre dizia."])
 dialog_texts2 = Array[String](["Olhem só para eles... meus bebês. A vida... passa num piscar de olhos. Parece que foi ontem que eu os carregava no colo."])
 dialog_texts3 = Array[String](["Hmm... meu estomâgo está roncando. O que eu costumo fazer quando... ? Ah, sim! Um lanche. Preciso fazer um lanche."])
-dialog_texts5 = Array[String]([""])
+dialog_texts4 = Array[String](["Vôvô! Tudo bem? Tava pensando na nossa brincadeira de esconde-esconde. Foi tão legal! Vamos de novo?", "Esconde-esconde? Nós... nós brincamos? Me perdoe, meu anjo... às vezesos dias se misturam. Mas sua voz... sua voz me alegra o coração. Claro que podemos brincar"])
+dialog_texts5 = Array[String](["Me achou, vôvô! Agora é a hora do nosso combinado, lembra? Vamos tomar seu remédio juntinhos. Eu te ajudo."])
+dialog_textsf = Array[String](["Ufa... que dia. Minha cabeça pesa... como uma pedra. Amanhã... amanhã será um novo dia."])
 
 [node name="Transicao" parent="." instance=ExtResource("2_gumju")]
 

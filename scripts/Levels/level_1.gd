@@ -15,15 +15,25 @@ var missions = [
 var missao_atual = 0
 
 @export var offset_position : Vector2 = Vector2(292,245)
-@export var offset_position2 : Vector2 = Vector2(710, 245)
+@export var offset_position2 : Vector2 = Vector2(292, 245)
+@export var offset_position3 : Vector2 = Vector2(714, 245)
+@export var offset_position4 : Vector2 = Vector2(375, 245)
+@export var offset_position5 : Vector2 = Vector2(645, 390)
+@export var offset_positionf : Vector2 = Vector2(292, 245)
 
 @export var dialog_images1: Array[AtlasTexture] = []
 @export var dialog_images2: Array[AtlasTexture] = []
+@export var dialog_images3: Array[AtlasTexture] = []
+@export var dialog_images4: Array[AtlasTexture] = []
+@export var dialog_images5: Array[AtlasTexture] = []
+@export var dialog_imagesf: Array[AtlasTexture] = []
 
 @export var dialog_texts1 : Array[String] = []
 @export var dialog_texts2 : Array[String] = []
 @export var dialog_texts3 : Array[String] = []
+@export var dialog_texts4 : Array[String] = []
 @export var dialog_texts5 : Array[String] = []
+@export var dialog_textsf : Array[String] = []
 
 @onready var dialog_label = $Player/Camera2D/DialogLabel
 
@@ -92,7 +102,8 @@ func _process(_delta):
 	if fase_neto == false and missao_atual == 3:
 			if neto.is_visible_in_tree() and neto.get_node("InteractionArea/CollisionShape2D").disabled == false:
 				if Input.is_action_just_pressed("interact"):
-					await mostrar_dialogo("Vovô, vamos brincar de esconde-esconde!", 2.0)
+					DialogManager.start_dialog(dialog_texts4, global_position + offset_position4, dialog_images4, $Player)
+					await DialogManager.dialog_completed
 					iniciar_esconde_esconde()
 
 	# -----------------------
@@ -104,6 +115,7 @@ func _process(_delta):
 				if e.get_overlapping_bodies().has($Player):
 					if e.name == "E%d" % id_exclamacao_correta:
 						await mostrar_dialogo("Ahh, você me encontrou vovô!", 2.0)
+						$ObjetosNodes/Neto/InteractionArea/CollisionShape2D.disabled = true
 						finalizar_esconde_esconde()
 					else:
 						await mostrar_dialogo("Hmm... ele não está aqui.", 1.5)
@@ -113,6 +125,8 @@ func _process(_delta):
 	# VERIFICAÇÃO PARA MISSÃO DE DORMIR
 	# -----------------------
 	if cama_pronta_para_dormir and areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
+		DialogManager.start_dialog(dialog_textsf, global_position + offset_positionf, dialog_imagesf, $Player)
+		await DialogManager.dialog_completed
 		await iniciar_sequencia_sono()
 		return
 							
@@ -138,7 +152,7 @@ func _process(_delta):
 				
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaPortraitGame/CollisionShape2D.disabled = true
-			DialogManager.start_dialog(dialog_texts2, global_position + offset_position, dialog_images2, $Player)
+			DialogManager.start_dialog(dialog_texts2, global_position + offset_position2, dialog_images2, $Player)
 			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
 			if not missoesVisitadas[1]:  # Corrigido: removido == false
@@ -155,13 +169,14 @@ func _process(_delta):
 				
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaCookingGame/CollisionShape2D.disabled = true
-			DialogManager.start_dialog(dialog_texts3, global_position+offset_position2, dialog_images2, $Player)
+			DialogManager.start_dialog(dialog_texts3, global_position+offset_position3, dialog_images3, $Player)
 			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
 			if not missoesVisitadas[2]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
 				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 2:
 					mostrar_proxima_missao()
+					$ObjetosNodes/Neto/InteractionArea/CollisionShape2D.disabled = false
 				missoesVisitadas[2] = true
 				areaCookingGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
@@ -171,6 +186,8 @@ func _process(_delta):
 				ativar_missao_dormir()
 				
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
+			DialogManager.start_dialog(dialog_texts5, global_position + offset_position5, dialog_images5, $Player)
+			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
 			if not missoesVisitadas[4]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
@@ -522,11 +539,6 @@ func ativar_missao_dormir():
 	# Atualiza a missão atual para a 6ª
 	missao_atual = 5  # Índice 5 = "Vá dormir"
 	atualizar_missao()
-	
-	# Chama uma função no AreaBedGame para atualizar o texto
-	if has_node("AreaBedGame"):
-		# Marca que a cama está pronta para dormir
-		areaBedGame.get_node("Label").text = "Pressione Q"
 		
 func iniciar_sequencia_sono():
 	print("Iniciando sequência de sono...")
@@ -535,15 +547,12 @@ func iniciar_sequencia_sono():
 	$Player/CollisionShape2D.disabled = true
 	$Player/AnimatedSprite2D.play("idle")  # Ou animação de dormir
 	
-	# Mostra diálogo
-	await mostrar_dialogo("Estou cansado...", 2.0)
-	
 	# Fade out
 	transition_animation.play("transicao_vai")
 	await get_tree().create_timer(1.0).timeout
 	
 	# Carrega o dia 2
-	get_tree().change_scene_to_file("res://scenes/FIM_DE_JOGO.tscn")
+	get_tree().change_scene_to_file("res://scenes/Dia_2.tscn")
 
 
 func _on_InteractionArea_body_entered(body):
