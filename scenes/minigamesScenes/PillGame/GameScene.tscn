@@ -7,22 +7,20 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_4bvgx"]
 font = ExtResource("3_652ky")
-font_size = 32
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_eqhe0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(256, 234.00002)
-scale = Vector2(0.42252603, 0.453125)
+position = Vector2(275, 234)
+scale = Vector2(0.45, 0.482)
 texture = ExtResource("2_k205d")
 
 [node name="NetoText" type="Label" parent="."]
-modulate = Color(0, 0, 0, 1)
-offset_left = 33.0
-offset_top = 96.0
-offset_right = 450.0
-offset_bottom = 228.0
+offset_left = 36.0
+offset_top = 100.0
+offset_right = 453.0
+offset_bottom = 232.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "Remédio "
@@ -31,23 +29,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PillsContainer" type="Node2D" parent="."]
-position = Vector2(48, 252)
+position = Vector2(56, 254)
 
 [node name="Pill_Azul" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(0, 0, 1, 1)
 position = Vector2(29, 0)
+pill_color = "azul"
 
 [node name="Pill_Amarela" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(126, 0)
-pill_color = "AMARELA"
+pill_color = "amarelo"
 
 [node name="Pill_Vermelha" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(227, 0)
-pill_color = "VERMELHA"
+pill_color = "vermelho"
 
 [node name="Pill_Verde" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(0, 1, 0, 1)
 position = Vector2(328, 0)
-pill_color = "VERDE"
+pill_color = "verde"
