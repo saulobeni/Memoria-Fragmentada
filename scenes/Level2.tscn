@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dp1sm7dofu2xo" path="res://scripts/Levels/level_2.gd" id="1_6rf86"]
 [ext_resource type="Texture2D" uid="uid://btas8my2r44su" path="res://assets/atlas/Idoso.tres" id="2_6rf86"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="2_i5l08"]
+[ext_resource type="Texture2D" uid="uid://doq21jxsvnh6o" path="res://assets/atlas/neto_adulto.tres" id="3_ans2m"]
 [ext_resource type="Texture2D" uid="uid://4ewt8ueb6fis" path="res://assets/tiles/TopDownHouse_FurnitureState1.png" id="3_hx5ho"]
 [ext_resource type="PackedScene" uid="uid://c64702h888nu" path="res://scenes/transicao.tscn" id="3_x0u7e"]
 [ext_resource type="Texture2D" uid="uid://cfrtqbciublbt" path="res://assets/tiles/TopDownHouse_FurnitureState2.png" id="4_lgxow"]
@@ -13,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://03f774eu06h1" path="res://assets/sprites/parado de costas.png" id="9_8adtd"]
 [ext_resource type="Texture2D" uid="uid://be2t2courqs6t" path="res://assets/sprites/andando pra cima - 1.png" id="10_6rf86"]
 [ext_resource type="Script" uid="uid://cnmd7qor4tymh" path="res://scripts/neto.gd" id="10_ans2m"]
-[ext_resource type="Texture2D" uid="uid://blmiv3s6eyt6e" path="res://assets/sprites/neto/Neto_criança.png" id="11_6rf86"]
 [ext_resource type="Texture2D" uid="uid://bxs8d88w1ka0x" path="res://assets/sprites/andando pra cima - 2.png" id="11_x0u7e"]
 [ext_resource type="Script" uid="uid://dknixvk88iurc" path="res://scripts/exclamacoes_container.gd" id="12_6vmvl"]
 [ext_resource type="Texture2D" uid="uid://btyba0mjuh4d4" path="res://assets/sprites/andando pra cima - 3.png" id="12_ans2m"]
+[ext_resource type="Texture2D" uid="uid://d1o03cykpe28r" path="res://assets/sprites/neto/Neto_Adulto.png" id="12_x0u7e"]
 [ext_resource type="Texture2D" uid="uid://djp8ncjgx6vld" path="res://assets/sprites/andando pra cima - 4.png" id="13_hk1p0"]
 [ext_resource type="Texture2D" uid="uid://ewqvj858o6g2" path="res://assets/sprites/exlamation (1).png" id="13_hldop"]
 [ext_resource type="Texture2D" uid="uid://x36whij2g1nf" path="res://assets/sprites/de frente -parado.png" id="14_6vmvl"]
@@ -1915,9 +1916,6 @@ sources/4 = SubResource("TileSetAtlasSource_ntbnh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um3md"]
 size = Vector2(14, 7.5106964)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wnofu"]
-radius = 5.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jrm5b"]
 size = Vector2(47, 27)
 
@@ -2190,10 +2188,14 @@ outline_size = 1
 script = ExtResource("1_6rf86")
 dialog_images1 = Array[AtlasTexture]([ExtResource("2_6rf86")])
 dialog_images2 = Array[AtlasTexture]([ExtResource("2_6rf86")])
-dialog_texts1 = Array[String](["A cama... sempre a cama primeiro. Um lugar em ordem é uma mente em ordem... ou era o que ela sempre dizia."])
-dialog_texts2 = Array[String](["Olhem só para eles... meus bebês. A vida... passa num piscar de olhos. Parece que foi ontem que eu os carregava no colo."])
-dialog_texts3 = Array[String](["Hmm... meu estomâgo está roncando. O que eu costumo fazer quando... ? Ah, sim! Um lanche. Preciso fazer um lanche."])
-dialog_texts5 = Array[String]([""])
+dialog_images3 = Array[AtlasTexture]([ExtResource("2_6rf86")])
+dialog_images4 = Array[AtlasTexture]([ExtResource("3_ans2m"), ExtResource("2_6rf86"), ExtResource("3_ans2m")])
+dialog_imagesf = Array[AtlasTexture]([ExtResource("2_6rf86")])
+dialog_texts1 = Array[String](["Os lençóis... estão teimosos hoje. Eles não ficam no lugar como antes. Acho que... acho que minhas mãoes também esqueceram o jeito."])
+dialog_texts2 = Array[String](["Meu filho... e o bebê. O bebê tem o olhar do meu neto. Ou... era meu filho que tinha esse olhar? Me Deus, como é difícil guardar as coisas."])
+dialog_texts3 = Array[String](["O corpo pede combustível... mas a cabeça não me diz o quê. Será que já almocei? Não... não, acho que não. Preciso... preciso me virar."])
+dialog_texts4 = Array[String](["Vô, tudo bem? Passei aqui para te ver. Fiquei lembrandodaqueles dias em que a gente brincava de esconde-esconde até o anoitecer... eram os melhores.", "Na minha cabeça... você ainda é pequeno o suficiente para eu carregar no colo. Sinto tanto, meu filho... sinto tanto ter perdido a vez de te ver crescer. São pedaços da sua vida... que sumiram das minhas gavetas.", "Esá tudo bem, vô. Você não perdeu nada.Eu estou aqui. E hoje vim para te fazer companhia na hora do seu remédio, que tal?"])
+dialog_textsf = Array[String](["Hoje... foi igual a ontem. E ontem foi igual a anteontem. Eu acho. Já não sei mais. É tudo a mesma coisa, mas quando olho para trás... não vejo nada.Só uma névoa."])
 
 [node name="Transicao" parent="." instance=ExtResource("3_x0u7e")]
 
@@ -2240,18 +2242,12 @@ script = ExtResource("10_ans2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/Neto"]
 position = Vector2(224.125, 65.4893)
-scale = Vector2(0.0508929, 0.0508929)
-texture = ExtResource("11_6rf86")
+scale = Vector2(0.068, 0.068)
+texture = ExtResource("12_x0u7e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto"]
 position = Vector2(224.125, 73.24465)
 shape = SubResource("RectangleShape2D_um3md")
-
-[node name="InteractionArea" type="Area2D" parent="ObjetosNodes/Neto"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto/InteractionArea"]
-position = Vector2(224, 78)
-shape = SubResource("CircleShape2D_wnofu")
 
 [node name="ExclamacoesContainer" type="Node2D" parent="ObjetosNodes"]
 script = ExtResource("12_6vmvl")
@@ -2476,7 +2472,7 @@ label_settings = SubResource("LabelSettings_u4kti")
 metadata/_edit_use_anchors_ = true
 
 [node name="AreaPillGame" type="Area2D" parent="."]
-position = Vector2(414, 264)
+position = Vector2(146, 0)
 script = ExtResource("24_xpy2i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPillGame"]
@@ -2484,10 +2480,10 @@ position = Vector2(334, 84)
 shape = SubResource("CapsuleShape2D_0ybwg")
 
 [node name="Label" type="Label" parent="AreaPillGame"]
-offset_left = 291.0
-offset_top = 98.0
-offset_right = 515.0
-offset_bottom = 121.0
+offset_left = 302.0
+offset_top = 25.0
+offset_right = 526.0
+offset_bottom = 48.0
 scale = Vector2(0.3, 0.3)
 size_flags_vertical = 8
 text = "Pressione \"Q\" "
@@ -2504,7 +2500,6 @@ position = Vector2(505, 290)
 stream = ExtResource("33_new6t")
 autoplay = true
 
-[connection signal="body_entered" from="ObjetosNodes/Neto/InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E1" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E2" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E3" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
