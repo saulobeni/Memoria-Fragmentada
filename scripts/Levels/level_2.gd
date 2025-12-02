@@ -547,7 +547,7 @@ func iniciar_sequencia_sono():
 	await get_tree().create_timer(1.0).timeout
 	
 	# Carrega o dia 2
-	get_tree().change_scene_to_file("res://scenes/Dia_2.tscn")
+	get_tree().change_scene_to_file("res://scenes/Dia_3.tscn")
 
 
 func _on_InteractionArea_body_entered(body):

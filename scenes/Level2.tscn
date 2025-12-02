@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://scripts/player.gd" id="8_plwgh"]
 [ext_resource type="Texture2D" uid="uid://03f774eu06h1" path="res://assets/sprites/parado de costas.png" id="9_8adtd"]
 [ext_resource type="Texture2D" uid="uid://be2t2courqs6t" path="res://assets/sprites/andando pra cima - 1.png" id="10_6rf86"]
-[ext_resource type="Script" path="res://scripts/neto.gd" id="10_ans2m"]
+[ext_resource type="Script" uid="uid://cnmd7qor4tymh" path="res://scripts/neto.gd" id="10_ans2m"]
 [ext_resource type="Texture2D" uid="uid://blmiv3s6eyt6e" path="res://assets/sprites/neto/Neto_criança.png" id="11_6rf86"]
 [ext_resource type="Texture2D" uid="uid://bxs8d88w1ka0x" path="res://assets/sprites/andando pra cima - 2.png" id="11_x0u7e"]
 [ext_resource type="Script" uid="uid://dknixvk88iurc" path="res://scripts/exclamacoes_container.gd" id="12_6vmvl"]
