@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c76ffto58n4bh"
-path="res://.godot/imported/neto.png-fc0c0272f46093934fbc5fab1356af4b.ctex"
+uid="uid://d1o03cykpe28r"
+path="res://.godot/imported/Neto_Adulto.png-39a1f53be705c44333cdccb06d2d2623.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/neto.png"
-dest_files=["res://.godot/imported/neto.png-fc0c0272f46093934fbc5fab1356af4b.ctex"]
+source_file="res://assets/sprites/neto/Neto_Adulto.png"
+dest_files=["res://.godot/imported/Neto_Adulto.png-39a1f53be705c44333cdccb06d2d2623.ctex"]
 
 [params]
 

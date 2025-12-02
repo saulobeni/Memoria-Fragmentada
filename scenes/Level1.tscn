@@ -1,6 +1,6 @@
 [gd_scene load_steps=78 format=4 uid="uid://8ims0egvohle"]
 
-[ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/level_1.gd" id="1_0ybwg"]
+[ext_resource type="Script" uid="uid://ddeqrq467arod" path="res://scripts/Levels/level_1.gd" id="1_0ybwg"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="1_r7dij"]
 [ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://scripts/player.gd" id="2_2ouud"]
 [ext_resource type="Texture2D" uid="uid://btas8my2r44su" path="res://assets/atlas/Idoso.tres" id="2_ak7rx"]
@@ -29,7 +29,7 @@
 [ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="25_ntbnh"]
 [ext_resource type="PackedScene" uid="uid://csutya3tu3oqi" path="res://scenes/hudTasks/HUD.tscn" id="27_vbuca"]
 [ext_resource type="Texture2D" uid="uid://df4ynvr7q1qbc" path="res://assets/sprites/neto/neto frente.png" id="28_um3md"]
-[ext_resource type="Script" uid="uid://cnmd7qor4tymh" path="res://scripts/neto.gd" id="28_wnofu"]
+[ext_resource type="Script" path="res://scripts/neto.gd" id="28_wnofu"]
 [ext_resource type="Script" uid="uid://dknixvk88iurc" path="res://scripts/exclamacoes_container.gd" id="30_7k372"]
 [ext_resource type="Texture2D" uid="uid://ewqvj858o6g2" path="res://assets/sprites/exlamation (1).png" id="30_qwon6"]
 [ext_resource type="AudioStream" uid="uid://5mtaat23mo82" path="res://assets/sounds/dramatic-flute-for-documentaries-165986.mp3" id="33_vgt1y"]
