@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0i1ne0aonufb"]
+
+[ext_resource type="Texture2D" uid="uid://n14adnsj6gae" path="res://assets/atlas/cama.png" id="1_arvjl"]
+[ext_resource type="Script" uid="uid://biivyf3de6f67" path="res://scripts/minigamesScripts/BedPuzzle/sheet_GreenBed.gd" id="2_arvjl"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_tu17m"]
+[ext_resource type="Script" uid="uid://bhixxtq1kt6tr" path="res://scripts/minigamesScripts/BedPuzzle/SocketPoint.gd" id="4_rv8ti"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vuut8"]
+font = ExtResource("3_tu17m")
+
+[node name="BedPuzzle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(327, 299)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_arvjl")
+
+[node name="Sheet" type="Polygon2D" parent="."]
+position = Vector2(328, 298)
+color = Color(0.16078432, 0.26666668, 0.13333334, 1)
+polygon = PackedVector2Array(140, 83, 129, 83, 129, 72, -129, 72, -129, 83, -129, 83, -139.4241, 83, -139.48853, -12.007138, -139.47879, -32.19696, -119.82645, -32.066113, -98.24185, -32.087753, -57.26248, -32.128845, -21.26237, -32.164986, 40.410156, -32.12123, 80.707886, -32.09265, 118.17355, -32.066113, 140, -32, 140, -17.586773)
+script = ExtResource("2_arvjl")
+
+[node name="Label" type="Label" parent="Sheet"]
+z_index = 2
+offset_left = -141.0
+offset_top = -50.0
+offset_right = -101.0
+offset_bottom = -27.0
+text = "\"\""
+label_settings = SubResource("LabelSettings_vuut8")
+
+[node name="AreaFinish" type="Area2D" parent="Sheet"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sheet/AreaFinish"]
+position = Vector2(5, -78)
+scale = Vector2(1.3200024, 1.5200002)
+polygon = PackedVector2Array(-109.84827, 5.9210587, -94.69678, 5.9210587, -94.69678, -1.9736786, 86.363495, -1.3157883, 86.363495, 5.9210587, 102.27255, 5.9210587, 102.27255, -7.2368393, -109.84827, -7.2368393)
+
+[node name="SocketPoint1" type="Area2D" parent="Sheet"]
+position = Vector2(-7, -86)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint2" type="Area2D" parent="Sheet"]
+position = Vector2(39, -86)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint3" type="Area2D" parent="Sheet"]
+position = Vector2(-127, -86)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint4" type="Area2D" parent="Sheet"]
+position = Vector2(-139, -73)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint5" type="Area2D" parent="Sheet"]
+position = Vector2(-91, -86)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint6" type="Area2D" parent="Sheet"]
+position = Vector2(-53, -86)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint7" type="Area2D" parent="Sheet"]
+position = Vector2(82, -86)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint8" type="Area2D" parent="Sheet"]
+position = Vector2(125, -86)
+script = ExtResource("4_rv8ti")
+
+[node name="SocketPoint9" type="Area2D" parent="Sheet"]
+position = Vector2(139, -73)
+script = ExtResource("4_rv8ti")

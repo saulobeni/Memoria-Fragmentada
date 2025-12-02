@@ -27,18 +27,19 @@ position = Vector2(48, 252)
 
 [node name="Pill_Azul" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(0, 0, 1, 1)
+position = Vector2(29, 0)
 
 [node name="Pill_Amarela" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(159, 0)
+position = Vector2(126, 0)
 pill_color = "AMARELA"
 
 [node name="Pill_Vermelha" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(309, 0)
+position = Vector2(227, 0)
 pill_color = "VERMELHA"
 
 [node name="Pill_Verde" parent="PillsContainer" instance=ExtResource("2_k77ap")]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(459, 0)
+position = Vector2(328, 0)
 pill_color = "VERDE"

@@ -122,7 +122,7 @@ func _process(_delta):
 			$AreaBedGame/CollisionShape2D.disabled = true
 			DialogManager.start_dialog(dialog_texts1, global_position + offset_position, dialog_images1, $Player)
 			await DialogManager.dialog_completed
-			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle.tscn")
+			abrir_subviewport("res://scenes/minigamesScenes/BedGame/Bed_Puzzle_Hard.tscn")
 			if not missoesVisitadas[0]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
 				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 0:
@@ -140,7 +140,7 @@ func _process(_delta):
 			$AreaPortraitGame/CollisionShape2D.disabled = true
 			DialogManager.start_dialog(dialog_texts2, global_position + offset_position, dialog_images2, $Player)
 			await DialogManager.dialog_completed
-			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
+			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle_Hard.tscn")
 			if not missoesVisitadas[1]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
 				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 1:
@@ -171,7 +171,7 @@ func _process(_delta):
 				ativar_missao_dormir()
 				
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
-			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene.tscn")
+			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene_Hard.tscn")
 			if not missoesVisitadas[4]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
 				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 4:

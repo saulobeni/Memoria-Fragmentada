@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://wtl5yjrl5dna"]
+
+[ext_resource type="Script" uid="uid://ffim00uoguif" path="res://scripts/minigamesScripts/PillGame/codigoGame_Medium.gd" id="1_tufp5"]
+[ext_resource type="PackedScene" uid="uid://44ju3uk3e3vc" path="res://scenes/minigamesScenes/PillGame/Pill.tscn" id="2_17mot"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4bvgx"]
+font_size = 32
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_tufp5")
+
+[node name="NetoText" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 50.0
+offset_top = 125.0
+offset_right = 467.0
+offset_bottom = 257.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "Remédio "
+label_settings = SubResource("LabelSettings_4bvgx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PillsContainer" type="Node2D" parent="."]
+position = Vector2(48, 252)
+
+[node name="Pill_Azul" parent="PillsContainer" instance=ExtResource("2_17mot")]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(-8, 0)
+
+[node name="Pill_Amarela" parent="PillsContainer" instance=ExtResource("2_17mot")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(81, 0)
+pill_color = "AMARELA"
+
+[node name="Pill_Vermelha" parent="PillsContainer" instance=ExtResource("2_17mot")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(171, 0)
+pill_color = "VERMELHA"
+
+[node name="Pill_Verde" parent="PillsContainer" instance=ExtResource("2_17mot")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(260, 0)
+pill_color = "VERDE"
+
+[node name="Pill_Roxa" parent="PillsContainer" instance=ExtResource("2_17mot")]
+modulate = Color(0.627451, 0.1254902, 0.9411765, 1)
+position = Vector2(349, 0)
+pill_color = "ROXA"

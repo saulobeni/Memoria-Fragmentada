@@ -3,7 +3,7 @@ extends Node2D
 @onready var spawner = $FruitSpawner
 @onready var container = $FruitContainer
 @export var fruit_scene: PackedScene
-@export var total_fruits := 20
+@export var total_fruits := 3
 @onready var message_label = $MessageLabel
 
 var spawned := 0
