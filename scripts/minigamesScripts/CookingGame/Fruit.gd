@@ -5,6 +5,7 @@ var rotation_speed := 0.0
 var cut_sound
 var is_cut := false
 var slice_scene  # precarregar a cena aqui
+signal fruit_cut
 
 func _ready():
 	cut_sound = get_tree().current_scene.get_node("CutSound")
@@ -39,6 +40,10 @@ func _on_area_entered(area):
 			cut_sound.play()
 		
 		create_slices()
+		
+		# Emite sinal de fruta cortada ANTES de remover
+		emit_signal("fruit_cut")
+		
 		queue_free()
 
 func create_slices():
