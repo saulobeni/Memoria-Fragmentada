@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://dq7imdle1jc03"]
+[gd_scene load_steps=74 format=4 uid="uid://dq7imdle1jc03"]
 
 [ext_resource type="Script" uid="uid://c6yc3pjypuros" path="res://scripts/Levels/level_3.gd" id="1_okerj"]
 [ext_resource type="Texture2D" uid="uid://n86v0decsv33" path="res://assets/tiles/TopDownHouse_FloorsAndWalls.png" id="2_bwcbd"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dso5lqj5dyam7" path="res://assets/tiles/TopDownHouse_DoorsAndWindows.png" id="7_feg5w"]
 [ext_resource type="Script" uid="uid://lwpg8dxsiojo" path="res://scripts/player.gd" id="8_6n1yv"]
 [ext_resource type="Texture2D" uid="uid://03f774eu06h1" path="res://assets/sprites/parado de costas.png" id="9_a5rop"]
-[ext_resource type="Script" path="res://scripts/neto.gd" id="10_6qd4g"]
+[ext_resource type="Script" uid="uid://cnmd7qor4tymh" path="res://scripts/neto.gd" id="10_6qd4g"]
 [ext_resource type="Texture2D" uid="uid://be2t2courqs6t" path="res://assets/sprites/andando pra cima - 1.png" id="10_kcca8"]
 [ext_resource type="Texture2D" uid="uid://d1o03cykpe28r" path="res://assets/sprites/neto/Neto_Adulto.png" id="11_kcca8"]
 [ext_resource type="Texture2D" uid="uid://bxs8d88w1ka0x" path="res://assets/sprites/andando pra cima - 2.png" id="11_lygnx"]
@@ -1913,7 +1913,7 @@ sources/3 = SubResource("TileSetAtlasSource_xgw5r")
 sources/4 = SubResource("TileSetAtlasSource_ntbnh")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um3md"]
-size = Vector2(14, 8)
+size = Vector2(14, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnofu"]
 radius = 5.0
@@ -2078,49 +2078,8 @@ _data = {
 &"pular": SubResource("Animation_uffv2")
 }
 
-[sub_resource type="GDScript" id="GDScript_7k372"]
-script/source = "extends Area2D
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgt1y"]
-size = Vector2(20.25, 23)
-
-[sub_resource type="Animation" id="Animation_ex37g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-62.625, -10.625)]
-}
-
-[sub_resource type="Animation" id="Animation_s2ivy"]
-resource_name = "pular"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-62.625, -10.625), Vector2(-62.625, -20.625), Vector2(-62.625, -10.625)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p72f1"]
-_data = {
-&"RESET": SubResource("Animation_ex37g"),
-&"pular": SubResource("Animation_s2ivy")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcca8"]
+size = Vector2(22.5, 26.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncr2o"]
 size = Vector2(8, 8)
@@ -2285,13 +2244,13 @@ scale = Vector2(0.075, 0.073)
 texture = ExtResource("11_kcca8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto"]
-position = Vector2(224.125, 73.4893)
+position = Vector2(226, 77)
 shape = SubResource("RectangleShape2D_um3md")
 
 [node name="InteractionArea" type="Area2D" parent="ObjetosNodes/Neto"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto/InteractionArea"]
-position = Vector2(224.125, 74.4893)
+position = Vector2(225, 82)
 shape = SubResource("CircleShape2D_wnofu")
 
 [node name="ExclamacoesContainer" type="Node2D" parent="ObjetosNodes"]
@@ -2369,23 +2328,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_v2rjx")
 }
 
-[node name="Ecorreta" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
-position = Vector2(453, 304)
-script = SubResource("GDScript_7k372")
+[node name="E5" type="Area2D" parent="ObjetosNodes/ExclamacoesContainer"]
+position = Vector2(452, 283)
 
-[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
+[node name="Sprite2D" type="Sprite2D" parent="ObjetosNodes/ExclamacoesContainer/E5"]
 z_index = 100
 position = Vector2(-62.625, -10.625)
 scale = Vector2(0.315833, 0.315833)
 texture = ExtResource("13_1vp8k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
-position = Vector2(-62.875, 2.5)
-shape = SubResource("RectangleShape2D_vgt1y")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/ExclamacoesContainer/E5"]
+position = Vector2(-62.75, 25.625)
+shape = SubResource("RectangleShape2D_kcca8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjetosNodes/ExclamacoesContainer/Ecorreta"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObjetosNodes/ExclamacoesContainer/E5"]
 libraries = {
-&"": SubResource("AnimationLibrary_p72f1")
+&"": SubResource("AnimationLibrary_v2rjx")
 }
 
 [node name="PontoFinalNeto" type="Marker2D" parent="ObjetosNodes"]
@@ -2518,7 +2476,7 @@ label_settings = SubResource("LabelSettings_u4kti")
 metadata/_edit_use_anchors_ = true
 
 [node name="AreaPillGame" type="Area2D" parent="."]
-position = Vector2(611, 13)
+position = Vector2(414, 264)
 script = ExtResource("24_exl7b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPillGame"]
@@ -2526,11 +2484,11 @@ position = Vector2(334, 84)
 shape = SubResource("CapsuleShape2D_0ybwg")
 
 [node name="Label" type="Label" parent="AreaPillGame"]
-offset_left = 272.0
-offset_top = 101.0
-offset_right = 496.0
-offset_bottom = 124.0
-scale = Vector2(0.5, 0.5)
+offset_left = 291.0
+offset_top = 98.0
+offset_right = 515.0
+offset_bottom = 121.0
+scale = Vector2(0.3, 0.3)
 size_flags_vertical = 8
 text = "Pressione \"Q\" "
 label_settings = SubResource("LabelSettings_u4kti")
@@ -2540,7 +2498,7 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_use_anchors_ = true
 
 [node name="SpawnNeto" type="Marker2D" parent="."]
-position = Vector2(723, 71)
+position = Vector2(505, 290)
 
 [node name="MusicaFundo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_3xvye")
@@ -2551,7 +2509,7 @@ autoplay = true
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E2" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E3" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
 [connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E4" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
-[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/Ecorreta" to="." method="_on_ecorreta_body_entered"]
+[connection signal="body_entered" from="ObjetosNodes/ExclamacoesContainer/E5" to="ObjetosNodes/ExclamacoesContainer" method="_on_body_entered"]
 [connection signal="body_entered" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_entered"]
 [connection signal="body_exited" from="AreaPortraitGame" to="AreaPortraitGame" method="_on_body_exited"]
 [connection signal="body_entered" from="AreaBedGame" to="AreaBedGame" method="_on_body_entered"]

@@ -25,3 +25,7 @@ func setup_trail_gradient():
 	gradient.add_point(1.0, Color(1, 0, 0, 1))
 	
 	trail.gradient = gradient
+
+
+func _on_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

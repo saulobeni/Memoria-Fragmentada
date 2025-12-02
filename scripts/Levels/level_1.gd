@@ -119,7 +119,7 @@ func _process(_delta):
 	if cama_pronta_para_dormir and areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
 		await iniciar_sequencia_sono()
 		return
-							
+
 	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
 	if not paused and not subviewport_container.visible:
 		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact") and not cama_pronta_para_dormir:
@@ -487,6 +487,7 @@ func iniciar_esconde_esconde() -> void:
 	exclamacoes_container.mostrar_exclamacoes()
 
 	for e in exclamacoes:
+		print(e.name)
 		e.show()
 		e.get_node("AnimationPlayer").play("pular")
 
