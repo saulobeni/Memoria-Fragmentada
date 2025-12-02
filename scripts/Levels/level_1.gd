@@ -16,7 +16,6 @@ var missao_atual = 0
 
 @export var offset_position : Vector2 = Vector2(292,245)
 @export var offset_position2 : Vector2 = Vector2(710, 245)
-@export var offset_position4 : Vector2 = Vector2(380,245)
 
 @export var dialog_images1: Array[AtlasTexture] = []
 @export var dialog_images2: Array[AtlasTexture] = []
@@ -24,7 +23,6 @@ var missao_atual = 0
 @export var dialog_texts1 : Array[String] = []
 @export var dialog_texts2 : Array[String] = []
 @export var dialog_texts3 : Array[String] = []
-@export var dialog_texts4 : Array[String] = []
 @export var dialog_texts5 : Array[String] = []
 
 @onready var dialog_label = $Player/Camera2D/DialogLabel
@@ -94,8 +92,7 @@ func _process(_delta):
 	if fase_neto == false and missao_atual == 3:
 			if neto.is_visible_in_tree() and neto.get_node("InteractionArea/CollisionShape2D").disabled == false:
 				if Input.is_action_just_pressed("interact"):
-					DialogManager.start_dialog(dialog_texts4, global_position + offset_position4, dialog_images2, $Player)
-					await DialogManager.dialog_completed
+					await mostrar_dialogo("Vovô, vamos brincar de esconde-esconde!", 2.0)
 					iniciar_esconde_esconde()
 
 	# -----------------------
@@ -107,7 +104,6 @@ func _process(_delta):
 				if e.get_overlapping_bodies().has($Player):
 					if e.name == "E%d" % id_exclamacao_correta:
 						await mostrar_dialogo("Ahh, você me encontrou vovô!", 2.0)
-						$ObjetosNodes/Neto/InteractionArea/CollisionShape2D.disabled = true
 						finalizar_esconde_esconde()
 					else:
 						await mostrar_dialogo("Hmm... ele não está aqui.", 1.5)
@@ -119,7 +115,7 @@ func _process(_delta):
 	if cama_pronta_para_dormir and areaBedGame.player_in_area and Input.is_action_just_pressed("interact"):
 		await iniciar_sequencia_sono()
 		return
-
+							
 	# Verifica interações apenas se o jogo não estiver pausado e a subviewport não estiver visível
 	if not paused and not subviewport_container.visible:
 		if areaBedGame.player_in_area and Input.is_action_just_pressed("interact") and not cama_pronta_para_dormir:
@@ -142,7 +138,7 @@ func _process(_delta):
 				
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaPortraitGame/CollisionShape2D.disabled = true
-			DialogManager.start_dialog(dialog_texts2, global_position + offset_position, dialog_images1, $Player)
+			DialogManager.start_dialog(dialog_texts2, global_position + offset_position, dialog_images2, $Player)
 			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle.tscn")
 			if not missoesVisitadas[1]:  # Corrigido: removido == false
@@ -159,7 +155,7 @@ func _process(_delta):
 				
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaCookingGame/CollisionShape2D.disabled = true
-			DialogManager.start_dialog(dialog_texts3, global_position+offset_position2, dialog_images1, $Player)
+			DialogManager.start_dialog(dialog_texts3, global_position+offset_position2, dialog_images2, $Player)
 			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
 			if not missoesVisitadas[2]:  # Corrigido: removido == false
@@ -266,7 +262,7 @@ func abrir_subviewport(caminho_cena):
 	cena_carregada = cena
 	subviewport_container.visible = true
 	
-	# Configura TODOS os nós da cena carregada para processar mesmo com o jogo pausado
+	# Configura TODOS os nós da cena carregada para processar mesmo se o jogo estiver pausado
 	configurar_processamento_recursivo(cena_carregada, Node.PROCESS_MODE_ALWAYS)
 	
 	# Configura a SubViewportContainer para capturar inputs
@@ -277,10 +273,6 @@ func abrir_subviewport(caminho_cena):
 	
 	# Configura a SubViewport para não ser afetada pela pausa
 	subviewport.process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	# Pausa apenas o mundo principal, não a SubViewport
-	get_tree().paused = true
-	paused = true
 	
 	# Foca na SubViewport para receber inputs
 	subviewport_container.grab_focus()
@@ -487,7 +479,6 @@ func iniciar_esconde_esconde() -> void:
 	exclamacoes_container.mostrar_exclamacoes()
 
 	for e in exclamacoes:
-		print(e.name)
 		e.show()
 		e.get_node("AnimationPlayer").play("pular")
 
@@ -499,7 +490,7 @@ func finalizar_esconde_esconde() -> void:
 	exclamacoes_container.esconder_exclamacoes()
 	
 	# Coloca o neto diretamente no ponto desejado
-	neto.position = $SpawnNeto.position + Vector2(20, -25)
+	neto.position = $SpawnNeto.position
 	neto.show()
 	
 	transition_animation.play("transicao_vem")
@@ -552,7 +543,7 @@ func iniciar_sequencia_sono():
 	await get_tree().create_timer(1.0).timeout
 	
 	# Carrega o dia 2
-	get_tree().change_scene_to_file("res://scenes/Dia_2.tscn")
+	get_tree().change_scene_to_file("res://scenes/FIM_DE_JOGO.tscn")
 
 
 func _on_InteractionArea_body_entered(body):
@@ -577,6 +568,3 @@ func _on_ecorreta_body_entered(body: Node2D) -> void:
 		return
 		
 	await mostrar_dialogo("Finalmente achei você,\n       netinho!", 2.0)
-
-
-	

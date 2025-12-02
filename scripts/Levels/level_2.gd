@@ -12,7 +12,7 @@ var missions = [
 	"Vá dormir"
 ]
 
-var missao_atual = 0
+var missao_atual = 2
 
 @export var offset_position : Vector2 = Vector2(292,245)
 @export var offset_position2 : Vector2 = Vector2(710, 245)
@@ -262,7 +262,7 @@ func abrir_subviewport(caminho_cena):
 	cena_carregada = cena
 	subviewport_container.visible = true
 	
-	# Configura TODOS os nós da cena carregada para processar mesmo com o jogo pausado
+	# Configura TODOS os nós da cena carregada para processar mesmo se o jogo estiver pausado
 	configurar_processamento_recursivo(cena_carregada, Node.PROCESS_MODE_ALWAYS)
 	
 	# Configura a SubViewportContainer para capturar inputs
@@ -273,10 +273,6 @@ func abrir_subviewport(caminho_cena):
 	
 	# Configura a SubViewport para não ser afetada pela pausa
 	subviewport.process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	# Pausa apenas o mundo principal, não a SubViewport
-	get_tree().paused = true
-	paused = true
 	
 	# Foca na SubViewport para receber inputs
 	subviewport_container.grab_focus()
@@ -547,7 +543,7 @@ func iniciar_sequencia_sono():
 	await get_tree().create_timer(1.0).timeout
 	
 	# Carrega o dia 2
-	get_tree().change_scene_to_file("res://scenes/Dia_3.tscn")
+	get_tree().change_scene_to_file("res://scenes/FIM_DE_JOGO.tscn")
 
 
 func _on_InteractionArea_body_entered(body):
@@ -572,6 +568,3 @@ func _on_ecorreta_body_entered(body: Node2D) -> void:
 		return
 		
 	await mostrar_dialogo("Finalmente achei você,\n       netinho!", 2.0)
-
-
-	

@@ -3,7 +3,7 @@ extends Control
 @export var rows: int = 5
 @export var columns: int = 5
 @export var piece_size: Vector2 = Vector2(204.6, 204.6)
-@export var portrait_path: String = "res://assets/textures/minigame_quadro/portrait_sem_borda.png"
+@export var portrait_path: String = "res://assets/textures/minigame_quadro/portrait_sem_borda_Hard.png"
 
 @onready var puzzle_area: Control = $PuzzleArea
 @onready var pieces_container: Node = $PuzzleArea/Pieces

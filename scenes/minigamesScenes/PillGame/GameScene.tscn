@@ -1,20 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://coy4typnwfiwo"]
+[gd_scene load_steps=6 format=3 uid="uid://coy4typnwfiwo"]
 
 [ext_resource type="Script" uid="uid://db18hf56fov67" path="res://scripts/minigamesScripts/PillGame/codigoGame.gd" id="1_eqhe0"]
 [ext_resource type="PackedScene" uid="uid://44ju3uk3e3vc" path="res://scenes/minigamesScenes/PillGame/Pill.tscn" id="2_k77ap"]
+[ext_resource type="Texture2D" uid="uid://can5f3gmwv2s5" path="res://assets/sprites/ChatGPT Image 17 de nov. de 2025, 20_26_17.png" id="2_k205d"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_652ky"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4bvgx"]
+font = ExtResource("3_652ky")
 font_size = 32
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_eqhe0")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(256, 234.00002)
+scale = Vector2(0.42252603, 0.453125)
+texture = ExtResource("2_k205d")
+
 [node name="NetoText" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = 40.0
-offset_top = 124.0
-offset_right = 457.0
-offset_bottom = 256.0
+offset_left = 33.0
+offset_top = 96.0
+offset_right = 450.0
+offset_bottom = 228.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "Remédio "

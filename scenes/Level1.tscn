@@ -2196,7 +2196,6 @@ dialog_images2 = Array[AtlasTexture]([ExtResource("3_kn0xh"), ExtResource("2_ak7
 dialog_texts1 = Array[String](["A cama... sempre a cama primeiro. Um lugar em ordem é uma mente em ordem... ou era o que ela sempre dizia."])
 dialog_texts2 = Array[String](["Olhem só para eles... meus bebês. A vida... passa num piscar de olhos. Parece que foi ontem que eu os carregava no colo."])
 dialog_texts3 = Array[String](["Hmm... meu estomâgo está roncando. O que eu costumo fazer quando... ? Ah, sim! Um lanche. Preciso fazer um lanche."])
-dialog_texts4 = Array[String](["Vôvô! Tudo bem? Tava pensando na nossa brincadeira de esconde-esconde. Foi tão legal! Bora de novo?", "Esconde-esconde? Nós... brincamos? Me perdoe, meu anjo... às vezes os dias se misturam. Mas sua voz... sua voz me alegra o coração. Claro que podemos brincar."])
 dialog_texts5 = Array[String]([""])
 
 [node name="Transicao" parent="." instance=ExtResource("2_gumju")]
@@ -2258,6 +2257,7 @@ script = ExtResource("12_rfxdd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto/InteractionArea"]
 position = Vector2(224.125, 74.4893)
 shape = SubResource("CircleShape2D_wnofu")
+disabled = true
 
 [node name="Label" type="Label" parent="ObjetosNodes/Neto/InteractionArea"]
 offset_left = 174.0

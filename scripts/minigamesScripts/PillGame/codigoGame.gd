@@ -9,9 +9,6 @@ var game_active: bool = false
 @onready var pill_container: Node2D = $PillsContainer
 
 func _ready():
-	# Adiciona fundo branco
-	adicionar_fundo_branco()
-	
 	# Configura a cor do texto do Neto para preto
 	configurar_texto_preto()
 	
@@ -22,32 +19,6 @@ func _ready():
 			pill.pill_clicked.connect(_on_pill_clicked)
 			
 	start_minigame()
-
-func adicionar_fundo_branco():
-	"""Adiciona um fundo branco ao minigame"""
-	var background = ColorRect.new()
-	background.name = "WhiteBackground"
-	background.color = Color.WHITE
-	
-	# IMPORTANTE: Desabilita a detecção de input/mouse para o fundo
-	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	
-	# Configura o tamanho
-	background.size = get_viewport_rect().size
-	
-	# Usa ancoras para cobrir toda a tela
-	background.anchor_left = 0
-	background.anchor_top = 0
-	background.anchor_right = 1
-	background.anchor_bottom = 1
-	background.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	background.grow_vertical = Control.GROW_DIRECTION_BOTH
-	
-	# Z-index negativo para ficar atrás
-	background.z_index = -1
-	
-	add_child(background)
-	move_child(background, 0)  # Move para ser o primeiro nó (fundo)
 
 func configurar_texto_preto():
 	"""Configura a cor do texto do Neto para preto"""
@@ -73,10 +44,10 @@ func next_step():
 	# Verifica se ainda há remédios na lista para tomar
 	if current_step < CORRECT_ORDER.size():
 		var required_color = CORRECT_ORDER[current_step]
-		neto_text.text = "Neto: Agora tome o remédio " + required_color + "!"
+		neto_text.text = "Agora tome o remédio " + required_color + "!"
 	else:
 		# Fim do jogo
-		neto_text.text = "Neto: Perfeito, Vovô!\n Todas no horário certo!"
+		neto_text.text = "Perfeito, Vovô!\n Todas no horário certo!"
 		game_active = false
 		print("Minigame Concluído com Sucesso!")
 		
@@ -111,4 +82,4 @@ func _on_pill_clicked(clicked_pill):
 		# ERROU:
 		print("ERROU! Clicou em: " + clicked_color)
 		# AQUI a pílula NÃO se esconde. Apenas o texto muda avisando o erro.
-		neto_text.text = "Neto: Opa, Vovô... não é o " + clicked_color + ". É o " + required_color + "!"
+		neto_text.text = "Opa, Vovô... não é o " + clicked_color + ". É o " + required_color + "!"
