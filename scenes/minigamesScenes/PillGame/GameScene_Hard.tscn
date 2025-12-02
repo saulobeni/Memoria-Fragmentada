@@ -1,16 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcld6e6o5pqst"]
+[gd_scene load_steps=6 format=3 uid="uid://bcld6e6o5pqst"]
 
 [ext_resource type="Script" uid="uid://bii0h5wk6k0k8" path="res://scripts/minigamesScripts/PillGame/codigoGame_Hard.gd" id="1_l31ua"]
+[ext_resource type="Texture2D" uid="uid://can5f3gmwv2s5" path="res://assets/sprites/ChatGPT Image 17 de nov. de 2025, 20_26_17.png" id="2_pdj6n"]
 [ext_resource type="PackedScene" uid="uid://44ju3uk3e3vc" path="res://scenes/minigamesScenes/PillGame/Pill.tscn" id="2_yy8jy"]
+[ext_resource type="FontFile" uid="uid://80uo8cl3cyx4" path="res://fonts/PressStart2P-Regular.ttf" id="3_pdj6n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4bvgx"]
-font_size = 32
+font = ExtResource("3_pdj6n")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(37, 0)
 script = ExtResource("1_l31ua")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(291.99997, 258)
+scale = Vector2(0.52, 0.558)
+texture = ExtResource("2_pdj6n")
+
 [node name="NetoText" type="Label" parent="."]
-modulate = Color(0, 0, 0, 1)
 offset_left = 79.0
 offset_top = 124.0
 offset_right = 496.0
@@ -23,32 +30,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PillsContainer" type="Node2D" parent="."]
-position = Vector2(48, 252)
+position = Vector2(45, 269)
 
 [node name="Pill_Azul" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 modulate = Color(0, 0, 1, 1)
 position = Vector2(-8, 0)
+pill_color = "azul"
 
 [node name="Pill_Amarela" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(81, 0)
-pill_color = "AMARELA"
+pill_color = "armarelo"
 
 [node name="Pill_Vermelha" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(171, 0)
-pill_color = "VERMELHA"
+pill_color = "vermelho"
 
 [node name="Pill_Verde" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 modulate = Color(0, 1, 0, 1)
 position = Vector2(260, 0)
-pill_color = "VERDE"
+pill_color = "verde"
 
 [node name="Pill_Roxa" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 modulate = Color(0.627451, 0.1254902, 0.9411765, 1)
 position = Vector2(349, 0)
-pill_color = "ROXA"
+pill_color = "roxo"
 
 [node name="Pill_Branca" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 position = Vector2(437, 0)
-pill_color = "BRANCA"
+pill_color = "branco"

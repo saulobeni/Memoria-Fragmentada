@@ -1,7 +1,7 @@
 extends Node2D
 
 # A ordem correta que o jogador deve seguir
-const CORRECT_ORDER: Array[String] = ["AZUL", "VERDE", "VERMELHA", "AMARELA"]
+const CORRECT_ORDER: Array[String] = ["azul", "verde", "vermelho", "amarelo"]
 var current_step: int = 0
 var game_active: bool = false
 
@@ -82,4 +82,5 @@ func _on_pill_clicked(clicked_pill):
 		# ERROU:
 		print("ERROU! Clicou em: " + clicked_color)
 		# AQUI a pílula NÃO se esconde. Apenas o texto muda avisando o erro.
-		neto_text.text = "Opa, Vovô... não é o " + clicked_color + ". É o " + required_color + "!"
+		neto_text.text = "Opa, Vovô... não é o " + clicked_color + ".
+		É o " + required_color + "!"

@@ -1916,10 +1916,10 @@ sources/3 = SubResource("TileSetAtlasSource_xgw5r")
 sources/4 = SubResource("TileSetAtlasSource_ntbnh")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um3md"]
-size = Vector2(14, 9.510696)
+size = Vector2(19.125, 12.510696)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wnofu"]
-radius = 5.0
+radius = 8.889682
 
 [sub_resource type="LabelSettings" id="LabelSettings_u4kti"]
 font = ExtResource("25_ntbnh")
@@ -2253,7 +2253,7 @@ scale = Vector2(0.0508929, 0.0508929)
 texture = ExtResource("11_vgt1y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto"]
-position = Vector2(224.125, 74.24465)
+position = Vector2(225, 75)
 shape = SubResource("RectangleShape2D_um3md")
 
 [node name="InteractionArea" type="Area2D" parent="ObjetosNodes/Neto"]
@@ -2261,7 +2261,7 @@ position = Vector2(0, 8)
 script = ExtResource("12_rfxdd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjetosNodes/Neto/InteractionArea"]
-position = Vector2(224.125, 74.4893)
+position = Vector2(224, 68)
 shape = SubResource("CircleShape2D_wnofu")
 disabled = true
 
