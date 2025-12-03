@@ -2,28 +2,33 @@ extends Node2D
 
 var missions = [
 	"Arrume a cama",
-	"Observe o quadro 
-	no quarto",
 	"Faça algo para 
 	comer",
-	"Fale com o seu 
-	neto",
+	"Fale com a pessoa\n na casa",
 	"Tome seus remédios",
+	"Observe o quadro 
+	no quarto",
 	"Vá dormir"
 ]
 
 var missao_atual = 0
 
 @export var offset_position : Vector2 = Vector2(292,245)
-@export var offset_position2 : Vector2 = Vector2(710, 245)
+@export var offset_position2 : Vector2 = Vector2(292, 245)
+@export var offset_position3 : Vector2 = Vector2(714, 245)
+@export var offset_position4 : Vector2 = Vector2(375, 245)
+
 
 @export var dialog_images1: Array[AtlasTexture] = []
 @export var dialog_images2: Array[AtlasTexture] = []
+@export var dialog_images3: Array[AtlasTexture] = []
+@export var dialog_images4: Array[AtlasTexture] = []
+
 
 @export var dialog_texts1 : Array[String] = []
 @export var dialog_texts2 : Array[String] = []
 @export var dialog_texts3 : Array[String] = []
-@export var dialog_texts5 : Array[String] = []
+@export var dialog_texts4 : Array[String] = []
 
 @onready var dialog_label = $Player/Camera2D/DialogLabel
 
@@ -52,14 +57,14 @@ var cena_carregada: Node = null
 var paused = false
 var pause_menu
 
-var missoesVisitadas = [false,false,false,false, false]
-var sequenciaDiaUm = [0,1,2,3,4]
+var missoesVisitadas = [false,false,false,false]
+var sequenciaDiaUm = [0,1,2,3,]
 var contadorIdMissao = 0
 var cama_pronta_para_dormir = false
 
 
 func verificar_todas_missoes_completadas():
-	for i in range(5):  # Verifica apenas as 5 primeiras missões
+	for i in range(4):  # Verifica apenas as 4 primeiras missões
 		if not missoesVisitadas[i]:
 			return false
 	return true
@@ -85,30 +90,6 @@ func _ready():
 	load_pause_menu()
 
 func _process(_delta):
-	
-	# -----------------------
-	# Interação com o Neto (missão 4)
-	# -----------------------
-	if fase_neto == false and missao_atual == 3:
-			if neto.is_visible_in_tree() and neto.get_node("InteractionArea/CollisionShape2D").disabled == false:
-				if Input.is_action_just_pressed("interact"):
-					await mostrar_dialogo("Vovô, vamos brincar de esconde-esconde!", 2.0)
-					iniciar_esconde_esconde()
-
-	# -----------------------
-	# Interação com exclamações (PRESSIONANDO BOTÃO)
-	# -----------------------
-	if fase_neto and Input.is_action_just_pressed("interact"):
-		for e in exclamacoes:
-			if e.is_visible_in_tree() and not e.get_node("CollisionShape2D").disabled:
-				if e.get_overlapping_bodies().has($Player):
-					if e.name == "E%d" % id_exclamacao_correta:
-						await mostrar_dialogo("Ahh, você me encontrou vovô!", 2.0)
-						finalizar_esconde_esconde()
-					else:
-						await mostrar_dialogo("Hmm... ele não está aqui.", 1.5)
-					return
-	
 	# -----------------------
 	# VERIFICAÇÃO PARA MISSÃO DE DORMIR
 	# -----------------------
@@ -138,14 +119,14 @@ func _process(_delta):
 				
 		if areaPortraitGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaPortraitGame/CollisionShape2D.disabled = true
-			DialogManager.start_dialog(dialog_texts2, global_position + offset_position, dialog_images2, $Player)
+			DialogManager.start_dialog(dialog_texts4, global_position + offset_position, dialog_images4, $Player)
 			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/PortraitGame/Portrait_Puzzle_Hard.tscn")
-			if not missoesVisitadas[1]:  # Corrigido: removido == false
+			if not missoesVisitadas[3]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
-				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 1:
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 3:
 					mostrar_proxima_missao()
-				missoesVisitadas[1] = true
+				missoesVisitadas[3] = true
 				areaPortraitGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 			
@@ -155,14 +136,14 @@ func _process(_delta):
 				
 		if areaCookingGame.player_in_area and Input.is_action_just_pressed("interact"):
 			$AreaCookingGame/CollisionShape2D.disabled = true
-			DialogManager.start_dialog(dialog_texts3, global_position+offset_position2, dialog_images2, $Player)
+			DialogManager.start_dialog(dialog_texts2, global_position+offset_position3, dialog_images2, $Player)
 			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/CookingGame/Cooking_Puzzle.tscn")
-			if not missoesVisitadas[2]:  # Corrigido: removido == false
+			if not missoesVisitadas[1]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
-				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 2:
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 1:
 					mostrar_proxima_missao()
-				missoesVisitadas[2] = true
+				missoesVisitadas[1] = true
 				areaCookingGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 			
@@ -171,12 +152,14 @@ func _process(_delta):
 				ativar_missao_dormir()
 				
 		if areaPillGame.player_in_area and Input.is_action_just_pressed("interact"):
+			DialogManager.start_dialog(dialog_texts3, global_position + offset_position4, dialog_images3, $Player)
+			await DialogManager.dialog_completed
 			abrir_subviewport("res://scenes/minigamesScenes/PillGame/GameScene_Hard.tscn")
-			if not missoesVisitadas[4]:  # Corrigido: removido == false
+			if not missoesVisitadas[2]:  # Corrigido: removido == false
 				# Só avança se esta for a missão atual na sequência
-				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 4:
+				if contadorIdMissao > 0 && sequenciaDiaUm[contadorIdMissao - 1] == 2:
 					mostrar_proxima_missao()
-				missoesVisitadas[4] = true
+				missoesVisitadas[2] = true
 				areaPillGame.get_node("CollisionShape2D").disabled = true
 			proxima_missao()
 			
@@ -218,11 +201,11 @@ func representar_missao(id):
 	if id == 0:
 		return areaBedGame
 	elif id == 1:
-		return areaPortraitGame
-	elif id == 2:
 		return areaCookingGame
-	elif id == 4:
+	elif id == 2:
 		return areaPillGame
+	elif id == 3:
+		return areaPortraitGame
 	else:
 		return null
 
