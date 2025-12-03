@@ -2521,7 +2521,7 @@ metadata/_edit_use_anchors_ = true
 metadata/_edit_use_anchors_ = true
 
 [node name="SpawnNeto" type="Marker2D" parent="."]
-position = Vector2(505, 290)
+position = Vector2(523, 272)
 
 [node name="MusicaFundo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_vgt1y")

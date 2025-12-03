@@ -64,10 +64,10 @@ color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 453.0
-offset_top = 303.0
-offset_right = 703.0
-offset_bottom = 353.0
+offset_left = 302.0
+offset_top = 297.0
+offset_right = 852.0
+offset_bottom = 347.0
 text = "FIM DE JOGO"
 label_settings = SubResource("LabelSettings_hjn3f")
 horizontal_alignment = 1

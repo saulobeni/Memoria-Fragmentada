@@ -40,7 +40,7 @@ pill_color = "azul"
 [node name="Pill_Amarela" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(81, 0)
-pill_color = "armarelo"
+pill_color = "amarelo"
 
 [node name="Pill_Vermelha" parent="PillsContainer" instance=ExtResource("2_yy8jy")]
 modulate = Color(1, 0, 0, 1)

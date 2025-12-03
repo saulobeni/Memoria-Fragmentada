@@ -11,7 +11,7 @@ var missions = [
 	"Vá dormir"
 ]
 
-var missao_atual = 0
+var missao_atual = 3
 
 @export var offset_position : Vector2 = Vector2(292,245)
 @export var offset_position2 : Vector2 = Vector2(292, 245)
@@ -57,8 +57,13 @@ var cena_carregada: Node = null
 var paused = false
 var pause_menu
 
+<<<<<<< HEAD
 var missoesVisitadas = [false,false,false,false]
 var sequenciaDiaUm = [0,1,2,3,]
+=======
+var missoesVisitadas = [false,false,false,false, false]
+var sequenciaDiaUm = [3,4]
+>>>>>>> 0fca883ffc9ee77558b26770105e8495d770f955
 var contadorIdMissao = 0
 var cama_pronta_para_dormir = false
 
